@@ -1,5 +1,4 @@
-<script lang="ts" setup>
-import RouterLink from 'vue';
+<script setup>
 defineProps({
   title: String,
   link: String

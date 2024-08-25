@@ -13,12 +13,12 @@ const router = createRouter({
           component: () => import('../views/HomeView.vue')
         },
         {
-          path: '/produtos/:id',
+          path: '/produtos',
           name: 'produtos',
           component: () => import('../views/ProdutosView.vue')
         },
         {
-          path: '/orcamentos/:id',
+          path: '/orcamentos',
           name: 'orcamentos',
           component: () => import('../views/OrcamentosView.vue')
         },

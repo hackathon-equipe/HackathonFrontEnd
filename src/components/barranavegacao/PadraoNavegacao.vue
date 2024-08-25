@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { ListaTitulos } from '@/components';
 const titles = [
     {
