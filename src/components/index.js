@@ -1,9 +1,9 @@
-import PadraoNavegacao from "./barranavegacao/PadraoNavegacao.vue";
-import PadraoFooter from "./footer/PadraoFooter.vue";
-import ListaTitulos from "./barranavegacao/titulos/ListaTitulos.vue";
+import Navbar from "./navbar/PadraoNavegacao.vue";
+import Footer from "./footer/PadraoFooter.vue";
+import ListaTitulos from "./navbar/titulos/ListaTitulos.vue";
 
 export{
-    PadraoNavegacao,
-    PadraoFooter,
+    Navbar,
+    Footer,
     ListaTitulos
 }

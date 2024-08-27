@@ -1,9 +1,9 @@
 <script setup>
-import { PadraoNavegacao, PadraoFooter }  from '@/components';
+import { Navbar, Footer }  from '@/components';
 import { RouterView } from 'vue-router';
 </script>
 <template>
-    <PadraoNavegacao/>
+    <Navbar/>
     <RouterView/>
-    <PadraoFooter/>
+    <Footer/>
 </template>
