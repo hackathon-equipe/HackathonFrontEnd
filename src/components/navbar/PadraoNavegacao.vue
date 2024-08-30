@@ -46,10 +46,14 @@ const titles = [
 
 <style scoped>
 .navbar{
+  position: fixed;
+  width: 100vw;
+  height: 40px;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 40px 40px 25px;
+  padding: 40px 40px 40px 25px;
 }
 .navbar .link-list{
   list-style: none;

@@ -14,7 +14,7 @@
 <style scoped>
 .frame{
     height: 500px;
-    width: 500px;
+    width: 560px;
     position: relative;
 }
 .frame img{

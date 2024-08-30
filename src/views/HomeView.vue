@@ -36,7 +36,7 @@ import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue';
 </template>
 <style scoped>
   .home{
-    padding: 40px;
+    padding: 160px 40px 40px 40px;
     display: flex;
     justify-content: space-around;
   }
@@ -45,7 +45,7 @@ import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue';
     flex-direction: column;
   }
   .home .info-side .home-tittle h1{
-    width: 620px;
+    width: 720px;
     font-weight: 600;
     font-size: 64px;
     background-image: linear-gradient(43deg, #000000 0%,#2F3F68 90%);
