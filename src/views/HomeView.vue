@@ -45,12 +45,13 @@ import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue';
     flex-direction: column;
   }
   .home .info-side .home-tittle h1{
-    width: 720px;
+    width: 660px;
     font-weight: 600;
     font-size: 64px;
     background-image: linear-gradient(43deg, #000000 0%,#2F3F68 90%);
     background-clip: text;
     color: transparent;
+    line-height: 100px;
   }
   .home .info-side .home-icons{
     font-weight: 500;
