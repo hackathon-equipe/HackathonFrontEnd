@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 const route = useRoute()
-import { useProdutosStore } from '@/stores/ProdutosStore'
+import { useProdutosStore } from '@/stores/produtosStore'
 import SlideComponent from '@/components/carousel/SlideComponent.vue'
 const ProdutosStore = useProdutosStore()
 let rotaAtual=route.path
@@ -21,7 +21,14 @@ rotaAtual=rotaAtual.replace("/", "> ")
         <div class="rota-atual">Home {{rotaAtual}}</div>
             <h1 class="titulo-produtos">Placas Solares</h1>
     </div>
-<div class="ordenar">Ordenar por Mais vendidos</div>
+<div class="ordenar"> <label for="ordenacao">Ordenar por:</label>
+        <select id="ordenacao" name="ordenacao">
+            <option value="maisvendidos">Mais vendidos</option>
+            <option value="maisvendidos">Mais vendidos</option>
+            <option value="maisvendidos">Mais vendidos</option>
+            <option value="maisvendidos">Mais vendidos</option>
+            <option value="maisvendidos">Mais vendidos</option>
+        </select></div>
   <main>
     <div class="filtros">
 <span class="subtitulo filtro-titulo">Filtros</span>
@@ -148,6 +155,20 @@ rotaAtual=rotaAtual.replace("/", "> ")
   </main>
 </template>
 <style scoped>
+option{
+  background-color: transparent;
+  border-radius: 10px;
+}
+select{
+  padding: 10px;
+  font-weight: 520;
+  border:none;
+  background-color: transparent;
+  outline: none;
+}
+select:focus{
+  border-color: transparent;
+}
 .opcao-input input[type='checkbox']:checked,
 input[type='radio']:checked {
   accent-color: #2F3F68;
@@ -163,7 +184,8 @@ input[type='radio']:checked {
 }
 .titulo-produtos{
     font-size: 24px;
-    padding: 30px;
+    padding: 50px;
+    font-weight: 600;
 }
 .input-min-max{
     width: 40%;
@@ -235,8 +257,8 @@ main {
   display: flex;
   flex-direction: column;
   width: 25vw;
-  margin-top: 50px;
-  padding: 0px 50px;
+  margin-top: 20px;
+  padding-left: 7vw;
 }
 .filtro-titulo{
     border-bottom: 1px solid #D9D9D9;
@@ -247,20 +269,20 @@ main {
    padding:10px 0px; 
 }
 .ordenar{
-    padding: 0px 50px;
+    padding-right: 7vw;
     text-align: end;
 }
 .produtos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  padding: 30px 50px;
+  padding: 0px 7vw 0px 50px;
   width: 75vw;
 }
 .produto {
-  width: 22vw;
+  width: 20vw;
   padding: 20px;
 }
 </style>

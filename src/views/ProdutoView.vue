@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 const route = useRoute()
-import { useProdutosStore } from '@/stores/ProdutosStore'
+import { useProdutosStore } from '@/stores/produtosStore'
 import SlideComponent from '@/components/carousel/SlideComponent.vue'
 const ProdutosStore = useProdutosStore()
 </script>
