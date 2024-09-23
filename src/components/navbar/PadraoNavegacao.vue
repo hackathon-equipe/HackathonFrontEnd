@@ -1,26 +1,33 @@
 <script setup>
 import { ListaTitulos } from '@/components';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import logoStandart from '@/assets/logo/logoStandart.vue';
 import { shopingCartIcon, searchIcon } from '../icons';
 const titles = [
-  {
-    text: 'Home',
-    link: '/'
-  },
-  {
-    text: 'Produtos',
-    link: '/produtos'
-  },
-  {
-    text: 'Orcamentos',
-    link: '/orcamentos'
-  },
-  {
-    text: 'Sobre',
-    link: '/sobre'
+    {
+      text: 'Home',
+      link: '/'
+    },
+    {
+      text: 'Produtos',
+      link: '/produtos',
+      hover: 'alertfunction'
+    },
+    {
+      text: 'Orcamentos',
+      link: '/orcamentos'
+    },
+    {
+      text: 'Sobre',
+      link: '/sobre'
+    }
+  ]
+const showMenu = ref(false)
+function onHover(e) {
+  if(e == 'Produtos'){
+    showMenu.value = true
   }
-]
+}
 </script>
 
 <template>
@@ -31,7 +38,15 @@ const titles = [
       </router-link>
     </div>
     <ul class="link-list">
-      <ListaTitulos v-for="(text, index) in titles" :key="index" :title="text.text" :link="text.link" class="link" />
+      <ListaTitulos
+        v-for="(text, index) in titles"
+        :key="index"
+        :title="text.text"
+        :link="text.link"
+        :onHover="onHover"
+        :onLeave="onLeave"
+        class="link"
+      />
     </ul>
     <div class="utilities">
       <span>
@@ -43,13 +58,83 @@ const titles = [
       </span>
     </div>
   </div>
+  <div class="teste" v-if="showMenu" @mouseleave="showMenu = false">
+    <div class="submenu">
+      <div class="filter-menu">
+        <ul class="filters">
+          <li>Promoções</li>
+          <li class="active">Ver Tudo</li>
+        </ul>
+      </div>
+      <div class="products-list">
+        <ul class="products">
+          <li>Placas Solares</li>
+          <li>Conectores</li>
+          <li>Kits Solares</li>
+          <li>Micro inversores</li>
+          <li>Inversores</li>
+          <li>Cabos</li>
+          <li>Estrutura</li>
+          <li>Baterias</li>
+        </ul>
+      </div> 
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.navbar {
-  z-index: 99999999999;
-  top: 0px;
-  position: sticky;
+/* CSS SUBMENU */
+.teste{
+  z-index: 9999999;
+  position: fixed;
+  width: 100vw;
+  top: 75px;
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  border-bottom: 1px solid #CFCFCF;
+}
+.submenu{
+  width: 1400px;
+  padding: 20px 250px 30px;
+  display: flex;
+  justify-content: center;
+}
+.filter-menu{
+  padding: 15px 30px 0px 0px;
+  border-right: 1px solid #5292D0;
+}
+.filters{
+  padding: 0px 30px 20px 0px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  list-style: none
+}
+.filters li{
+  cursor: pointer;
+}
+.products{
+  padding: 15px 0px 0px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+}
+.products li{
+  width: 20%;
+  cursor: pointer;
+}
+.products li:hover{
+  text-decoration:underline;
+}
+
+.active{
+  font-weight: 600;
+}
+/* FIM -> CSS SUBMENU */
+.navbar{
+  position: fixed;
   width: 100vw;
   height: 40px;
   background-color: white;
@@ -72,8 +157,10 @@ const titles = [
 .navbar .link-list .link:nth-child(1) {
   font-weight: 600;
 }
-
-.navbar .link-list .link {
+.navbar .link-list .link:nth-child(2):hover .submenu{
+  background-color: red;
+}
+.navbar .link-list .link{
   text-decoration: none;
   color: black;
 }
@@ -91,7 +178,8 @@ const titles = [
   cursor: pointer;
 }
 
-.navbar .utilities button {
+.navbar .utilities button{
+  cursor: pointer;
   appearance: none;
   border: 1px solid #406996;
   font-weight: 600;
