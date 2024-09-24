@@ -9,7 +9,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       parcelas: 'em até 10x de R$ 100,00'
     },
     {
-      nome: 'Lançamento Painel Solar 550W...',
+      nome: 'Painel Solar 450W Monocristalino Half-Cell',
       imageUrl: 'placa2',
       preco: 'R$ 1.000,00',
       parcelas: 'em até 10x de R$ 100,00'

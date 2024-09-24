@@ -1,11 +1,13 @@
 <script setup>
+import {  computed } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-let rotaAtual = route.path
-rotaAtual = rotaAtual.replace("/", "> ")
+const rotaAtual = computed(() => {
+    return route.path.replace(/\//g, " > ")
+  });
 </script>
 <template>
-    <div class="rota-atual">Home {{ rotaAtual }}</div>
+    <div class="rota-atual">Home{{ rotaAtual }}</div>
 </template>
 <style scoped>
 .rota-atual {
