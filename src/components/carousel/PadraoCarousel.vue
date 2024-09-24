@@ -1,7 +1,7 @@
 <script setup>
 import { useProdutosStore } from '@/stores/produtosStore';
 import SlideComponent from './SlideComponent.vue'
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
 </script>
