@@ -9,6 +9,12 @@ import emailIcon from "./emailIcon.vue"
 import facebookIcon from "./facebookIcon.vue"
 import whatsappIcon from "./whatsappIcon.vue"
 import instagramIcon from "./instagramIcon.vue"
+import reciveDolarIcon from "./reciveDolarIcon.vue"
+import houseIcon from "./houseIcon.vue"
+import upDolarIcon from "./upDolarIcon.vue"
+import natureIcon from "./natureIcon.vue"
+import toolsIcon from "./toolsIcon.vue"
+import trajectoryIcon from "./trajectoryIcon.vue"
 
 export{
     shopingCartIcon,
@@ -21,5 +27,11 @@ export{
     whatsappIcon,
     emailIcon,
     facebookIcon,
-    instagramIcon
+    instagramIcon,
+    reciveDolarIcon,
+    houseIcon,
+    upDolarIcon,
+    natureIcon,
+    toolsIcon,
+    trajectoryIcon,
 }
