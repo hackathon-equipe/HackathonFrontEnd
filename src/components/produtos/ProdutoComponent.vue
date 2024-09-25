@@ -6,7 +6,8 @@ const props = defineProps({
   img: String,
   nome: String,
   preco: String,
-  parcelas: String
+  parcelas: String,
+  VerMais: String
 })
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
@@ -41,43 +42,94 @@ const imgSrc = computed(() => {
 
   <h1 class="titulo-descricao">Descrição do Produto</h1>
 <div class="descricao"> 
-  <span>Caixa de Conexão IP 68 com 3 diodos de by-pass</span>
- <span>Máximo Tensão de Trabalho: 1500Vcc</span>
- <span>Moldura: Alumínio Anodizado</span>
- <span>Coeficiente de Temperatura (Pmax): 0.35 %/°C</span>
- <span>Coeficiente de Temperatura (Voc): 0.27 %/°C</span>
- <span>Temperatura de Operação da Placa: - 40 ~ + 85 °C</span>
- <span>emperatura de Operação Ambiente: 45°C (± 2°C)</span>
- <span>Tipo de Vidro Frontal: 3.2mm temperado</span>
- <span>Nº de Células: 144 (6x24)</span>
- <span>Coeficiente de Temperatura (Isc): 0.050 %/°C</span>
- <span>Dimensões (AxLxP) 2279 X 1134 X 35mm</span>
- <span>Máxima carga estática na parte frontal (ex:carga sob placa): 5400Pa</span>
- <span>Tipo de Material: Monocristalino (Half-cell)</span>
- <span>Tipo de Conector: Conectores MC4</span>
- <span>Eficiência do Módulo: 21.30%</span>
- <span>Nível de Eficiência Energética no Inmetro: Nível A</span>
-<span>Máxima carga estática traseira (ex:vento): 2400Pa</span>
- <span>Área da seção do cabo: 4mm²</span>
- <span>REGISTRO INMETRO: 007202/2021</span>
- <span>Corrente Máxima por Fusíveis em Série: 25A</span>
- <span>Peso: 29kg</span>
- <span>CARACTERÍSTICAS Economia Imediata Certificado pelo INMETRO Resistente</span>
-<span>DOWNLOAD CENTER
-</span></div>
+  <span v-for="(value, key) of VerMais" :key="key">{{ key }}: <strong>{{ value }}</strong></span>
+  <span>DOWNLOAD CENTER</span>
+ </div>
 <div class="carousel-produtos">
   <TitleCarousel title="Produtos Similares" />
   <PadraoCarousel />
   </div>
     <h1 class="titulo-descricao">Comentários</h1>
     <div class=comentario>
-    <div class="divs"><img :src="imgSrc" /><span>Vinicius Gabryel Pereira</span></div>
-    <div><span>Excelente!</span><img src="@/assets/images/estrelas.png"/></div>
-        <div><span>Painel solar muito grande, recomendo pela qualidade.</span></div>
+    <div class="divs"><img class="usuario-img" :src="imgSrc" /><span class="nome-usuario informacao-usuario">Vinicius Gabryel Pereira</span></div>
+    <div class="divs"><span class="exelencia">Excelente!</span><img src="@/assets/images/estrelas.png"/></div>
+        <div class="divs"><span>Painel solar muito grande, recomendo pela qualidade.</span></div>
     </div>
+    <div class="ver-mais-button"> <span>Ver mais comentários</span><button>V</button></div>
+    <div class="comentario-button"><button>+</button> <span>Faça seu comentário</span></div>    
+    <h1 class="titulo-orcamento">Se interessou? Faça um orçamento</h1>
+    <div class="orcamento"><button class="button-orcamento">Fazer orçamento</button></div>
 </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.titulo-orcamento{
+  font-size: 20px;
+  padding: 50px 0px 20px 0px;
+  text-align: center;
+  font-weight: 610;
+}
+.orcamento{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comentario-button, .ver-mais-button{
+  margin-left: calc(10vw - 30px);
+  display: flex;
+  margin-top: 20px;
+}
+.comentario-button button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #29375B;
+  border-color: #29375B;
+  color: rgb(255, 255, 255);
+  margin-right: 18px;
+}
+.ver-mais-button button{
+  border:none;
+  background-color: transparent;
+}
+.ver-mais-button span{
+  font-weight: 500;
+  text-decoration: underline;
+}
+.comentario-button span{
+  font-weight:650;
+}
+.nome-usuario{
+  font-weight: 500;
+  font-size: 16px;
+}
+.divs span{
+  font-size: 16px;
+}
+.exelencia{
+  margin-right:20px ;
+  font-weight: 600;
+}
+.informacao-usuario{
+  margin-left: 20px;
+}
+.comentario{
+  margin-left: calc(10vw - 30px);
+  border-bottom: 1px solid #D9D9D9;
+  padding: 28px 0px;
+  margin-bottom: 40px;
+}
+.divs{
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+}
+.usuario-img{
+  width: 50px;
+  height: 50px;
+  background-color: #29375b;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
 .descricao span{
   margin-left: calc(10vw - 30px);
     font-size: 16px;
@@ -89,6 +141,7 @@ const imgSrc = computed(() => {
   font-size: 20px;
   padding: 100px;
   text-align: center;
+  font-weight: 610;
 }
 .imgs {
   display: flex;
@@ -118,6 +171,16 @@ main {
 .frete {
   border-bottom: 1px solid black;
   margin-bottom: 20px;
+}
+.button-orcamento{
+  border-radius: 20px;
+  height: 45px;
+  color: white;
+  background-color: #29375b;
+  border: none;
+  font-weight: 500;
+  margin: 20px 0px;
+  padding: 10px 25px;
 }
 .button-comprar {
   border-radius: 20px;

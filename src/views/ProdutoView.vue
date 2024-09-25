@@ -17,6 +17,7 @@ const ProdutosStore = useProdutosStore()
       :nome="text.nome"
       :preco="text.preco"
       :parcelas="text.parcelas"
+      :VerMais="text.VerMais"
     />
   </div>
 </template>
