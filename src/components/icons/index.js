@@ -15,6 +15,10 @@ import upDolarIcon from "./upDolarIcon.vue"
 import natureIcon from "./natureIcon.vue"
 import toolsIcon from "./toolsIcon.vue"
 import trajectoryIcon from "./trajectoryIcon.vue"
+import markerPinIcon from "./markerPinIcon.vue"
+import packageIcon from "./packageIcon.vue"
+import userIcon from "./userIcon.vue"
+import walletIcon from "./walletIcon.vue"
 
 export{
     shopingCartIcon,
@@ -34,4 +38,8 @@ export{
     natureIcon,
     toolsIcon,
     trajectoryIcon,
+    markerPinIcon,
+    packageIcon,
+    userIcon,
+    walletIcon,
 }

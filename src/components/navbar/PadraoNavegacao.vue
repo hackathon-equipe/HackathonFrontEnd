@@ -45,7 +45,7 @@ function onHover(e) {
       <span>
         <searchIcon /> Pesquisar
       </span>
-      <button>cadastro</button>
+      <router-link to="/perfil" class="button">cadastro</router-link>
       <span>
         <shopingCartIcon />
       </span>
@@ -182,7 +182,7 @@ function onHover(e) {
   cursor: pointer;
 }
 
-.navbar .utilities button {
+.navbar .utilities .button {
   cursor: pointer;
   appearance: none;
   border: 1px solid #406996;
@@ -192,5 +192,6 @@ function onHover(e) {
   background-color: transparent;
   border-radius: 3rem;
   cursor: pointer;
+ text-decoration: none;
 }
 </style>
