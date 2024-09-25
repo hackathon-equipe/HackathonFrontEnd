@@ -1,5 +1,6 @@
 <script setup>
 import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/components/icons'
+import { sugestIcons, beneficiesCards, contactComp, lojasParceirasComp } from '@/components/homeComponents'
 import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
 import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
@@ -35,10 +36,14 @@ import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
       <bunnerHomePage />
     </div>
   </div>
+  <sugestIcons/>
   <TitleCarousel title="Mais bem avaliados" />
   <PadraoCarousel />
   <TitleCarousel title="Inspirados no visto por ultimo" />
   <PadraoCarousel />
+  <beneficiesCards/>
+  <contactComp/>
+  <lojasParceirasComp/>
 </template>
 <style scoped>
 .home {
