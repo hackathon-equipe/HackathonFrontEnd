@@ -47,7 +47,7 @@ function onHover(e) {
       </span>
       <router-link to="/perfil" class="button">cadastro</router-link>
       <span>
-        <shopingCartIcon />
+        <router-link to="/carrinho"><shopingCartIcon/></router-link>
       </span>
     </div>
   </div>

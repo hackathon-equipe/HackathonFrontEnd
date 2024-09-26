@@ -19,6 +19,10 @@ import markerPinIcon from "./markerPinIcon.vue"
 import packageIcon from "./packageIcon.vue"
 import userIcon from "./userIcon.vue"
 import walletIcon from "./walletIcon.vue"
+import downArrowIcon from "./downArrowIcon.vue"
+import trashIcon from "./trashIcon.vue"
+import truckIcon from "./truckIcon.vue"
+import addIcon from "./addIcon.vue"
 
 export{
     shopingCartIcon,
@@ -42,4 +46,8 @@ export{
     packageIcon,
     userIcon,
     walletIcon,
+    downArrowIcon,
+    trashIcon,
+    truckIcon,
+    addIcon,
 }
