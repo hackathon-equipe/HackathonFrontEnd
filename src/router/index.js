@@ -39,6 +39,11 @@ const router = createRouter({
           name: 'perfil',
           component: () => import('../views/perfilView.vue')
         },
+        {
+          path: '/carrinho',
+          name: 'carrinho',
+          component: () => import('../views/CarrinhoView.vue')
+        },
       ]
     }
   ]
