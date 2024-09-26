@@ -1,12 +1,12 @@
 <script setup>
 import { useProdutosStore } from '@/stores/produtosStore';
 import SlideComponent from './SlideComponent.vue'
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
 </script>
 <template>
-  <Carousel :itemsToShow="4.15" :transition="500">
+  <Carousel :itemsToShow="4.45" :transition="500">
     <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
       <SlideComponent :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
     </Slide>
@@ -18,7 +18,7 @@ const produtosStore = useProdutosStore()
 
 <style scoped>
 .carousel{
-  padding:20px 100px !important;
+  padding:20px 0px 20px 90px !important;
 }
 .aa {
   width: 103px;
