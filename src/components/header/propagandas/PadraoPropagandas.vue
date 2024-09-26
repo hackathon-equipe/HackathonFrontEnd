@@ -16,6 +16,7 @@
 li{
     list-style: none;
     min-width: 100vw;
+    font-size: 12px;
 }
 .propagandas{
     width: 100vw;
@@ -35,7 +36,7 @@ li{
     justify-content: center;
     background-color:#29375B;
     color:white;
-    height: 46px;
+    height: 40px;
     width: 100vw;
 }
 

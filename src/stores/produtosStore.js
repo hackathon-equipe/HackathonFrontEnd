@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useProdutosStore = defineStore('produtos', () => {
   const produtos = [
     {
-      nome: 'Kit Energia Solar 1,14kWp 570W...',
+      nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa',
       preco: 'R$ 1.000,00',
       parcelas: 'em até 10x de R$ 100,00',
@@ -93,7 +93,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       }
     },
     {
-      nome: 'Kit Energia Solar 1,14kWp 570W...',
+      nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'estruturaSolar',
       preco: 'R$ 1.000,00',
       parcelas: 'em até 10x de R$ 100,00',
@@ -123,7 +123,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       }
     },
     {
-      nome: 'Kit Energia Solar 1,14kWp 570W...',
+      nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa3',
       preco: 'R$ 1.000,00',
       parcelas: 'em até 10x de R$ 100,00',
@@ -153,7 +153,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       }
     },
     {
-      nome: 'ultimo',
+      nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa',
       preco: 'R$ 1.000,00',
       parcelas: 'em até 10x de R$ 100,00',

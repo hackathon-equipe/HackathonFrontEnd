@@ -15,7 +15,8 @@ const rotaAtual = computed(() => {
     align-items: center;
     padding-left: 100px;
     background-color: #ECECEC;
-    height: 56px;
+    height: 50px;
     width: 100vw;
+    font-size: 14px;
 }
 </style>
