@@ -38,6 +38,7 @@ li{
     color:white;
     height: 40px;
     width: 100vw;
+    margin-top: 80px;
 }
 
 @keyframes slide {
