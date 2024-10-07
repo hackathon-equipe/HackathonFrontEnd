@@ -85,17 +85,95 @@ const publicationss = [
       favorite: false,
       date: "03-02-21"
   }]
-const filtredCategories = ['14', '9']
+
+
+  const produtos = [
+    {
+      nome: 'Kit Energia Solar 1,14kWp 570W',
+      imageUrl: 'placa',
+      preco: 1000.00,
+      material: ['aço'],
+      potencia: 500,
+      parcelas: 'em até 10x de R$ 100,00',
+      VerMais: {
+        'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
+      }
+    },
+    {
+      nome: 'Painel Solar 450W Monocristalino Half-Cell',
+      imageUrl: 'placa2',
+      preco:  1000.00,
+      parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: 100,
+      VerMais: {
+        'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
+      }
+    },
+    {
+      nome: 'Cabo Solar 4mm 30M Preto',
+      imageUrl: 'caboSolar',
+      preco:  1000.00,
+      parcelas: 'em até 10x de R$ 100,00',
+      material: ['aço'],
+      potencia: 400,
+      VerMais: {
+        'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
+      }
+    },
+    {
+      nome: 'Kit Energia Solar 1,14kWp 570W',
+      imageUrl: 'estruturaSolar',
+      preco: 2000.00,
+      parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: 500,
+      VerMais: {
+        'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
+      }
+    },
+    {
+      nome: 'Kit Energia Solar 1,14kWp 570W',
+      imageUrl: 'placa3',
+      preco:  2000.00,
+      parcelas: 'em até 10x de R$ 100,00',
+      material: ['aço'],
+      potencia: 200,
+      VerMais: {
+        'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
+      }
+    },
+    {
+      nome: 'Kit Energia Solar 1,14kWp 570W',
+      imageUrl: 'placa',
+      preco:  1000.00,
+      parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: 900,
+      VerMais: {
+        'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
+      }
+    }
+  ]
+
+
+const filtredMeteriais = ['aço']
 
 function filterByCategories(publicacao, filtredCategories) {
   const newFiltredCategories = new Set(filtredCategories)
   const arrayFiltrada = publicacao.filter((publication) => (publication.categories.some((element) => newFiltredCategories.has(element)) ))
     console.log(arrayFiltrada)
 }
-function filterByDate(publicacao, minDate, maxDate) {
-    const arrayFiltrada = publicacao.filter((publication) => (publication.date >= minDate && publicacao.date <= maxDate))
+function filterByMateriais(produto, filtredMateriais) {
+  const newFiltredMateriais = new Set(filtredMateriais)
+  const arrayFiltrada = produto.filter((item) => (item.material.some((element) => newFiltredMateriais.has(element)) ))
+  console.log('oi')
+  console.log(arrayFiltrada)
+  console.log('oi')
+}
+function filterByPrice(produto, minPrice, maxPrice) {
+    const arrayFiltrada = produto.filter((item) => (item.preco >= minPrice && item.preco <= maxPrice))
     console.log(arrayFiltrada)
-    console.log('oi')
 }
 function filterByType(publicacao, filtredType) {
   if (filtredType == publicacao.type) {
@@ -141,9 +219,8 @@ function sortByFavorites(publicacao) {
     return { filterByCategories, filterByDate, filterByType, filterByAuthors }
 }
 }
-
-filterByCategories(publicationss, filtredCategories)
-filterByDate(publicationss, '02-02-21', '02-02-24')
+filterByMateriais(produtos, ['aço'])
+filterByPrice(produtos, 1999, 3000)
 filterByType(publications, '1')
 filterByAuthors(publications, '1')
 sortByRecentDate()
