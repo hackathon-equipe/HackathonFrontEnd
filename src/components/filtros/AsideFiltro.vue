@@ -1,4 +1,14 @@
 <script setup>
+import { ref, computed } from 'vue'
+const precoMin = ref(null)
+const precoMax = ref(null)
+const material = ref(null)
+const potencia = ref(null)
+const marca = ref(null)
+let oi = computed(() => {
+return console.log(precoMin.value, precoMax.value, material.value, potencia.value, marca.value) 
+})
+oi()
 </script>
 <template>
     <div class="filtros">
@@ -8,9 +18,9 @@
             <span>-</span>
         </div>
         <div class="container">
-            <input class="input-min-max" placeholder="min" />
+            <input class="input-min-max" placeholder="min" v-model="precoMin" />
             <span>-</span>
-            <input class="input-min-max" placeholder="max" />
+            <input class="input-min-max" placeholder="max" v-model="precoMax"/>
             <span>></span>
         </div>
         <div class="container">
@@ -19,19 +29,19 @@
         </div>
         <div class="opcoes">
             <div class="opcao-input">
-                <input class="opcao" type="radio" id="Placas solares" name="Placas solares" value="Placas solares" />
+                <input class="opcao" type="checkbox" id="ferro" name="ferro" value="ferro" v-model="material" />
+                <label class="opcao-input-label" for="ferro"> ferro </label>
+            </div>
+            <div class="opcao-input">
+                <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares" value="Placas solares" />
                 <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
             </div>
             <div class="opcao-input">
-                <input class="opcao" type="radio" id="Placas solares" name="Placas solares" value="Placas solares" />
+                <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares" value="Placas solares" />
                 <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
             </div>
             <div class="opcao-input">
-                <input class="opcao" type="radio" id="Placas solares" name="Placas solares" value="Placas solares" />
-                <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
-            </div>
-            <div class="opcao-input">
-                <input class="opcao" type="radio" id="Placas solares" name="Placas solares" value="Placas solares" />
+                <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares" value="Placas solares" />
                 <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
             </div>
         </div>
@@ -44,22 +54,22 @@
             </div>
             <div class="opcoes">
                 <div class="opcao-input">
-                    <input class="opcao" type="radio" id="Placas solares" name="Placas solares"
+                    <input class="opcao" type="checkbox" id="500vw" name="500vw"
+                        value="500vw" v-model="potencia" />
+                    <label class="opcao-input-label" for="500vw"> 500vw </label>
+                </div>
+                <div class="opcao-input">
+                    <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares"
                         value="Placas solares" />
                     <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
                 </div>
                 <div class="opcao-input">
-                    <input class="opcao" type="radio" id="Placas solares" name="Placas solares"
+                    <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares"
                         value="Placas solares" />
                     <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
                 </div>
                 <div class="opcao-input">
-                    <input class="opcao" type="radio" id="Placas solares" name="Placas solares"
-                        value="Placas solares" />
-                    <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
-                </div>
-                <div class="opcao-input">
-                    <input class="opcao" type="radio" id="Placas solares" name="Placas solares"
+                    <input class="opcao" type="checkbox" id="Placas solares" name="Placas solares"
                         value="Placas solares" />
                     <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
                 </div>
@@ -78,7 +88,7 @@ option {
 }
 
 .opcao-input input[type='checkbox']:checked,
-input[type='radio']:checked {
+input[type='checkbox']:checked {
     accent-color: #2F3F68;
 }
 

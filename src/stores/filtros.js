@@ -32,7 +32,7 @@ export const useFilterStore = defineStore('filter', () => {
       potencia: 500,
       marca: 'elgin',
       parcelas: 'em até 10x de R$ 100,00',
-      qntdVendas: 2,
+      qntdVendas: 1,
       VerMais: {
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       }
@@ -45,7 +45,7 @@ export const useFilterStore = defineStore('filter', () => {
       material: ['ferro'],
       potencia: 100,
       marca: 'elgin',
-      qntdVendas: 3,
+      qntdVendas: 2,
       VerMais: {
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       }
@@ -58,7 +58,7 @@ export const useFilterStore = defineStore('filter', () => {
       material: ['aço'],
       potencia: 400,
       marca: 'weg',
-      qntdVendas: 4,
+      qntdVendas: 3,
       VerMais: {
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       }
@@ -103,49 +103,43 @@ export const useFilterStore = defineStore('filter', () => {
       }
     }
   ]
-function filterByMateriais(produto, filtredMateriais) {
-  const newFiltredMateriais = new Set(filtredMateriais)
-  const arrayFiltrada = produto.filter((item) => (item.material.some((element) => newFiltredMateriais.has(element)) ))
-  console.log('oi')
-  console.log(arrayFiltrada)
-  console.log('oi')
+
+function filterAndSort(produtos, filtredMateriais, filtredPotencia, filtredMarcas, minPrice, maxPrice, sortOrder) {
+
+  const newFiltredMateriais = new Set(filtredMateriais);
+  let arrayFiltrada = produtos
+
+  // Filtrando produtos com base em materiais
+  if (filtredMateriais != null) {
+  arrayFiltrada = produtos.filter(item =>
+    item.material.some(element => newFiltredMateriais.has(element))
+  );}
+
+  // Filtrando produtos com base em potência
+  if (filtredPotencia != null) {
+  arrayFiltrada = arrayFiltrada.filter(item => filtredPotencia.includes(item.potencia));
+  }
+  // Filtrando produtos com base em marcas
+  if (filtredPotencia != null) {
+  arrayFiltrada = arrayFiltrada.filter(item => filtredMarcas.includes(item.marca));
+  }
+  // Filtrando produtos com base no preço
+  if (filtredPotencia != null) {
+  arrayFiltrada = arrayFiltrada.filter(item => item.preco >= minPrice && item.preco <= maxPrice);
+  }
+  // Ordenando produtos
+  if (sortOrder == 'menorPreco') { 
+    arrayFiltrada.sort((a, b) => a.preco - b.preco);
+  } 
+  else if (sortOrder == 'maiorPreco') {
+    arrayFiltrada.sort((a, b) => b.preco - a.preco);
+  } 
+  else if (sortOrder == 'vendas') {
+
+    arrayFiltrada.sort((a, b) => b.qntdVendas - a.qntdVendas);
+  }
+  console.log(arrayFiltrada);
 }
-function filterByPotencia(produto, filtredPotencia) {
-  const arrayFiltrada = produto.filter(item => filtredPotencia.includes(item.potencia) )
-  console.log('oi')
-  console.log(arrayFiltrada)
-  console.log('oi')
-}
-function filterByMarca(produto, filtredMarcas) {
-  const arrayFiltrada = produto.filter(item => filtredMarcas.includes(item.marca) )
-  console.log('oi')
-  console.log(arrayFiltrada)
-  console.log('oi')
-}
-function filterByPrice(produto, minPrice, maxPrice) {
-    const arrayFiltrada = produto.filter((item) => (item.preco >= minPrice && item.preco <= maxPrice))
-    console.log(arrayFiltrada)
-}
-function sortByVendas() {
-  produtos.sort((a, b) => b.qntdVendas - a.qntdVendas)
-  console.log(produtos)
-}
-function sortByMenorPreco() {
-  produtos.sort((a, b) => a.preco - b.preco)
-  console.log('qq')
-  console.log(produtos)
-  console.log('qq')
-}
-function sortByMaiorPreco() {
-  produtos.sort((a, b) => b.preco - a.preco)
-  console.log('qq')
-  console.log(produtos)
-  console.log('qq')
-}
-filterByMateriais(produtos, ['aço'])
-filterByPotencia(produtos, [500, 400])
-filterByMarca(produtos, ['elgin'])
-filterByPrice(produtos, 1999, 3000)
-sortByMenorPreco() 
-sortByMaiorPreco() 
-sortByVendas()
+// Exemplo de uso
+filterAndSort(produtos, null , null , null, null, null, 'maiorPreco');
+
