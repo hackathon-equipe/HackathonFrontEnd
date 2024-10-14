@@ -3,6 +3,8 @@ import { ListaTitulos } from '@/components';
 import { ref } from 'vue';
 import logoStandart from '@/assets/logo/logoStandart.vue';
 import { shopingCartIcon, searchIcon } from '../icons';
+import { useFiltroStore } from "@/stores/filtros";
+const FiltrosStore = useFiltroStore();
 const titles = [
   {
     text: 'Home',
@@ -23,6 +25,7 @@ const titles = [
   }
 ]
 const showMenu = ref(false)
+const openPesquisar = ref(false)
 function onHover(e) {
   if (e == 'Produtos') {
     showMenu.value = true
@@ -42,9 +45,10 @@ function onHover(e) {
         :onLeave="onLeave" class="link" />
     </ul>
     <div class="utilities">
-      <span>
+      <span @click="openPesquisar=!openPesquisar">
         <searchIcon /> Pesquisar
       </span>
+      <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa">
       <router-link to="/perfil" class="button">cadastro</router-link>
       <span>
         <router-link to="/carrinho"><shopingCartIcon/></router-link>

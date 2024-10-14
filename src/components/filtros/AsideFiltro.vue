@@ -33,7 +33,7 @@ function fecharMarcas() {
 
 <template>
   <div class="filtros">
-    <!-- <span
+    <span
       >{{ FiltrosStore.filtro }}
       {{
         [
@@ -43,7 +43,7 @@ function fecharMarcas() {
           FiltrosStore.potencia,
           FiltrosStore.marca,
         ]
-      }}</span -->
+      }}</span>
     <span class="subtitulo filtro-titulo">Filtros </span>
     <div class="container">
       <span class="subtitulo">Preço</span>

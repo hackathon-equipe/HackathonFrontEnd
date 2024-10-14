@@ -4,6 +4,8 @@ import { defineStore } from 'pinia'
 export const useFiltroStore = defineStore('filtro', () => {
   const precoMin = ref('')
   const precoMax = ref('')
+  const ordem = ref('')
+  const pesquisa= ref('')
   const material = ref([])
   const potencia = ref([])
   const marca = ref([])
@@ -97,7 +99,8 @@ export const useFiltroStore = defineStore('filtro', () => {
       filtredMarcas,
       minPrice,
       maxPrice,
-      sortOrder
+      sortOrder,
+      pesquisa
     ) {
       const newFiltredMateriais = new Set(filtredMateriais)
       let arrayFiltrada = produtos
@@ -125,11 +128,21 @@ export const useFiltroStore = defineStore('filtro', () => {
       } else if (maxPrice != '' ) {
         arrayFiltrada = arrayFiltrada.filter((item) => item.preco <= maxPrice)
       }
+      //Pesquisa
+      if (pesquisa != '') {
+        const normalizedPesquisa = pesquisa.toLowerCase();
+        arrayFiltrada = arrayFiltrada.filter((item) =>
+          item.nome.toLowerCase().includes(normalizedPesquisa) // Supondo que você está filtrando pelo nome do produto
+        );
+      }
+
       // Ordenando produtos
       if (sortOrder == 'menorPreco') {
         arrayFiltrada.sort((a, b) => a.preco - b.preco)
+        console.log('menorPreco')
       } else if (sortOrder == 'maiorPreco') {
         arrayFiltrada.sort((a, b) => b.preco - a.preco)
+        console.log('maiorPreco')
       } else if (sortOrder == 'vendas') {
         arrayFiltrada.sort((a, b) => b.qntdVendas - a.qntdVendas)
       }
@@ -143,7 +156,9 @@ export const useFiltroStore = defineStore('filtro', () => {
       marca.value,
       precoMin.value,
       precoMax.value,
+      ordem.value,
+      pesquisa.value
     )
   })
-  return { precoMin, precoMax, material, potencia, marca, produtos, filtro }
+  return { precoMin, precoMax, material, potencia, marca, produtos, ordem, filtro, pesquisa}
 })

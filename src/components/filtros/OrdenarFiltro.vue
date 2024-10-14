@@ -1,13 +1,13 @@
 <script setup>
+import { useFiltroStore } from "@/stores/filtros";
+const FiltrosStore = useFiltroStore();
 </script>
 <template>
   <div class="ordenar"> <label for="ordenacao">Ordenar por:</label>
-    <select id="ordenacao" name="ordenacao">
-      <option value="maisvendidos">Mais vendidos</option>
-      <option value="maisvendidos">Mais vendidos</option>
-      <option value="maisvendidos">Mais vendidos</option>
-      <option value="maisvendidos">Mais vendidos</option>
-      <option value="maisvendidos">Mais vendidos</option>
+    <select id="ordenacao" name="ordenacao" v-model="FiltrosStore.ordem">
+      <option value="vendas"> Mais vendidos</option>
+      <option value="maiorPreco">Maior preço</option>
+      <option value="menorPreco">Menor preço</option>
     </select>
   </div>
 </template>
