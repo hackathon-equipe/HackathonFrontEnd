@@ -1,11 +1,11 @@
 <script setup>
-import { useProdutosStore } from '@/stores/produtosStore'
 import SlideComponent from '@/components/carousel/SlideComponent.vue'
-const ProdutosStore = useProdutosStore()
+import { useFiltroStore } from "@/stores/filtros";
+const FiltrosStore = useFiltroStore();
 </script>
 <template>
     <div class="produtos">
-        <div class="produto" v-for="(text, index) in ProdutosStore.produtos" :key="index">
+        <div class="produto" v-for="(text, index) in FiltrosStore.filtro" :key="index">
             <SlideComponent :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
         </div>
     </div>

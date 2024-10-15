@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia'
 
 export const useProdutosStore = defineStore('produtos', () => {
+
   const produtos = [
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa',
-      preco: 'R$ 1.000,00',
+      preco: 1000.0,
+      material: ['aço'],
+      potencia: 500,
+      marca: 'elgin',
       parcelas: 'em até 10x de R$ 100,00',
+      qntdVendas: 1,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -35,8 +40,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Painel Solar 450W Monocristalino Half-Cell',
       imageUrl: 'placa2',
-      preco: 'R$ 1.000,00',
+      preco: 1000.0,
       parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: 100,
+      marca: 'elgin',
+      qntdVendas: 2,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -65,8 +74,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Cabo Solar 4mm 30M Preto',
       imageUrl: 'caboSolar',
-      preco: 'R$ 1.000,00',
+      preco: 1000.0,
       parcelas: 'em até 10x de R$ 100,00',
+      material: ['aço'],
+      potencia: 400,
+      marca: 'weg',
+      qntdVendas: 3,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -95,8 +108,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'estruturaSolar',
-      preco: 'R$ 1.000,00',
+      preco: 2000.0,
       parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: 500,
+      marca: 'weg',
+      qntdVendas: 2,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -125,8 +142,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa3',
-      preco: 'R$ 1.000,00',
+      preco: 2000.0,
       parcelas: 'em até 10x de R$ 100,00',
+      material: ['aço'],
+      potencia: 200,
+      marca: 'elgin',
+      qntdVendas: 1,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -155,8 +176,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa',
-      preco: 'R$ 1.000,00',
+      preco: 1000.0,
       parcelas: 'em até 10x de R$ 100,00',
+      material: ['ferro'],
+      potencia: '900',
+      marca: 'weg',
+      qntdVendas: 3,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',

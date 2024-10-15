@@ -33,17 +33,6 @@ function fecharMarcas() {
 
 <template>
   <div class="filtros">
-    <span
-      >{{ FiltrosStore.filtro }}
-      {{
-        [
-          FiltrosStore.precoMin,
-          FiltrosStore.precoMax,
-          FiltrosStore.material,
-          FiltrosStore.potencia,
-          FiltrosStore.marca,
-        ]
-      }}</span>
     <span class="subtitulo filtro-titulo">Filtros </span>
     <div class="container">
       <span class="subtitulo">Preço</span>
