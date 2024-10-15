@@ -11,6 +11,12 @@ const props = defineProps({
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
 })
+function formatarPreco(numero) {
+    return numero.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    });
+}
 </script>
 <template>
   <router-link class="link" :to="`${'produto/' + props.img}`">
@@ -21,7 +27,7 @@ const imgSrc = computed(() => {
     <div class="informacoes">
       <span class="nome">{{ nome }}</span>
       <img class="oii" src="@/assets/images/estrelas.png" />
-      <span class="preco">{{ preco }}</span>
+      <span class="preco">{{ formatarPreco(preco) }}</span>
       <span class="parcelas"> {{ parcelas }}</span>
     </div>
   </div>
