@@ -38,7 +38,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       }
     },
     {
-      nome: 'Painel Solar 450W Monocristalino Half-Cell',
+      nome: 'Painel Solar 450W',
       imageUrl: 'placa2',
       preco: 1000.0,
       parcelas: 'em até 10x de R$ 100,00',
