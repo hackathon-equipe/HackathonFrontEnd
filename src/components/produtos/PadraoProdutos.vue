@@ -1,11 +1,15 @@
 <script setup>
-import { useProdutosStore } from '@/stores/produtosStore'
+import { computed } from 'vue';
 import SlideComponent from '@/components/carousel/SlideComponent.vue'
-const ProdutosStore = useProdutosStore()
+import { useFiltroStore } from "@/stores/filtros";
+const FiltrosStore = useFiltroStore();
+const isTwoProducts = computed(() => {
+    return FiltrosStore.filtro.length === 2;
+});
 </script>
 <template>
-    <div class="produtos">
-        <div class="produto" v-for="(text, index) in ProdutosStore.produtos" :key="index">
+    <div  class="produtos" :class="{ 'two-products': isTwoProducts }">
+        <div class="produto" v-for="(text, index) in FiltrosStore.filtro" :key="index">
             <SlideComponent :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
         </div>
     </div>
@@ -15,14 +19,18 @@ const ProdutosStore = useProdutosStore()
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     flex-direction: row;
     padding: 0px 7vw 0px 50px;
     width: 75vw;
+    margin-bottom: 100px;
 }
 
 .produto {
     width: 20vw;
     padding: 20px;
+}
+
+.produtos.two-products {
+    justify-content: flex-start; /* Ou outro valor desejado */
 }
 </style>

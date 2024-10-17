@@ -55,42 +55,45 @@ function fecharMarcas() {
         <input
           class="opcao"
           type="checkbox"
-          id="ferro"
-          name="ferro"
-          value="ferro"
+          id="alumínio"
+          name="alumínio"
+          value="alumínio"
           v-model="FiltrosStore.material"
         />
-        <label class="opcao-input-label" for="ferro"> ferro </label>
+        <label class="opcao-input-label" for="alumínio"> alumínio </label>
       </div>
       <div class="opcao-input">
         <input
           class="opcao"
           type="checkbox"
-          id="Placas solares"
-          name="Placas solares"
-          value="Placas solares"
+          id="Silício Monocristalinos"
+          name="Silício Monocristalino"
+          value="Silício Monocristalino"
+          v-model="FiltrosStore.material"
         />
-        <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+        <label class="opcao-input-label" for="Silício Monocristalino"> Silício Monocristalino</label>
       </div>
       <div class="opcao-input">
         <input
           class="opcao"
           type="checkbox"
-          id="Placas solares"
-          name="Placas solares"
-          value="Placas solares"
+          id="Silício Policristalino"
+          name="Silício Policristalino"
+          value="Silício Policristalino"
+          v-model="FiltrosStore.material"
         />
-        <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+        <label class="opcao-input-label" for="Silício Policristalino"> Silício Policristalino </label>
       </div>
       <div class="opcao-input">
         <input
           class="opcao"
           type="checkbox"
-          id="Placas solares"
-          name="Placas solares"
-          value="Placas solares"
+          id="Células de Silício Amorfo"
+          name="Células de Silício Amorfo"
+          value="Células de Silício Amorfo"
+          v-model="FiltrosStore.material"
         />
-        <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+        <label class="opcao-input-label" for="Células de Silício Amorfo"> Células de Silício Amorfo </label>
       </div>
     </div>
 
@@ -112,37 +115,40 @@ function fecharMarcas() {
             value="900"
             v-model="FiltrosStore.potencia"
           />
-          <label class="opcao-input-label" for="900"> 900 </label>
+          <label class="opcao-input-label" for="900"> 900W </label>
         </div>
         <div class="opcao-input">
           <input
             class="opcao"
             type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
+            id="500"
+            name="500"
+            value="500"
+            v-model="FiltrosStore.potencia"
           />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+          <label class="opcao-input-label" for="500"> 500W </label>
         </div>
         <div class="opcao-input">
           <input
             class="opcao"
             type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
+            id="400"
+            name="400"
+            value="400"
+            v-model="FiltrosStore.potencia"
           />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+          <label class="opcao-input-label" for="400"> 400W </label>
         </div>
         <div class="opcao-input">
           <input
             class="opcao"
             type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
+            id="800"
+            name="800"
+            value="800"
+            v-model="FiltrosStore.potencia"
           />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+          <label class="opcao-input-label" for="800"> 800W </label>
         </div>
       </div>
       <div class="container">
@@ -160,37 +166,18 @@ function fecharMarcas() {
             value="weg"
             v-model="FiltrosStore.marca"
           />
-          <label class="opcao-input-label" for="weg"> weg </label>
+          <label class="opcao-input-label" for="weg"> WEG </label>
         </div>
         <div class="opcao-input">
           <input
             class="opcao"
             type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
+            id="elgin"
+            name="elgin"
+            value="elgin"
+            v-model="FiltrosStore.marca"
           />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
-        </div>
-        <div class="opcao-input">
-          <input
-            class="opcao"
-            type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
-          />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
-        </div>
-        <div class="opcao-input">
-          <input
-            class="opcao"
-            type="checkbox"
-            id="Placas solares"
-            name="Placas solares"
-            value="Placas solares"
-          />
-          <label class="opcao-input-label" for="Placas solares"> Placas solares </label>
+          <label class="opcao-input-label" for="elgin"> Elgin </label>
         </div>
       </div>
     </div>

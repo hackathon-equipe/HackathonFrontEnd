@@ -6,7 +6,7 @@ const ProdutosStore = useProdutosStore()
 export const useFiltroStore = defineStore('filtro', () => {
   const precoMin = ref('')
   const precoMax = ref('')
-  const ordem = ref('')
+  const ordem = ref('relevância')
   const pesquisa= ref('')
   const material = ref([])
   const potencia = ref([])
@@ -33,7 +33,7 @@ export const useFiltroStore = defineStore('filtro', () => {
       }
       // Filtrando produtos com base em potência
       if (filtredPotencia.length != 0) {
-        arrayFiltrada = arrayFiltrada.filter((item) => filtredPotencia.includes(item.potencia))
+        arrayFiltrada = arrayFiltrada.filter((item) => filtredPotencia.includes(String(item.potencia)))
       }
       // Filtrando produtos com base em marcas
       if (filtredMarcas.length != 0) {
