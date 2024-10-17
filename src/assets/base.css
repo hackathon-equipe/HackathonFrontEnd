@@ -16,7 +16,17 @@
   border-radius: 50% !important;
   background-color: rgb(255, 255, 255) !important;
   margin:20px 8vw !important;
+  width: 45px !important;
+  height: 45px !important;
 }
 .carousel__prev--disabled{
   display: none!important;
+}
+
+.carousel__icon {
+  font-size: 30px !important;
+}
+
+.navbar{
+  top:0;
 }

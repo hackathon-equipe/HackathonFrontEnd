@@ -6,7 +6,7 @@ import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
 </script>
 <template>
-  <Carousel :itemsToShow="4.45" :transition="500">
+  <Carousel :itemsToShow="5.45" :transition="500">
     <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
       <SlideComponent :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
     </Slide>
@@ -17,6 +17,10 @@ const produtosStore = useProdutosStore()
 </template>
 
 <style scoped>
+.link{
+  position: absolute;
+  left: 0;
+}
 .carousel{
   padding:20px 0px 20px 90px !important;
 }

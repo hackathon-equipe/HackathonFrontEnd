@@ -15,7 +15,7 @@ const regex = new RegExp(`(${ultimaParte.value})`, "g");
 const rotaBold = rotaAtual.value.replace(regex, "<strong>$1</strong>");
 </script>
 <template>
-  <div class="rota-atual"><span>Home</span><span v-html="rotaBold"></span> {{}}</div>
+  <div class="rota-atual"><RouterLink class="link" to="/">Home</RouterLink><RouterLink :to="ultimaParte" v-html="rotaBold" class="link"></RouterLink></div>
 </template>
 <style scoped>
 .rota-atual {
@@ -29,5 +29,9 @@ const rotaBold = rotaAtual.value.replace(regex, "<strong>$1</strong>");
 }
 span {
   margin-right: 5px;
+}
+.link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 </style>
