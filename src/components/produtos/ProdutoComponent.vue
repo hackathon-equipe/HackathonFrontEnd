@@ -15,9 +15,10 @@ import { computed } from "vue";
 const props = defineProps({
   img: String,
   nome: String,
-  preco: String,
+  preco: Number,
   parcelas: String,
   VerMais: String,
+  id: Number,
 });
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
@@ -31,7 +32,7 @@ const imgSrc = computed(() => {
       <div>
         <ImagemProduto :imagem="imgSrc" />
       </div>
-      <InformacoesProduto :nome="nome" :preco="preco" />
+      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="imgSrc"/>
     </main>
     <ImagensPqn :imagem="imgSrc" />
 

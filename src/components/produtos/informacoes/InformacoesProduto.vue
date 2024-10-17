@@ -1,8 +1,25 @@
 <script setup>
- defineProps({
+import { useCartStore } from '@/stores/carrinhoStore';
+import addToCartNotify from '@/components/carrinho/addToCartNotify.vue'
+import { ref } from 'vue';
+import { useProdutosStore } from '@/stores/produtosStore';
+const props = defineProps({
   nome: String,
-  preco: String,
+  preco: Number,
+  id: Number,
+  image: String
 })
+
+const produto = useProdutosStore().getProduct(props.id)
+const carrinho = useCartStore()
+
+const visibleAddCart = ref(false);
+function addToCart(){
+  carrinho.addItem(produto);
+  visibleAddCart.value = true;
+  setTimeout(() => {visibleAddCart.value = false;}, 4000);
+}
+
 </script>
 <template>
     <div class="informacoes">
@@ -12,11 +29,12 @@
         hendrerit.</span
       >
       <div class="estrelas"><img class="oii" src="@/assets/images/estrelas.png" /><span>5.0</span></div>
-      <span class="preco">{{ preco }}</span>
+      <span class="preco">R$ {{ preco.toFixed(2).replace('.',',') }}</span>
       <div class="frete"><span> Calcule seu frete</span> <img src="@/assets/images/seta-baixo.png" width="10px" height="10px"/></div>
       <button class="button-comprar">Comprar</button>
-      <button class="button-add">Adicionar ao Carrinho</button>
+      <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
     </div>
+    <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="preco" :image="image" :closeFunction="closeNotify"/>
 </template>
 <style scoped>
 .informacoes {
@@ -67,6 +85,8 @@
     border: none;
     font-weight: 500;
     margin: 20px 0px;
+    cursor: pointer;
+    transition: all .2s ease;
   }
   .button-add {
     background-color: transparent;
@@ -75,5 +95,21 @@
     color: #29375b;
     font-weight: 500;
     border: 2px solid #29375b;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .button-add:hover,.button-comprar:hover{
+    transform: translateY(3px);
+  }
+  .removeCartItem{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-weight: 500;
+    display: flex;
+    position: fixed;
+    bottom: 100px;
+    padding: 15px 30px;
+    width: 100%;
+    height: 50px;
   }
 </style>
