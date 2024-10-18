@@ -1,9 +1,11 @@
 <script setup>
 import { ListaTitulos } from '@/components';
-import { ref } from 'vue';
 import logoStandart from '@/assets/logo/logoStandart.vue';
 import { shopingCartIcon, searchIcon } from '../icons';
+import { ref } from 'vue';
 import { useFiltroStore } from "@/stores/filtros";
+import { useCartStore } from '@/stores/carrinhoStore'
+const cart = useCartStore();
 const FiltrosStore = useFiltroStore();
 const titles = [
   {
@@ -41,8 +43,15 @@ function onHover(e) {
       </router-link>
     </div>
     <ul class="link-list">
-      <ListaTitulos v-for="(text, index) in titles" :key="index" :title="text.text" :link="text.link" :onHover="onHover"
-        :onLeave="onLeave" class="link" />
+      <ListaTitulos
+        v-for="(text, index) in titles"
+        :key="index"
+        :title="text.text"
+        :link="text.link"
+        :onHover="onHover"
+        :onLeave="onLeave"
+        class="link"
+      />
     </ul>
     <div class="utilities">
       <span @click="openPesquisar=!openPesquisar">
@@ -51,11 +60,14 @@ function onHover(e) {
       <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa">
       <router-link to="/perfil" class="button">cadastro</router-link>
       <span>
-        <router-link to="/carrinho"><shopingCartIcon/></router-link>
+        <router-link to="/carrinho" class="cart">
+          <shopingCartIcon />
+          <span v-if="cart.itensInCart > 0">{{cart.itensInCart}}</span>
+        </router-link>
       </span>
     </div>
   </div>
-  <div class="teste" v-if="showMenu" @mouseleave="showMenu = false">
+  <div class="menu" v-if="showMenu" @mouseleave="showMenu = false">
     <div class="submenu">
       <div class="filter-menu">
         <ul class="filters">
@@ -80,8 +92,28 @@ function onHover(e) {
 </template>
 
 <style scoped>
+.navbar {
+  top: 0;
+}
+.cart{
+  position: relative;
+}
+.cart span{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #29375B;
+  font-size: 9px;
+  width: 12px;
+  height: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 3rem;
+}
 /* CSS SUBMENU */
-.teste {
+.menu {
   z-index: 9999999;
   position: fixed;
   width: 100vw;
@@ -89,7 +121,7 @@ function onHover(e) {
   display: flex;
   background-color: white;
   justify-content: center;
-  border-bottom: 1px solid #CFCFCF;
+  border-bottom: 1px solid #cfcfcf;
 }
 
 .submenu {
@@ -101,7 +133,7 @@ function onHover(e) {
 
 .filter-menu {
   padding: 15px 30px 0px 0px;
-  border-right: 1px solid #5292D0;
+  border-right: 1px solid #5292d0;
 }
 
 .filters {
@@ -109,7 +141,7 @@ function onHover(e) {
   gap: 15px;
   display: flex;
   flex-direction: column;
-  list-style: none
+  list-style: none;
 }
 
 .filters li {
@@ -196,6 +228,6 @@ function onHover(e) {
   background-color: transparent;
   border-radius: 3rem;
   cursor: pointer;
- text-decoration: none;
+  text-decoration: none;
 }
 </style>
