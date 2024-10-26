@@ -17,6 +17,10 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Máximo Tensão de Trabalho': '1500Vcc',
         'Moldura': 'Alumínio Anodizado',
         'Coeficiente de Temperatura (Pmax)': '0.35 %/°C',
+
+
+
+
         'Coeficiente de Temperatura (Voc)': '0.27 %/°C',
         'Temperatura de Operação da Placa': '- 40 ~ + 85 °C',
         'Temperatura de Operação Ambiente': '45°C (± 2°C)',
@@ -35,7 +39,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 0
     },
     {
       nome: 'Painel Solar 450W',
@@ -69,7 +74,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 1
     },
     {
       nome: 'Cabo Solar 4mm 30M Preto',
@@ -103,7 +109,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 2
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -137,7 +144,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 3
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -171,7 +179,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 4
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -205,8 +214,13 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Corrente Máxima por Fusíveis em Série': '25A',
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
-      }
+      },
+      id: 5
     }
   ]
-  return { produtos }
+
+  function getProduct(id){
+    return this.produtos.find(objeto => objeto.id === id)
+  }
+  return { produtos, getProduct }
 })
