@@ -29,6 +29,51 @@ function fecharMarcas() {
   FiltrosStore.marca = [];
   marcasAberto.value = false;
 }
+const array = [{
+  nome:"alumínio"
+},
+{
+  nome:"Silício Monocristalino"
+},
+{
+  nome:"Silício Policristalino"
+},
+{
+  nome:"Células de Silício Amorfo"
+}]
+
+const bigArray = [{
+  material:{
+    titulo:"material",
+    funcao:fecharMaterial(),
+    aberto:materialAberto,
+    array:[{
+  nome:"alumínio"
+},
+{
+  nome:"Silício Monocristalino"
+},
+{
+  nome:"Silício Policristalino"
+},
+{
+  nome:"Células de Silício Amorfo"
+}]},
+
+  potencia:{
+    array:[{
+  nome:"900"
+},
+{
+  nome:"500"
+},
+{
+  nome:"400"
+},
+{
+  nome:"800"
+}]},
+}]
 </script>
 
 <template>
@@ -51,49 +96,16 @@ function fecharMarcas() {
       <button @click="materialAberto = !materialAberto" v-if="!materialAberto">+</button>
     </div>
     <div class="opcoes" v-if="materialAberto">
-      <div class="opcao-input">
+      <div v-for="(item, index) in array" :key="index" class="opcao-input">
         <input
           class="opcao"
           type="checkbox"
-          id="alumínio"
-          name="alumínio"
-          value="alumínio"
+          :id="item.nome"
+          :name="item.nome"
+          :value="item.nome"
           v-model="FiltrosStore.material"
         />
-        <label class="opcao-input-label" for="alumínio"> alumínio </label>
-      </div>
-      <div class="opcao-input">
-        <input
-          class="opcao"
-          type="checkbox"
-          id="Silício Monocristalinos"
-          name="Silício Monocristalino"
-          value="Silício Monocristalino"
-          v-model="FiltrosStore.material"
-        />
-        <label class="opcao-input-label" for="Silício Monocristalino"> Silício Monocristalino</label>
-      </div>
-      <div class="opcao-input">
-        <input
-          class="opcao"
-          type="checkbox"
-          id="Silício Policristalino"
-          name="Silício Policristalino"
-          value="Silício Policristalino"
-          v-model="FiltrosStore.material"
-        />
-        <label class="opcao-input-label" for="Silício Policristalino"> Silício Policristalino </label>
-      </div>
-      <div class="opcao-input">
-        <input
-          class="opcao"
-          type="checkbox"
-          id="Células de Silício Amorfo"
-          name="Células de Silício Amorfo"
-          value="Células de Silício Amorfo"
-          v-model="FiltrosStore.material"
-        />
-        <label class="opcao-input-label" for="Células de Silício Amorfo"> Células de Silício Amorfo </label>
+        <label class="opcao-input-label" :for="item.nome"> {{item.nome}} </label>
       </div>
     </div>
 
@@ -193,9 +205,24 @@ option {
   border-radius: 10px;
 }
 
+.opcao-input{
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 .opcao-input input[type="checkbox"]:checked,
 input[type="checkbox"]:checked {
-  accent-color: #2f3f68;
+  background-color: #2f3f68;
+}
+
+.opcao-input input[type="checkbox"]{
+  all: unset;
+  border: 1.5px solid #d9d9d9;
+  border-radius: 15px;
+  width: 15px;
+  height: 15px;
+  margin: 0px 8px;
 }
 
 .opcao {
