@@ -4,20 +4,25 @@
     <div class="propagandas">
       <ul>
         <li style="background-color: #29375b">
-          Você ganha frete grátis a partir de R$500
+          Você ganha <span class="foco">frete grátis</span> a partir de R$500
         </li>
         <li style="background-color: #406996">
-          Com pix você ganha 5% de desconto no total da compra
+          Com pix você ganha <span class="foco">5% de desconto</span> no total da compra
         </li>
         <li style="background-color: #5292d0">
-          Interresado em energia solar? Faça um orçamento
+          Interresado em energia solar? Faça um <span class="foco">orçamento</span>
         </li>
-        <li style="background-color: #3a567d">Parcelamento de até 12x no crédito</li>
+        <li style="background-color: #3a567d">Parcelamento de <span class="foco">até 12x</span> no crédito</li>
       </ul>
     </div>
   </div>
 </template>
 <style scoped>
+.foco{
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0px 5px;
+}
 li {
   display: flex;
   align-items: center;
@@ -37,7 +42,7 @@ li {
 }
 .propagandas ul {
   display: flex;
-  transition: transform 24.5s ease; /* Animação de transição */
+  transition: transform 24.5s ease-in; /* Animação de transição */
   animation-name: slide;
   animation-duration: 25s;
   animation-iteration-count: infinite;
@@ -55,31 +60,29 @@ li {
 }
 
 @keyframes slide {
-  0% {
+  0%,11% {
     transform: translateX(0);
   }
-  14.2% {
+  14.2%,25.2% {
     transform: translateX(0);
   }
-  28.4% {
+  28.4%,38.4% {
     transform: translateX(-100%);
   }
-  41.6% {
+  41.6%,53.6% {
     transform: translateX(-100%);
   }
-  56.8% {
+  56.8%,67.8% {
     transform: translateX(-200%);
   }
-  71% {
+  71%,82% {
     transform: translateX(-200%);
   }
-  85.2% {
+  85.2%,96.8% {
     transform: translateX(-300%);
   }
   100% {
     transform: translateX(-300%);
   }
-}
-.propagandas ul {
 }
 </style>
