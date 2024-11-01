@@ -62,20 +62,20 @@ import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, black
                 <div class="phone-name">
                     <div class="phone-input">
                         <label for="telefone">Telefone:</label>
-                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="12">
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="12" placeholder="Telefone">
                     </div>
                     <div class="name-input">
                         <label for="name">Nome:</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" placeholder="Nome">
                     </div>
                 </div>
                 <div class="email-input">
                     <label for="email">Email:</label>
-                    <input type="text" id="email">
+                    <input type="text" id="email" placeholder="Email">
                 </div>
                 <div class="feedback-input">
                     <label for="feedback">Feedback:</label>
-                    <textarea/>
+                    <textarea cols="5" rows="5">Feedback!</textarea>
                 </div>
                 <div class="button-area">
                     <input type="submit" class="submit-button">
@@ -103,7 +103,16 @@ form input.submit-button{
     height: 150px;
     border: 1px solid #D9D9D9;
     border-radius: 50px;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 150px;
+    max-height: 200px;
+    text-indent: 20px;
+    padding: 20px;
+    scrollbar-width: thin;          /* "auto" or "thin" */
+    scrollbar-color: rgba(64, 64, 64, 0) rgb(255, 255, 255,0);
 }
+
 .submit-form form{
     display: flex;
     flex-direction: column;
