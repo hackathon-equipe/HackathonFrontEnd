@@ -31,7 +31,10 @@ span {
   margin-right: 5px;
 }
 .link {
+  margin: 0px 3px;
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
 </style>
+
+vfor  
