@@ -62,7 +62,7 @@ import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, black
                 <div class="phone-name">
                     <div class="phone-input">
                         <label for="telefone">Telefone:</label>
-                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="12" placeholder="Telefone">
+                        <input type="tel" id="phone" name="phone" maxlength="14" placeholder="Telefone">
                     </div>
                     <div class="name-input">
                         <label for="name">Nome:</label>
@@ -91,6 +91,7 @@ import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, black
     justify-content: center;
 }
 form input.submit-button{
+    cursor: pointer;
     text-indent: 0px;
     width: 200px;
     height: 50px;
