@@ -26,8 +26,17 @@ import addIcon from "./addIcon.vue"
 import minusIcon from "./minusIcon.vue"
 import checkCircle from "./checkCircle.vue"
 import XCloseIcon from "./xCloseIcon.vue"
+import whiteEmailIcon from "./whiteEmailIcon.vue"
+import whiteMarkIcon from "./whiteMarkIcon.vue"
+import whitePhoneIcon from "./whitePhoneIcon.vue"
+import blackFacebookIcon from "./blackFacebookIcon.vue"
+import blackInstagramIcon from "./blackInstagramIcon.vue"
+import twitterIcon from "./twitterIcon.vue"
 
 export{
+    blackFacebookIcon,
+    blackInstagramIcon,
+    twitterIcon,
     shopingCartIcon,
     searchIcon,
     dollarIcon,
@@ -56,4 +65,7 @@ export{
     minusIcon,
     checkCircle,
     XCloseIcon,
+    whiteEmailIcon,
+    whitePhoneIcon,
+    whiteMarkIcon,
 }
