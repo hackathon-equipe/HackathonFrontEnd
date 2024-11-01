@@ -1,7 +1,7 @@
 <script setup>
 import { ListaTitulos } from '@/components';
 import logoStandart from '@/assets/logo/logoStandart.vue';
-import { shopingCartIcon, searchIcon } from '../icons';
+import { shopingCartIcon, searchIcon } from '../../icons';
 import { ref } from 'vue';
 import { useFiltroStore } from "@/stores/filtros";
 import { useCartStore } from '@/stores/carrinhoStore'
@@ -14,16 +14,20 @@ const titles = [
   },
   {
     text: 'Produtos',
-    link: '/cliente/produtos',
+    link: '/admin/produtos',
     hover: 'alertfunction'
   },
   {
     text: 'Orcamentos',
-    link: '/cliente/orcamentos'
+    link: '/admin/orcamentos'
   },
   {
-    text: 'Sobre',
-    link: '/cliente/sobre'
+    text: 'Clientes',
+    link: '/admin/clientes'
+  },
+  {
+    text: 'Pedidos',
+    link: '/admin/pedidos'
   }
 ]
 const showMenu = ref(false)

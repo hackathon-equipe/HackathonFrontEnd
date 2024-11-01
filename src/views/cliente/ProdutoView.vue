@@ -1,0 +1,22 @@
+<script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
+import { useProdutosStore } from "@/stores/produtosStore";
+import ProdutoComponent from "@/components/produtos/ProdutoComponent.vue";
+const ProdutosStore = useProdutosStore();
+
+</script>
+<template>
+  <div v-for="(text, index) in ProdutosStore.produtos" :key="index">
+    <ProdutoComponent
+      v-if="text.imageUrl == route.params.id"
+      :img="text.imageUrl"
+      :nome="text.nome"
+      :preco="text.preco"
+      :parcelas="text.parcelas"
+      :VerMais="text.VerMais"
+      :id="text.id"
+    />
+  </div>
+</template>
+<style scoped></style>

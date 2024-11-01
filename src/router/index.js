@@ -5,44 +5,95 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('../layouts/DefaultLayout.vue'),
+      name: 'login',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/cliente',
+      component: () => import('../layouts/ClienteLayout.vue'),
       children: [
         {
-          path: '/',
+          path: '/cliente/home',
           name: 'home',
-          component: () => import('../views/HomeView.vue')
+          component: () => import('../views/cliente/HomeView.vue')
         },
         {
-          path: '/produto/:id',
+          path: '/cliente/produto/:id',
           name: 'produto',
-          component: () => import('../views/ProdutoView.vue'),
+          component: () => import('../views/cliente/ProdutoView.vue'),
           params: true
         },
         {
-          path: '/produtos',
+          path: '/cliente/produtos',
           name: 'produtos',
-          component: () => import('../views/ProdutosView.vue'),
+          component: () => import('../views/cliente/ProdutosView.vue'),
           params: true
         },
         {
-          path: '/orcamentos',
+          path: '//clienteorcamentos',
           name: 'orcamentos',
-          component: () => import('../views/OrcamentosView.vue')
+          component: () => import('../views/cliente/OrcamentosView.vue')
         },
         {
-          path: '/sobre',
+          path: '/cliente/sobre',
           name: 'sobre',
-          component: () => import('../views/SobreView.vue')
+          component: () => import('../views/cliente/SobreView.vue')
         },
         {
-          path: '/perfil',
+          path: '/cliente/perfil',
           name: 'perfil',
-          component: () => import('../views/perfilView.vue')
+          component: () => import('../views/cliente/perfilView.vue')
         },
         {
           path: '/carrinho',
           name: 'carrinho',
-          component: () => import('../views/CarrinhoView.vue')
+          component: () => import('../views/cliente/CarrinhoView.vue')
+        },
+      ]
+    },
+    {
+      path: '/admin',
+      component: () => import('../layouts/AdminLayout.vue'),
+      children: [
+        {
+          path: '/admin/home',
+          name: 'home',
+          component: () => import('../views/admin/HomeView.vue')
+        },
+        {
+          path: '/admin/produto/:id',
+          name: 'produto',
+          component: () => import('../views/admin/ProdutoView.vue'),
+          params: true
+        },
+        {
+          path: '/admin/produtos',
+          name: 'produtos',
+          component: () => import('../views/admin/ProdutosView.vue'),
+          params: true
+        },
+        {
+          path: '//adminorcamentos',
+          name: 'orcamentos',
+          component: () => import('../views/admin/OrcamentosView.vue')
+        },
+        {
+          path: '/admin/sobre',
+          name: 'sobre',
+          component: () => import('../views/admin/SobreView.vue')
+        },
+        {
+          path: '/admin/perfil',
+          name: 'perfil',
+          component: () => import('../views/admin/perfilView.vue')
+        },
+        {
+          path: '/carrinho',
+          name: 'carrinho',
+          component: () => import('../views/admin/CarrinhoView.vue')
         },
       ]
     }
