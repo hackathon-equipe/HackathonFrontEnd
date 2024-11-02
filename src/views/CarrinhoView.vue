@@ -1,5 +1,5 @@
 <script setup>
-import { truckIcon, downArrowIcon } from "@/components/icons";
+import { truckIcon, downArrowIcon, leftArrowIcon } from "@/components/icons";
 import itemCarrinho from "@/components/carrinho/itemCarrinho.vue";
 import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
@@ -48,8 +48,12 @@ function removeMsg(){
       <button>Finalizar compra</button>
     </div>
   </div>
-  <div class="not-items" v-else>
-    <h1>Você não possui produtos em seu carrinho</h1>
+  <div class="not-itens" v-else>
+    <div class="loading-animation">
+      <img src="../assets/images/LoadGif/LoadingAnimation.gif" alt="">
+    </div>
+    <h1>Não há produtos em seu carrinho</h1>
+    <router-link class="not-itens-button" to="/produtos" >Adicionar produtos <leftArrowIcon/> </router-link>
   </div>
   <div v-if="visibleRemoveCart" class="removeCard">
     <div>
@@ -59,6 +63,25 @@ function removeMsg(){
 </template>
 
 <style scoped>
+.loading-animation img{
+  width: 250px;
+  height: auto;
+}
+.loading-animation{
+  height: 100px;
+  overflow: hidden;
+}
+.not-itens-button{
+  font-weight: 600;
+  color: white;
+  background-color: #29375B;
+  border-radius: 3rem;
+  text-decoration: none;
+  padding: 8px 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .removeCard{
   position: fixed;
   bottom: 30px;
@@ -73,16 +96,17 @@ function removeMsg(){
   background-color: #383838cc;
   font-weight: 500;
 }
-.not-items{
+.not-itens{
+  gap: 20px;
   width: 100vw;
   height: 70vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;  
 }
-.not-items h1{
+.not-itens h1{
   font-weight: 500;
-
 }
 .active {
   padding-left: 5px;
