@@ -1,8 +1,10 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { useFiltroStore } from './filtros';
+import { useRoute } from 'vue-router';
 export const useCategoriaFiltroStore = defineStore('categoriaFiltro', () => {
     const FiltrosStore = useFiltroStore();
+    const route = useRoute();
     const testeMaterial = ref([]);
 const testePotencia = ref([]);
 const testeMarca = ref([]);
@@ -28,6 +30,22 @@ const marcasAberto = ref(true);
 const precoAberto = ref(true);
 const precoMin = ref("");
 const precoMax = ref("");
+    // Função para redefinir as variáveis
+    const resetFilters = () => {
+      testeMaterial.value = [];
+      FiltrosStore.material = [];
+      testePotencia.value = [];
+      FiltrosStore.potencia = [];
+      testeMarca.value = [];
+      FiltrosStore.marca = [];
+      precoMax.value = "";
+      precoMin.value = "";
+      FiltrosStore.precoMin = "";
+      FiltrosStore.precoMax = "";
+    };
+
+    // Watcher para detectar mudanças na rota
+    watch(route, resetFilters);
 const bigArray = ref([
     {
       titulo: "material",

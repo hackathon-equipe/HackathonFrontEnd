@@ -40,7 +40,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 0
+      id: 0,
+      categoria:"kits-solares"
     },
     {
       nome: 'Painel Solar 450W',
@@ -75,7 +76,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 1
+      id: 1,
+      categoria:"placas-solares"
     },
     {
       nome: 'Cabo Solar 4mm 30M Preto',
@@ -110,7 +112,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 2
+      id: 2,
+      categoria:"cabos"
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -145,7 +148,9 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 3
+      id: 3,
+      categoria:"inversores",
+      promocao:true
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -180,7 +185,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 4
+      id: 4,
+      categoria:"placas-solares"
     },
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
@@ -215,7 +221,8 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 5
+      id: 5,
+      categoria:"placas-solares"
     }
   ]
 
