@@ -19,7 +19,7 @@ const router = createRouter({
           params: true
         },
         {
-          path: '/produtos',
+          path: '/produtos/:categoria',
           name: 'produtos',
           component: () => import('../views/ProdutosView.vue'),
           params: true

@@ -1,36 +1,21 @@
 <script setup>
-import { ListaTitulos } from '@/components';
-import logoStandart from '@/assets/logo/logoStandart.vue';
-import { shopingCartIcon, searchIcon } from '../icons';
-import { ref } from 'vue';
+import { ListaTitulos } from "@/components";
+import ListaProdutos from "../produtos/ListaProdutos.vue";
+import logoStandart from "@/assets/logo/logoStandart.vue";
+import { shopingCartIcon, searchIcon } from "../icons";
+import { ref } from "vue";
 import { useFiltroStore } from "@/stores/filtros";
-import { useCartStore } from '@/stores/carrinhoStore'
+import { useRotasStore } from "@/stores/rotas";
+import { useCartStore } from "@/stores/carrinhoStore";
 const cart = useCartStore();
 const FiltrosStore = useFiltroStore();
-const titles = [
-  {
-    text: 'Home',
-    link: '/'
-  },
-  {
-    text: 'Produtos',
-    link: '/produtos',
-    hover: 'alertfunction'
-  },
-  {
-    text: 'Orcamentos',
-    link: '/orcamentos'
-  },
-  {
-    text: 'Sobre',
-    link: '/sobre'
-  }
-]
-const showMenu = ref(false)
-const openPesquisar = ref(false)
+const RotasStore = useRotasStore();
+
+const showMenu = ref(false);
+const openPesquisar = ref(false);
 function onHover(e) {
-  if (e == 'Produtos') {
-    showMenu.value = true
+  if (e == "Produtos") {
+    showMenu.value = true;
   }
 }
 </script>
@@ -44,7 +29,7 @@ function onHover(e) {
     </div>
     <ul class="link-list">
       <ListaTitulos
-        v-for="(text, index) in titles"
+        v-for="(text, index) in RotasStore.titles"
         :key="index"
         :title="text.text"
         :link="text.link"
@@ -54,15 +39,13 @@ function onHover(e) {
       />
     </ul>
     <div class="utilities">
-      <span @click="openPesquisar=!openPesquisar">
-        <searchIcon /> Pesquisar
-      </span>
-      <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa">
+      <span @click="openPesquisar = !openPesquisar"> <searchIcon /> Pesquisar </span>
+      <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa" />
       <router-link to="/perfil" class="button">cadastro</router-link>
       <span>
         <router-link to="/carrinho" class="cart">
           <shopingCartIcon />
-          <span v-if="cart.itensInCart > 0">{{cart.itensInCart}}</span>
+          <span v-if="cart.itensInCart > 0">{{ cart.itensInCart }}</span>
         </router-link>
       </span>
     </div>
@@ -71,20 +54,27 @@ function onHover(e) {
     <div class="submenu">
       <div class="filter-menu">
         <ul class="filters">
-          <li>Promoções</li>
-          <li class="active">Ver Tudo</li>
+          <ListaProdutos
+            title="Promoções"
+            link="/produtos/promocoes"
+            class="link link-all"
+          />
+          <ListaProdutos
+            title="Ver Tudo"
+            link="/produtos/all"
+            class="active link link-all"
+          />
         </ul>
       </div>
       <div class="products-list">
         <ul class="products">
-          <li>Placas Solares</li>
-          <li>Conectores</li>
-          <li>Kits Solares</li>
-          <li>Micro inversores</li>
-          <li>Inversores</li>
-          <li>Cabos</li>
-          <li>Estrutura</li>
-          <li>Baterias</li>
+          <ListaProdutos
+            v-for="(text, index) in RotasStore.produtos"
+            :key="index"
+            :title="text.nome"
+            :link="text.link"
+            class="link link-produto"
+          />
         </ul>
       </div>
     </div>
@@ -95,14 +85,24 @@ function onHover(e) {
 .navbar {
   top: 0;
 }
-.cart{
+.link-produto {
+  width: 20%;
+  cursor: pointer;
+}
+.link-produto:hover {
+  text-decoration: underline;
+}
+.link-all:hover {
+  text-decoration: underline;
+}
+.cart {
   position: relative;
 }
-.cart span{
+.cart span {
   position: absolute;
   top: 0;
   right: 0;
-  background: #29375B;
+  background: #29375b;
   font-size: 9px;
   width: 12px;
   height: 12px;
@@ -200,7 +200,12 @@ function onHover(e) {
   background-color: red;
 }
 
-.navbar .link-list .link {
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link {
   text-decoration: none;
   color: black;
 }
