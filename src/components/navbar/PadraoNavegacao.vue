@@ -7,10 +7,12 @@ import { ref } from "vue";
 import { useFiltroStore } from "@/stores/filtros";
 import { useRotasStore } from "@/stores/rotas";
 import { useCartStore } from "@/stores/carrinhoStore";
+import { useAuthStore } from "@/stores/auth";
 const cart = useCartStore();
 const FiltrosStore = useFiltroStore();
 const RotasStore = useRotasStore();
-
+const AuthStore = useAuthStore();
+console.log(AuthStore.user);
 const showMenu = ref(false);
 const openPesquisar = ref(false);
 function onHover(e) {
@@ -39,9 +41,18 @@ function onHover(e) {
       />
     </ul>
     <div class="utilities">
-      <span @click="openPesquisar = !openPesquisar"> <searchIcon /> Pesquisar </span>
+      <span @click="openPesquisar = !openPesquisar">
+        <searchIcon /> {{ AuthStore.loggedIn }}
+      </span>
+      <div v-if="AuthStore.isAuthenticated">
+        <p>Bem-vindo, {{ AuthStore.user.nome }}!</p>
+        <!-- Exibir outras informações do usuário -->
+      </div>
       <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa" />
-      <router-link to="/perfil" class="button">cadastro</router-link>
+      <router-link to="/perfil" v-if="AuthStore.loggedIn">{{
+        AuthStore.user.name
+      }}</router-link>
+      <router-link to="/login" v-else class="button">cadastro</router-link>
       <span>
         <router-link to="/carrinho" class="cart">
           <shopingCartIcon />
