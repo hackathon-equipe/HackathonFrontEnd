@@ -1,62 +1,148 @@
 <script setup>
 import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
+import TitleCarousel from "@/components/carousel/TitleCarousel.vue";
+import PadraoCarousel from "@/components/carousel/PadraoCarousel.vue";
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
+import { useCustoIrradiacaoStore } from "@/stores/cursto-irradiacaoStore";
+import { useOrcamentoStore } from "@/stores/orcamentoStore";
 import { leftArrowIcon } from "../components/icons";
 import { ref } from "vue";
-const step = ref('first-section')
-const checked = ref(false)
-function changeStep(e){
-    step.value = e.value
+const section = ref('first-section')
+
+function changeSection(i) {
+    section.value = i
 }
+const orcamento = useOrcamentoStore()
+
+const estados_irradiacao = useCustoIrradiacaoStore().irradiacaoSolar
+
+const userInfo = ref({
+    irradiacao: '0',
+    gasto_energia: '',
+    consumo_mensal: '',
+    area_limitada: ref(false),
+    area_disponivel: '',
+})
+
+const resultado_orcamento = ref('')
+function realizarCalculo() {
+    resultado_orcamento.value = orcamento.calcularOrcamento(userInfo.value)
+}
+
 </script>
 <template>
-<PadraoPropagandas />
-<PadraoCaminho />
-<div class="background">
-    <div class="container">
-        <div class="gif">
-            <img src="../assets/images/OrcamentoGif/OrcamentoGIf.gif" alt="gif produção">
+    <PadraoPropagandas />
+    <PadraoCaminho />
+    <div class="background">
+        <div class="container" v-if="section == 'first-section' || section == 'second-section'">
+            <div class="gif">
+                <img src="../assets/images/OrcamentoGif/OrcamentoGIf.gif" alt="gif produção">
+            </div>
+            <div class="orcamento">
+                <form @submit.prevent="" >
+                    <h1>Descubra Quanto Pode Economizar</h1>
+                    <div class="first-section" v-if="section == 'first-section'">
+                        <div class="form-input">
+                            <label for="">Insira seu consumo mensal de energia (kWh):</label>
+                            <input type="number" placeholder="Exemplo: 112 kWh" v-model="userInfo.consumo_mensal" required>
+                        </div>
+                        <div class="form-input">
+                            <label for="">Insira seu gasto mensal come energia (R$):</label>
+                            <input type="number" placeholder="Exemplo: R$400" v-model="userInfo.gasto_energia">
+                        </div>
+                        <div class="button-area">
+                            <button @click="changeSection('second-section')" :disabled="userInfo.consumo_mensal == '' || userInfo.gasto_energia == ''">Próximo <leftArrowIcon/> </button>
+                        </div>
+                    </div>
+                    <div v-else-if="section == 'second-section'" class="second-section">
+                        <div class="form-input">
+                            <label for="">Insira o estado onde mora:</label>
+                            <select name="" id="" class="state-select" v-model="userInfo.irradiacao">
+                                <option value=0 selected disabled>Selecione</option>
+                                <option v-for="estado in estados_irradiacao" :key="estado.estado" :value="estado.irradiacao">{{ estado.estado }}</option>
+                            </select>
+                        </div>
+                        <div class="input-checkbox">
+                            <input type="checkbox" name="verify-limit" id="verify-limit" class="check-limit-area" v-model="userInfo.area_limitada">
+                            <label for="verify-limit">Deseja inserir área disponivel?</label>
+                        </div>
+                        <div class="form-input" v-if="userInfo.area_limitada">
+                            <input type="number" placeholder="Exemplo: 40m" v-model="userInfo.area_disponivel">
+                        </div>
+                        <div class="button-area">
+                            <button @click="changeSection('end-section'), realizarCalculo()" :disabled="userInfo.irradiacao == 0">Calcular Economia</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="orcamento">
-            <form @submit.prevent="" >
-                <h1>Descubra Quanto Pode Economizar</h1>
-                <div class="first-section" v-if="step == 'first-section'">
-                    <div class="form-input">
-                        <label for="">Insira seu consumo mensal de energia (kWh):</label>
-                        <input type="number" placeholder="Exemplo: 112 kWh">
+        <div class="third-section" v-else>
+            <div class="componente-resultado">
+                <h1>Resultado</h1>
+                <div class="resultado">
+                    <div class="resultado-grafico">
+
                     </div>
-                    <div class="form-input">
-                        <label for="">Insira seu gasto mensal come energia (R$):</label>
-                        <input type="number" placeholder="Exemplo: R$400">
-                    </div>
-                    <div class="button-area">
-                        <button @click="changeStep('second-step')">Próximo <leftArrowIcon/> </button>
-                    </div>
-                </div>
-                <div v-else class="second-section">
-                    <div class="form-input">
-                        <label for="">Insira o estado onde mora:</label>
-                        <select name="" id="" class="state-select">
-                            <option value="start" selected disabled>Selecione</option>
-                        </select>
-                    </div>
-                    <div class="input-checkbox">
-                        <input type="checkbox" name="verify-limit" id="verify-limit" class="check-limit-area" v-model="checked">
-                        <label for="verify-limit">Deseja inserir área disponivel?</label>
-                    </div>
-                    <div class="form-input" v-if="checked">
-                        <input type="number" placeholder="Exemplo: 40m">
-                    </div>
-                    <div class="button-area">
-                        <button @click="changeStep('second-step')">Calcular Economia</button>
+                    <div class="resultado-info">
+                        <div>
+                            <h2>Gasto de energia por mês</h2>
+                            <p>Sem o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_antigo }}</p>
+                            <p>Com o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_restante }}</p>
+                        </div>
+                        <div>
+                            <h2>Payback (retorno em anos)</h2>
+                            <p>{{resultado_orcamento.payback_anos}} anos</p>
+                        </div>
+                        <div>
+                            <h2>Porcentagem na redução da fatura</h2>
+                            <p>{{resultado_orcamento.porcentagem_valor_energia_economizada}}%</p>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
+            <div class="resultado-alertas">
+                <p>*Os valores calculados não levam em consideração aumentos da tarifa de energia elétrica 10% a.a.</p>
+                <p>*A área que você possui é necessaria para implementar o sistema porém como não temos acesso ao formato dessa area não podemos afirmar com certeza que o sistema irá caber.</p>
+                <p>*O valor citado não inclui instalação</p>
+            </div>
         </div>
     </div>
-</div>
+    <div class="mais-interesses" v-if="section == 'end-section'">
+        <TitleCarousel title="Você pode se interessar" />
+        <PadraoCarousel />
+    </div>
 </template>
 <style scoped>
+.mais-interesses{
+    margin-bottom: 50px;
+}
+.componente-resultado{
+    padding: 40px 90px;
+    background-color: rgb(64, 105, 150, 0.08);
+}
+.resultado-alertas{
+    font-size: 14px;
+    margin: 15px 0px 100px;
+}
+.third-section h1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.third-section h2{
+    font-weight: 600;
+}
+.resultado{
+    display: flex;
+    justify-content: space-around;
+}
+.resultado div{
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .second-section{
     display: flex;
     flex-direction: column;
@@ -81,6 +167,11 @@ function changeStep(e){
     align-items: center;
     gap: 10px;
     justify-content: center;
+    cursor: pointer;
+}
+.button-area button:disabled{
+    opacity: 0.4;
+    cursor:not-allowed;
 }
 .orcamento{
     display: flex;
