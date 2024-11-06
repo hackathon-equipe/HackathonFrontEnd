@@ -9,12 +9,20 @@ export const useOrcamentoStore = defineStore('orcamento', () => {
         let irradiacao = userinfo.irradiacao
         let custo_energia = Number(userinfo.gasto_energia / userinfo.consumo_mensal).toFixed(2)
         console.log(userinfo.value)
-
+        let dimensao_placa = 2.7 // m²
+        let espaco_livre = userinfo.area_disponivel // m²
+        let espaco_limitado = userinfo.area_limitada // true or false
             
         // CONTAS DE QUANTIDADE
         let consumo_diario = consumo_mensal / 30 //kWh dia
         let potencia_sistema_necessaria = consumo_diario / (eficiencia * irradiacao) //kWp
-        let quantidade_placas = Math.floor(potencia_sistema_necessaria / potencia_placa) // quantidade de placas necessarias para suprir o consumo
+        let quantidade_placas = Math.floor(potencia_sistema_necessaria / potencia_placa) // quantidade de placas necessarias para suprir o consumo       
+        if (espaco_limitado) { 
+            const placas_limites = Math.floor(espaco_livre / dimensao_placa)
+            if(quantidade_placas > placas_limites){
+                quantidade_placas = placas_limites
+            }
+        }
         let potencia_sistema_gerada = potencia_placa * quantidade_placas * eficiencia * irradiacao * 30 // Capacidade de geracao de energia do sistema em 1mes
         let consumo_restante = (consumo_diario * 30) - potencia_sistema_gerada
             

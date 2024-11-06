@@ -18,10 +18,10 @@ const estados_irradiacao = useCustoIrradiacaoStore().irradiacaoSolar
 
 const userInfo = ref({
     irradiacao: '0',
-    gasto_energia: '',
-    consumo_mensal: '',
+    gasto_energia: ''.replace(",","."),
+    consumo_mensal: ''.replace(",","."),
     area_limitada: ref(false),
-    area_disponivel: '',
+    area_disponivel: ''.replace(",","."),
 })
 
 const resultado_orcamento = ref('')
@@ -86,8 +86,8 @@ function realizarCalculo() {
                     <div class="resultado-info">
                         <div>
                             <h2>Gasto de energia por mês</h2>
-                            <p>Sem o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_antigo }}</p>
-                            <p>Com o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_restante }}</p>
+                            <p>Sem o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_antigo.replace(".",",") }}</p>
+                            <p>Com o sistema fotovoltaico: R${{ resultado_orcamento.valor_energia_restante.replace(".",",") }}</p>
                         </div>
                         <div>
                             <h2>Payback (retorno em anos)</h2>
