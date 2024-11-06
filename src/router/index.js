@@ -46,7 +46,15 @@ const router = createRouter({
         },
       ]
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // Verifica se há uma posição salva (no caso de navegação com histórico)
+    if (savedPosition) {
+      return savedPosition; // Retorna para a posição salva
+    }
+    // Sempre volta para o topo da página
+    return { top: 0 };
+  },
 })
 
 export default router
