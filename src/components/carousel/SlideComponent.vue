@@ -6,7 +6,7 @@ const props = defineProps({
   img: String,
   nome: String,
   preco: String,
-  parcelas: String
+  parcelas: String,
 })
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
@@ -53,8 +53,15 @@ function formatarPreco(numero) {
   height: 460px;
   padding: 30px 30px;
 }
+.img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .oi {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-height: 250px;
 }
 span {
