@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const props = defineProps({
@@ -26,7 +26,8 @@ function formatarPreco(numero) {
     </div>
     <div class="informacoes">
       <span class="nome">{{ nome }}</span>
-      <img class="oii" src="@/assets/images/estrelas.png" />
+
+      <img class="oii" src="@/assets/images/estrelas.png" width="80px"/>
       <span class="preco">{{ formatarPreco(preco) }}</span>
       <span class="parcelas"> {{ parcelas }}</span>
     </div>
@@ -34,7 +35,6 @@ function formatarPreco(numero) {
   </router-link>
 </template>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .link{
   text-decoration: none;
   color:black
@@ -56,9 +56,6 @@ function formatarPreco(numero) {
 .oi {
   width: 100%;
   max-height: 250px;
-}
-.oii {
-  width: 100px;
 }
 span {
   display: block;
