@@ -32,6 +32,8 @@ function fechar() {
 button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+
 }
 
 .container {

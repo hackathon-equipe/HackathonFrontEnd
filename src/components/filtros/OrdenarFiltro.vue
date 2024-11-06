@@ -29,6 +29,7 @@ select {
   border: none;
   background-color: transparent;
   outline: none; 
+  
 }
 
 select:focus {

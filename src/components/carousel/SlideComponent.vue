@@ -19,7 +19,7 @@ function formatarPreco(numero) {
 }
 </script>
 <template>
-  <router-link class="link" :to="`${'produto/' + props.img}`">
+  <router-link class="link" :to="{ name: 'produto', params: { id: props.img } }">
   <div class="tudo">
     <div class="img">
       <img class="oi" :src="imgSrc" />
