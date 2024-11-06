@@ -3,6 +3,7 @@ import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas
 import TitleCarousel from "@/components/carousel/TitleCarousel.vue";
 import PadraoCarousel from "@/components/carousel/PadraoCarousel.vue";
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
+import OrcamentoGrafico from '@/components/grafico/OrcamentoGrafico.vue'
 import { useCustoIrradiacaoStore } from "@/stores/cursto-irradiacaoStore";
 import { useOrcamentoStore } from "@/stores/orcamentoStore";
 import { leftArrowIcon } from "../components/icons";
@@ -81,7 +82,8 @@ function realizarCalculo() {
                 <h1>Resultado</h1>
                 <div class="resultado">
                     <div class="resultado-grafico">
-
+            
+                        <OrcamentoGrafico :valores="resultado_orcamento.payback_values"/>
                     </div>
                     <div class="resultado-info">
                         <div>
@@ -113,6 +115,10 @@ function realizarCalculo() {
     </div>
 </template>
 <style scoped>
+.resultado-grafico{
+    display: flex; align-items: center; justify-content: space-between;
+    width: 50%;
+}
 .mais-interesses{
     margin-bottom: 50px;
 }
@@ -136,6 +142,7 @@ function realizarCalculo() {
 .resultado{
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 .resultado div{
     gap: 25px;
