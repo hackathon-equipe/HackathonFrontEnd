@@ -209,7 +209,7 @@ form input.submit-button{
     font-size: 24px;
     display: flex;
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 100px;
 }
 
 .bunner-info h2{
