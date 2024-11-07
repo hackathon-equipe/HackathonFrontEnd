@@ -52,10 +52,6 @@ const closePesquisar = () => {
     
     <div class="utilities">
       <span v-if="!openPesquisar" @click="togglePesquisar"> <searchIcon /> Pesquisar </span>
-      <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
-        <img src="/src/assets/images/usersemfoto.jpg" alt="foto usuario" />
-        <span>{{ useAuth.user.name }}</span></router-link
-      >
       
       <!-- Exibe o texto "Pesquisar" se openPesquisar for falso -->
       <!-- Exibe o input de pesquisa se openPesquisar for verdadeiro -->
@@ -70,8 +66,11 @@ const closePesquisar = () => {
         />
         <button v-if="openPesquisar" @click="closePesquisar" class="close-btn">X</button>
       </div>
-
-      <router-link to="/login" class="button">cadastro</router-link>
+      <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
+        <img src="/src/assets/images/usersemfoto.jpg" alt="foto usuario" />
+        <span>{{ useAuth.user.name }}</span>
+      </router-link>
+      <router-link to="/login" class="button" v-else>cadastro</router-link>
 
       <span>
         <router-link to="/carrinho" class="cart">

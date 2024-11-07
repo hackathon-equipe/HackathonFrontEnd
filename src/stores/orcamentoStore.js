@@ -32,7 +32,7 @@ export const useOrcamentoStore = defineStore('orcamento', () => {
         let valor_energia_economizado = (valor_energia_antigo - valor_energia_restante).toFixed(2) // valor economizado em 1 mes
         let valor_energia_economizado_ano = valor_energia_economizado * 12
         let porcentagem_valor_energia_economizada = Math.floor(100 - ((valor_energia_restante / valor_energia_antigo) * 100))
-        let custo_instalacao_sistema = ((potencia_sistema_gerada/100) * 2000) * -1
+        let custo_instalacao_sistema = ((potencia_sistema_gerada/100) * 4000) * -1
         let saldo = custo_instalacao_sistema
 
         // LUCRO ANO A ANO
