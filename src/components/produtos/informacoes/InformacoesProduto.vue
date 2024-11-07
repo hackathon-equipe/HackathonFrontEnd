@@ -4,7 +4,7 @@ import addToCartNotify from '@/components/carrinho/addToCartNotify.vue'
 import { ref } from 'vue';
 import { useProdutosStore } from '@/stores/produtosStore';
 import { usePagamentoStore } from '@/stores/pagamentoStore';
-import router from '@/router';
+import route from '@/router';
 const props = defineProps({
   nome: String,
   preco: Number,
@@ -24,7 +24,6 @@ function addToCart(){
 }
 function comprar(){
   compra.realizarCompra(props, 'solo', 0, 0)
-  router.push('/pagamento')
 }
 
 </script>
@@ -37,7 +36,7 @@ function comprar(){
       <div class="estrelas"><img class="oii" src="@/assets/images/estrelas.png" /><span>5.0</span></div>
       <span class="preco">R$ {{ preco.toFixed(2).replace('.',',') }}</span>
       <div class="frete"><span> Calcule seu frete</span> <img src="@/assets/images/seta-baixo.png" width="10px" height="10px"/></div>
-      <button class="button-comprar" @click="comprar">Comprar</button>
+      <router-link class="button-comprar" to="/pagamento" @click="comprar">Comprar</router-link>
       <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
     </div>
     <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="preco" :image="image" :closeFunction="closeNotify"/>
@@ -93,6 +92,10 @@ function comprar(){
     margin: 20px 0px;
     cursor: pointer;
     transition: all .2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
   }
   .button-add {
     background-color: transparent;

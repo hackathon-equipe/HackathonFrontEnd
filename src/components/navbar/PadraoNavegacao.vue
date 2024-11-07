@@ -274,6 +274,7 @@ const closePesquisar = () => {
 .perfil {
   display: flex;
   gap: 15px;
+  text-decoration: none;
 }
 
 .perfil img {
