@@ -17,17 +17,18 @@ export const usePagamentoStore = defineStore('pagamento', () => {
         frete.value = valor_frete
         desconto.value = valor_desconto
         valorFinal.value = valor_final
-        console.log(valor_frete)
     }
-
+    console.log(produto)
     function confirmarCompra(){
         if(tipo_compra.value == 'carrinho'){
-            carrinho.itens = ['']
+            while(carrinho.itens.length){
+                carrinho.itens.pop()
+            }
         }else{
             if(carrinho.itens.includes(produto)){
                 carrinho.removeItem(produto.value.id)
             }
         }
     }
-    return { produto, realizarCompra, confirmarCompra, frete, desconto, tipo_compra}
+    return { produto, realizarCompra, confirmarCompra, frete, desconto, tipo_compra, valorFinal}
 })
