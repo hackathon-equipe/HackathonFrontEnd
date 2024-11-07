@@ -10,9 +10,9 @@ import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, black
         <sobrenosImgComp/>
         <div class="bunner-info">
             <h2>Quem somos?</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate inventore earum optio quam, sunt eius quod tempora! Quia nemo fugiat officiis, exercitationem aliquid laboriosam eligendi ratione possimus, consectetur architecto aperiam?</p>
+            <p>Nosso projeto do Hackathon é um site de vendas de equipamentos voltados a energia solar.  Ele apresenta um sistema para o comprador e um sistema de administração para o vendedor que são identificados através do e-mail do usuário logado. Nossa loja também oferece uma simulação de um orçamento do quanto de economia a energia solar pode gerar.</p>
             <h2>Quais nossos objetivos?</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem excepturi eaque aperiam nobis dolor quisquam sunt repudiandae culpa non accusantium ullam earum maxime, recusandae eveniet. A pariatur rem quasi fugiat?</p>
+            <p>A palavra "Oorun" significa "sol" ou "luz maior" na língua iorubá. Passamos muito tempo discutindo qual seria o nome de nossa loja e concluímos que Oorun além de ser um nome forte conseguiria passar todo a imagem da loja apenas com seu significado. </p>
         </div>
     </div>
     <div class="contact">

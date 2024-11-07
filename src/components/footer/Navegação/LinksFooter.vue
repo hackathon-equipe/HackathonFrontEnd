@@ -5,7 +5,7 @@ import { phoneIcon, facebookIcon, whatsappIcon, emailIcon, instagramIcon } from 
    <div class="links-navegacao">
      <span>Páginas</span>
      <RouterLink to="/">Home</RouterLink>
-     <RouterLink to="/produtos">Produtos</RouterLink>
+     <RouterLink to="/produtos/all">Produtos</RouterLink>
      <RouterLink to="/orcamentos">Orçamento</RouterLink>
      <RouterLink to="/sobre">Sobre</RouterLink>
    </div>

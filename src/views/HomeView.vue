@@ -33,8 +33,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="carregando" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div>
-  <div v-else>
+  <!-- <div v-if="carregando" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div> -->
+  <div>
     <div class="home">
       <div class="info-side">
         <div class="home-tittle">
@@ -55,8 +55,8 @@ onMounted(() => {
           </div>
         </div>
         <div class="home-buttons">
-          <button>Compre sua placa <LeftArrowIcon /></button>
-          <button>Faca um orcamento <LeftArrowIcon /></button>
+          <router-link class="button" to="/produtos/placas-solares">Compre sua placa <LeftArrowIcon /></router-link>
+          <router-link class="button" to="/orcamentos">Faca um orcamento <LeftArrowIcon /></router-link>
         </div>
       </div>
       <div>
@@ -119,7 +119,7 @@ onMounted(() => {
   display: flex;
   gap: 35px;
 }
-.home .info-side .home-buttons button {
+.home .info-side .home-buttons .button {
   appearance: none;
   padding: 20px 30px;
   border-radius: 3rem;
@@ -130,6 +130,12 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .2s linear;
+}
+.home-buttons .button:hover{
+  transform: translateY(-8px);
 }
 
 .carregamento{
