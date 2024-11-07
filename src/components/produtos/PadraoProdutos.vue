@@ -28,13 +28,13 @@ const isTwoProducts = computed(() => {
   justify-content: space-between;
   flex-direction: row;
   padding: 0px 7vw 0px 50px;
-  width: 75vw;
+  width: 71vw;
   margin-bottom: 100px;
 }
 
 .produto {
   width: 20vw;
-  padding: 20px;
+  padding: 5px;
 }
 
 .produtos.two-products {

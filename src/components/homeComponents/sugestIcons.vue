@@ -1,33 +1,43 @@
 <template>
     <div class="container">
         <div class="card">
-            <div class="card-image">
-                <img src="../homeComponents/img/placasolar.png" alt="">
-            </div>
+            <router-link to="/produtos/placas-solares">
+                <div class="card-image">
+                    <img src="../homeComponents/img/placasolar.png" alt="">
+                </div>
+            </router-link>
             <span>Placas Solares</span>
         </div>
         <div class="card">
-            <div class="card-image">
-                <img src="../homeComponents/img/inversor.png" alt="">
-            </div>
+            <router-link to="/produtos/inversores">
+                <div class="card-image">
+                    <img src="../homeComponents/img/inversor.png" alt="">
+                </div>
+            </router-link>
             <span>Inversores</span>
         </div>
         <div class="card">
-            <div class="card-image">
-                <img src="../homeComponents/img/bateria.png" alt="">
-            </div>
+            <router-link to="/produtos/baterias">
+                <div class="card-image">
+                    <img src="../homeComponents/img/bateria.png" alt="">
+                </div>
+            </router-link>
             <span>Baterias</span>
         </div>
         <div class="card">
-            <div class="card-image">
-                <img src="../homeComponents/img/medidor.png" alt="">
-            </div>
+            <router-link to="/produtos/medidores">
+                <div class="card-image">
+                    <img src="../homeComponents/img/medidor.png" alt="">
+                </div>
+            </router-link>
             <span>Medidores</span>
         </div>
         <div class="card">
-            <div class="card-image">
-                <img src="../homeComponents/img/conector.png" alt="">
-            </div>
+            <router-link to="/produtos/conectores">
+                <div class="card-image">
+                    <img src="../homeComponents/img/conector.png" alt="">
+                </div>
+            </router-link>
             <span>Conectores</span>
         </div>
     </div>

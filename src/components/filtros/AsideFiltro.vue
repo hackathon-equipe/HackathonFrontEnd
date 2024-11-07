@@ -18,7 +18,7 @@ const CategoriaFiltrosStore = useCategoriaFiltroStore();
   flex-direction: column;
   width: 25vw;
   margin-top: 20px;
-  padding-left: 7vw;
+  padding-left: 9vw;
 }
 
 .filtro-titulo {

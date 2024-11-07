@@ -29,9 +29,14 @@ function fechar() {
   </div>
 </template>
 <style scoped>
+.close{
+  cursor: pointer;
+}
 button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+
 }
 
 .container {

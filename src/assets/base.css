@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
+  max-width: 100%;       
 }
 
 .carousel__prev,
@@ -30,3 +31,4 @@
 .navbar{
   top:0;
 }
+
