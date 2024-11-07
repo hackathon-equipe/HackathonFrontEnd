@@ -9,6 +9,10 @@
   max-width: 100%;       
 }
 
+h1{
+  color: black;
+}
+
 .carousel__prev,
 .carousel__next {
   box-sizing: content-box;
