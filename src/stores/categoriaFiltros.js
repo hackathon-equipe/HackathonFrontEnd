@@ -48,7 +48,7 @@ const precoMax = ref("");
     watch(route, resetFilters);
 const bigArray = ref([
     {
-      titulo: "material",
+      titulo: "Tipo",
       funcao: () => {
         testeMaterial.value = [];
         FiltrosStore.material = [];
@@ -58,20 +58,12 @@ const bigArray = ref([
       model: testeMaterial,
       array: [
         {
-          nome: "alumínio",
-          value: "alumínio",
-        },
-        {
           nome: "Silício Monocristalino",
           value: "Silício Monocristalino",
         },
         {
           nome: "Silício Policristalino",
           value: "Silício Policristalino",
-        },
-        {
-          nome: "Células de Silício Amorfo",
-          value: "Células de Silício Amorfo",
         },
       ],
     },
@@ -86,20 +78,20 @@ const bigArray = ref([
       model: testePotencia,
       array: [
         {
-          nome: "900W",
-          value: "900",
+          nome: "590W",
+          value: "590",
         },
         {
-          nome: "500W",
-          value: "500",
+          nome: "570W",
+          value: "570",
         },
         {
-          nome: "400W",
-          value: "400",
+          nome: "555W",
+          value: "555",
         },
         {
-          nome: "800W",
-          value: "800",
+          nome: "550W",
+          value: "550",
         },
       ],
     },

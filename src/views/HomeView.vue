@@ -53,6 +53,7 @@ useAuth()
   padding: 160px 40px 40px 40px;
   display: flex;
   justify-content: space-around;
+
 }
 .home .info-side {
   display: flex;
