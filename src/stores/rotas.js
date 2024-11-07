@@ -12,7 +12,7 @@ export const useRotasStore = defineStore('rotas', () => {
           hover: "alertfunction",
         },
         {
-          text: "Orcamentos",
+          text: "Orçamentos",
           link: "/orcamentos",
         },
         {
