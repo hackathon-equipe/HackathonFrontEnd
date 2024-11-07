@@ -4,9 +4,7 @@ import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
 import sobrenosImgComp from "@/components/sobrenos/sobrenosImgComp.vue";
 import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, blackInstagramIcon, twitterIcon } from "@/components/icons";
 </script>
-<template> 
-    <PadraoPropagandas />
-    <PadraoCaminho />
+<template>
     <h1 class="page-tittle">Sobre nós</h1>
     <div class="page-bunner">
         <sobrenosImgComp/>

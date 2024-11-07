@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +48,11 @@ const router = createRouter({
           path: '/login',
           name: 'login',
           component: () => import('../views/LoginView.vue')
+        },          
+        {
+        path: '/pagamento',
+        name: 'pagamento',
+        component: () => import('../views/pagamentoView.vue')
         },
       ]
     }

@@ -3,18 +3,12 @@ import { computed, ref } from 'vue'
 
 export const useCartStore = defineStore('cart', () => {
   const itens = ref([
-    {
-      nome: 'Kit Energia Solar 1,14kWp 570W',
-      imageUrl: 'placa',
-      preco: 1000,
-      id: 0,
-      quantidade: 1
-    },
   ])
+
   function addItem(item) {
     const ids = this.itens.map(objeto => objeto.id)
     if(ids.includes(item.id)){
-      item.quantidade ++
+      item.quantidade++
     }else{
       item.quantidade = 1
       itens.value.push(item)
@@ -27,7 +21,7 @@ export const useCartStore = defineStore('cart', () => {
       itens.value.splice(positionIntem, 1)
     }else{
       console.log('o item tem mais de 1 no carrinho')
-      item.quantidade --
+      item.quantidade--
     }
   }
   const itensInCart = computed(() => {
