@@ -50,6 +50,7 @@ import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
   padding: 160px 40px 40px 40px;
   display: flex;
   justify-content: space-around;
+
 }
 .home .info-side {
   display: flex;
