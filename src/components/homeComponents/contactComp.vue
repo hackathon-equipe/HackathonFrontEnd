@@ -47,5 +47,10 @@
     background-color: #29375B;
     color: white;
     font-weight: 600;
+    cursor: pointer;
+    transition: .2s linear;
+}
+.content button:hover{
+    transform: translateX(5px)
 }
 </style>

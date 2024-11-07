@@ -75,8 +75,12 @@ import { natureIcon, reciveDolarIcon, houseIcon, toolsIcon, upDolarIcon, traject
     border-radius: 25px;
     padding: 30px 30px 0px 30px;
     box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: .2s linear;
 }
-
+.card:hover{
+    transform: translateY(-10px);
+}
 .card span{
     margin: 20px 0px;
     font-size: 12px;
