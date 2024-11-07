@@ -1,7 +1,7 @@
 <template>
   <PadraoPropagandas />
   <PadraoCaminho />
-  <div class="container">
+  <div class="container" v-if="!carregando">
     <div class="span-nav">
       <div class="foto">
         <img src="/src/assets/images/usersemfoto.jpg" alt="Foto perfil">
@@ -50,6 +50,9 @@
       </div>
     </div>
   </div>
+  <div v-else class="carregamento">
+    <img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="gif carregamento">
+  </div>
 </template>
 
 <script setup>
@@ -70,11 +73,13 @@ const usuario = ref({
 
 
 const useAuth = useAuthStore()
-
+const carregando = ref(false)
 const getUserData = async () => {
   try {
+    carregando.value = true
     const response = await axios.get('/usuarios/me')
     usuario.value = response.data
+    carregando.value = false
     if (!usuario.value.telefone) {
       usuario.value.telefone = { ddd: '', numero: '' }
     }
@@ -219,6 +224,19 @@ onMounted(() => {
   border: 1px solid transparent;
   border-radius: 50px;
   cursor: pointer;
+}
+
+.carregamento{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carregamento img{
+  width: 15%;
+
 }
 
 /* input[type='file'] {

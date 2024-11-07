@@ -1,59 +1,83 @@
 <script setup>
 import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/components/icons'
-import { sugestIcons, beneficiesCards, contactComp, lojasParceirasComp } from '@/components/homeComponents'
+import {
+  sugestIcons,
+  beneficiesCards,
+  contactComp,
+  lojasParceirasComp
+} from '@/components/homeComponents'
 import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
 import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
 import { useAuth } from '@/composables/auth'
-
+import { useAuthStore } from '@/stores/auth'
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
+const user = ref()
+const carregando = ref(false)
+const getUserData = async () => {
+  try {
+    carregando.value = true
+    const response = await axios.get('/usuarios/me')
+    user.value = response.data
+    carregando.value = false
+  } catch (error) {
+    console.error('Erro ao buscar dados do usuário:', error)
+  }
+}
 useAuth()
+onMounted(() => {
+  getUserData()
+})
 </script>
 
 <template>
-  <div class="home">
-    <div class="info-side">
-      <div class="home-tittle">
-        <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
+  <div v-if="carregando" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div>
+  <div v-else>
+    <div class="home">
+      <div class="info-side">
+        <div class="home-tittle">
+          <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
+        </div>
+        <div class="home-icons">
+          <div>
+            <span><dollarIcon /></span>
+            <span>valoriza seu imovel</span>
+          </div>
+          <div class="line-icons">
+            <span><recycleIcon /></span>
+            <span>energia limpa</span>
+          </div>
+          <div>
+            <span><downGraphicIcon /></span>
+            <span>reducao de CO₂</span>
+          </div>
+        </div>
+        <div class="home-buttons">
+          <button>Compre sua placa <LeftArrowIcon /></button>
+          <button>Faca um orcamento <LeftArrowIcon /></button>
+        </div>
       </div>
-      <div class="home-icons">
-        <div>
-          <span><dollarIcon /></span>
-          <span>valoriza seu imovel</span>
-        </div>
-        <div class="line-icons">
-          <span><recycleIcon /></span>
-          <span>energia limpa</span>
-        </div>
-        <div>
-          <span><downGraphicIcon /></span>
-          <span>reducao de CO₂</span>
-        </div>
-      </div>
-      <div class="home-buttons">
-        <button>Compre sua placa <LeftArrowIcon /></button>
-        <button>Faca um orcamento <LeftArrowIcon /></button>
+      <div>
+        <bunnerHomePage />
       </div>
     </div>
-    <div>
-      <bunnerHomePage />
-    </div>
+    <sugestIcons />
+    <TitleCarousel title="Mais bem avaliados" />
+    <PadraoCarousel />
+    <TitleCarousel title="Inspirados no visto por ultimo" />
+    <PadraoCarousel />
+    <beneficiesCards />
+    <contactComp />
+    <lojasParceirasComp />
   </div>
-  <sugestIcons/>
-  <TitleCarousel title="Mais bem avaliados" />
-  <PadraoCarousel />
-  <TitleCarousel title="Inspirados no visto por ultimo" />
-  <PadraoCarousel />
-  <beneficiesCards/>
-  <contactComp/>
-  <lojasParceirasComp/>
 </template>
 <style scoped>
 .home {
   padding: 160px 40px 40px 40px;
   display: flex;
   justify-content: space-around;
-
 }
 .home .info-side {
   display: flex;
@@ -107,4 +131,18 @@ useAuth()
   align-items: center;
   gap: 10px;
 }
+
+.carregamento{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carregamento img{
+  width: 15%;
+
+}
+
 </style>
