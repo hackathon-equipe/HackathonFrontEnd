@@ -25,7 +25,7 @@ const selectOption = (option) => {
 // Opções de ordenação
 const options = [
   { value: "relevância", label: "Relevância" },
-  { value: "vendas", label: "Mais vendidos" },
+  { value: "vendas", label: "Em alta" },
   { value: "maiorPreco", label: "Maior preço" },
   { value: "menorPreco", label: "Menor preço" },
 ];
@@ -61,7 +61,7 @@ const options = [
   margin-left: 7px;
 }
 .ordenar {
-  padding-right: 7vw;
+  padding-right: 9vw;
   text-align: end;
 }
 
@@ -69,6 +69,7 @@ const options = [
 .dropdown-container {
   position: relative;
   display: inline-block;
+  width: max-content;
 }
 
 /* Estilo do item selecionado */
@@ -94,7 +95,6 @@ const options = [
   background-color: white;
   list-style: none;
   padding: 0;
-  overflow-y: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: max-content;
 }

@@ -11,8 +11,8 @@ defineProps({
   <div v-for="(item, index) in filtroLista" :key="index">
     <div class="container">
       <span class="subtitulo">{{ item.titulo }}</span>
-      <button @click="item.funcao" v-if="item.aberto">-</button>
-      <button @click="item.aberto = !item.aberto" v-if="!item.aberto">+</button>
+      <button class="pointer" @click="item.funcao" v-if="item.aberto">-</button>
+      <button class="pointer" @click="item.aberto = !item.aberto" v-if="!item.aberto">+</button>
     </div>
     <div class="opcoes" v-if="item.aberto">
       <div v-for="(item2, index) in item.array" :key="index" class="opcao-input">
@@ -30,6 +30,9 @@ defineProps({
   </div>
 </template>
 <style scoped>
+.pointer{
+  cursor: pointer;
+}
 button {
   background-color: transparent;
   border: none;

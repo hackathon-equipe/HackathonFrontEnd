@@ -17,8 +17,7 @@ function onHover(e) {
   if (e == "Produtos") {
     showMenu.value = true;
   }
-}
-    const pesquisa = ref(''); // Armazena o valor de pesquisa (v-model)
+} 
 
     // Função para alternar a visibilidade do campo de pesquisa
     const togglePesquisar = () => {
@@ -61,7 +60,7 @@ function onHover(e) {
         <input
           v-if="openPesquisar"
           type="text"
-          v-model="pesquisa"
+          v-model="FiltrosStore.pesquisa"
           @blur="closePesquisar"
           placeholder="Digite para pesquisar..."
           class="input-pesquisar"
