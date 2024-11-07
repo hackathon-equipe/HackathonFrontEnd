@@ -1,21 +1,22 @@
 <script setup>
-import { ListaTitulos } from "@/components";
-import ListaProdutos from "../produtos/ListaProdutos.vue";
-import logoStandart from "@/assets/logo/logoStandart.vue";
-import { shopingCartIcon, searchIcon } from "../icons";
-import { ref } from "vue";
-import { useFiltroStore } from "@/stores/filtros";
-import { useRotasStore } from "@/stores/rotas";
-import { useCartStore } from "@/stores/carrinhoStore";
-const cart = useCartStore();
-const FiltrosStore = useFiltroStore();
-const RotasStore = useRotasStore();
-
-const showMenu = ref(false);
-const openPesquisar = ref(false);
+import { ListaTitulos } from '@/components'
+import ListaProdutos from '../produtos/ListaProdutos.vue'
+import logoStandart from '@/assets/logo/logoStandart.vue'
+import { shopingCartIcon, searchIcon } from '../icons'
+import { ref } from 'vue'
+import { useFiltroStore } from '@/stores/filtros'
+import { useRotasStore } from '@/stores/rotas'
+import { useCartStore } from '@/stores/carrinhoStore'
+import { useAuthStore } from '@/stores/auth'
+const cart = useCartStore()
+const FiltrosStore = useFiltroStore()
+const RotasStore = useRotasStore()
+const useAuth = useAuthStore()
+const showMenu = ref(false)
+const openPesquisar = ref(false)
 function onHover(e) {
-  if (e == "Produtos") {
-    showMenu.value = true;
+  if (e == 'Produtos') {
+    showMenu.value = true
   }
 }
 </script>
@@ -41,7 +42,11 @@ function onHover(e) {
     <div class="utilities">
       <span @click="openPesquisar = !openPesquisar"> <searchIcon /> Pesquisar </span>
       <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa" />
-      <router-link to="/perfil" class="button">cadastro</router-link>
+      <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
+        <img src="/src/assets/images/usersemfoto.jpg" alt="foto usuario" />
+        <span>{{ useAuth.user.name }}</span></router-link
+      >
+      <router-link to="/login" v-else class="button">cadastro</router-link>
       <span>
         <router-link to="/carrinho" class="cart">
           <shopingCartIcon />
@@ -54,16 +59,8 @@ function onHover(e) {
     <div class="submenu">
       <div class="filter-menu">
         <ul class="filters">
-          <ListaProdutos
-            title="Promoções"
-            link="/produtos/promocoes"
-            class="link link-all"
-          />
-          <ListaProdutos
-            title="Ver Tudo"
-            link="/produtos/all"
-            class="active link link-all"
-          />
+          <ListaProdutos title="Promoções" link="/produtos/promocoes" class="link link-all" />
+          <ListaProdutos title="Ver Tudo" link="/produtos/all" class="active link link-all" />
         </ul>
       </div>
       <div class="products-list">
@@ -235,4 +232,23 @@ function onHover(e) {
   cursor: pointer;
   text-decoration: none;
 }
+
+.perfil{
+  display: flex;
+  gap: 15px;
+}
+
+.perfil img{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.perfil span{
+  color: black;
+
+}
+
+
 </style>
