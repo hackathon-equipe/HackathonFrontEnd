@@ -32,8 +32,7 @@ function comprar(){
     <div class="informacoes">
       <span class="nome">{{ nome }}</span>
       <span class="descricao"
-        >Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-        hendrerit.</span
+        >Economia Imediata Certificado pelo INMETRO</span
       >
       <div class="estrelas"><img class="oii" src="@/assets/images/estrelas.png" /><span>5.0</span></div>
       <span class="preco">R$ {{ preco.toFixed(2).replace('.',',') }}</span>

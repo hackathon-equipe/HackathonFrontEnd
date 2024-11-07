@@ -55,7 +55,7 @@ onMounted(() => {
           </div>
         </div>
         <div class="home-buttons">
-          <router-link class="button" to="/produtos">Compre sua placa <LeftArrowIcon /></router-link>
+          <router-link class="button" to="/produtos/placas-solares">Compre sua placa <LeftArrowIcon /></router-link>
           <router-link class="button" to="/orcamentos">Faca um orcamento <LeftArrowIcon /></router-link>
         </div>
       </div>

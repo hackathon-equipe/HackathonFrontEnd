@@ -13,6 +13,7 @@ const isTwoProducts = computed(() => {
     <div class="produto" v-for="(text, index) in FiltrosStore.filtro" :key="index">
       <SlideComponent
         :img="text.imageUrl"
+        :imagem="text.imagens"
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="text.parcelas"

@@ -6,11 +6,12 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Painel Solar 590W Monocristalino Half-Cell',
       imageUrl: 'placa',
+      imagens: ['placa1','placa2','placa3'],
       preco: 790.0,
       material: ['Silício Monocristalino'],
       potencia: 590,
       marca: 'elgin',
-      parcelas: 'em até 10x de R$ 100,00',
+      parcelas: 'em até 10x de R$ 79,00',
       qntdVendas: 1,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
@@ -42,8 +43,8 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Cabo Solar 4mm 30M Preto',
       imageUrl: 'caboSolar',
-      preco: 1000.0,
-      parcelas: 'em até 10x de R$ 100,00',
+      preco: 70.0,
+      parcelas: 'em até 10x de R$ 7,00',
       material: ['Células de Silício Amorfo'],
       potencia: 400,
       marca: 'weg',
@@ -78,8 +79,8 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'estruturaSolar',
-      preco: 2000.0,
-      parcelas: 'em até 10x de R$ 100,00',
+      preco: 600.0,
+      parcelas: 'em até 10x de R$ 60,00',
       material: ['alumínio'],
       potencia: 500,
       marca: 'weg',
@@ -115,8 +116,8 @@ export const useProdutosStore = defineStore('produtos', () => {
     {
       nome: 'Kit Energia Solar 1,14kWp 570W',
       imageUrl: 'placa3',
-      preco: 2000.0,
-      parcelas: 'em até 10x de R$ 100,00',
+      preco: 650.0,
+      parcelas: 'em até 10x de R$ 65,00',
       material: ['alumínio'],
       potencia: 400,
       marca: 'elgin',
