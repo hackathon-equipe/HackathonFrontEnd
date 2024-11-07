@@ -18,17 +18,17 @@ function onHover(e) {
   if (e == 'Produtos') {
     showMenu.value = true
   }
-} 
+}
 
-    // Função para alternar a visibilidade do campo de pesquisa
-    const togglePesquisar = () => {
-      openPesquisar.value = !openPesquisar.value;
-    };
+// Função para alternar a visibilidade do campo de pesquisa
+const togglePesquisar = () => {
+  openPesquisar.value = !openPesquisar.value
+}
 
-    // Função para fechar o input quando ele perder o foco
-    const closePesquisar = () => {
-      openPesquisar.value = false;
-    };
+// Função para fechar o input quando ele perder o foco
+const closePesquisar = () => {
+  openPesquisar.value = false
+}
 </script>
 
 <template>
@@ -50,22 +50,17 @@ function onHover(e) {
       />
     </ul>
     <div class="utilities">
-      <span @click="openPesquisar = !openPesquisar"> <searchIcon /> Pesquisar </span>
-      <input type="text" v-if="openPesquisar" v-model="FiltrosStore.pesquisa" />
       <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
         <img src="/src/assets/images/usersemfoto.jpg" alt="foto usuario" />
         <span>{{ useAuth.user.name }}</span></router-link
       >
       <router-link to="/login" v-else class="button">cadastro</router-link>
 
+      <!-- Exibe o texto "Pesquisar" se openPesquisar for falso -->
+      <span v-if="!openPesquisar" @click="togglePesquisar"> <searchIcon /> Pesquisar </span>
 
-        <!-- Exibe o texto "Pesquisar" se openPesquisar for falso -->
-        <span v-if="!openPesquisar" @click="togglePesquisar">
-          <searchIcon /> Pesquisar
-        </span>
-        
-        <!-- Exibe o input de pesquisa se openPesquisar for verdadeiro -->
-         <div>
+      <!-- Exibe o input de pesquisa se openPesquisar for verdadeiro -->
+      <div>
         <input
           v-if="openPesquisar"
           type="text"
@@ -76,8 +71,6 @@ function onHover(e) {
         />
         <button v-if="openPesquisar" @click="closePesquisar" class="close-btn">X</button>
       </div>
-        <!-- Link para o perfil -->
-        <router-link to="/perfil" class="button">Cadastro</router-link>
 
       <span>
         <router-link to="/carrinho" class="cart">
@@ -111,22 +104,22 @@ function onHover(e) {
 </template>
 
 <style scoped>
-.input-pesquisar{
+.input-pesquisar {
   width: 350px;
-  border:none;
-  padding:4px 6px;
+  border: none;
+  padding: 4px 6px;
 }
-.input-pesquisar:focus{
+.input-pesquisar:focus {
   outline: none; /* Remove a borda de foco padrão */
   border: 1px solid #797979af; /* Altera a cor da borda para verde quando em foco */
-  border-radius:3rem;
+  border-radius: 3rem;
 }
 .close-btn {
-background-color: #ffffff;
-border:none;
-margin-left:5px;
-color:#797979e1;
-cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  margin-left: 5px;
+  color: #797979e1;
+  cursor: pointer;
 }
 .navbar {
   top: 0;
@@ -278,22 +271,19 @@ cursor: pointer;
   text-decoration: none;
 }
 
-.perfil{
+.perfil {
   display: flex;
   gap: 15px;
 }
 
-.perfil img{
+.perfil img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   text-decoration: none;
 }
 
-.perfil span{
+.perfil span {
   color: black;
-
 }
-
-
 </style>
