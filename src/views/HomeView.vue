@@ -5,6 +5,9 @@ import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
 import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
+import { useAuth } from '@/composables/auth'
+
+useAuth()
 </script>
 
 <template>
