@@ -32,8 +32,10 @@ import whitePhoneIcon from "./whitePhoneIcon.vue"
 import blackFacebookIcon from "./blackFacebookIcon.vue"
 import blackInstagramIcon from "./blackInstagramIcon.vue"
 import twitterIcon from "./twitterIcon.vue"
+import upArrowIcon from "./upArrowIcon.vue"
 
 export{
+    upArrowIcon,
     blackFacebookIcon,
     blackInstagramIcon,
     twitterIcon,
