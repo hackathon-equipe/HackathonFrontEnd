@@ -6,9 +6,9 @@ import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
 </script>
 <template>
-  <Carousel :itemsToShow="4.7" :transition="500">
+  <Carousel :itemsToShow="5.7" :transition="500">
     <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
-      <SlideComponent :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
+      <SlideComponent class="slide" :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
     </Slide>
     <template #addons>
       <Navigation class="aa" />
@@ -17,6 +17,9 @@ const produtosStore = useProdutosStore()
 </template>
 
 <style scoped>
+.slide{
+  max-width: 300px;
+}
 .link{
   position: absolute;
   left: 0;

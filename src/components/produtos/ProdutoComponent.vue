@@ -43,9 +43,6 @@ const imgSrc = computed(() => {
     </div>
     <h1 class="titulo-descricao">Comentários</h1>
     <ComentarioProduto />
-    <ComentarioProduto />
-    <ComentarioProduto />
-    <ComentarioProduto />
     <ButtonMais />
     <AddComentario />
     <FazerOrcamento />

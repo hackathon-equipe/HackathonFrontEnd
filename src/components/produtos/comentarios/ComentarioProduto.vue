@@ -1,10 +1,12 @@
 <script setup>
+import { useComentarioStore } from '@/stores/comentarios'
+const ComentarioStore = useComentarioStore()
 </script>
 <template>
-    <div class=comentario>
-    <div class="divs"><img class="usuario-img" src="@/assets/images/foto-usuario.png" /><span class="nome-usuario informacao-usuario">Vinicius Gabryel Pereira</span></div>
-    <div class="divs"><span class="exelencia">Excelente!</span><img src="@/assets/images/estrelas.png"/></div>
-        <div class="divs"><span>Painel solar muito grande, recomendo pela qualidade.</span></div>
+    <div class=comentario v-for="(item,index) in ComentarioStore.comentarios" :key="index">
+    <div class="divs"><img class="usuario-img" src="@/assets/images/foto-usuario.png" /><span class="nome-usuario informacao-usuario">{{item.nomeUser}}</span></div>
+    <div class="divs"><span class="exelencia">{{item.exelencia}}</span><img src="@/assets/images/estrelas.png"/></div>
+        <div class="divs"><span>{{item.comentario}}</span></div>
     </div>
 </template>
 <style scoped>
