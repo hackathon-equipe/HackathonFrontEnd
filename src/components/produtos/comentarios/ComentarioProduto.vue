@@ -5,7 +5,24 @@ const ComentarioStore = useComentarioStore()
 <template>
     <div class=comentario v-for="(item,index) in ComentarioStore.comentarios" :key="item.id">
     <div class="divs"><img class="usuario-img" src="@/assets/images/foto-usuario.png" /><span class="nome-usuario informacao-usuario">{{item.nomeUser}}</span></div>
-    <div class="divs"><span class="exelencia">{{item.exelencia}}</span><img src="@/assets/images/estrelas.png"/></div>
+    <div class="divs"><span class="exelencia">{{item.exelencia}}</span>
+      <div class="estrelas">
+        <div v-for="item in item.estrelas" :key="item">
+          <svg width="30" height="30" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#F4AA09" />
+          </svg>
+        </div>  
+        <div v-for="item in ( 5 - item.estrelas)" :key="item">
+          <svg width="30" height="30" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#D9D9D9" />
+          </svg>
+        </div>  
+      </div>
+    </div>
         <div class="divs"><span>{{item.comentario}}</span></div>
     </div>
 </template>
@@ -41,5 +58,8 @@ const ComentarioStore = useComentarioStore()
   height: 50px;
   border-radius: 50%;
   margin-bottom: 8px;
+}
+.estrelas{
+  display: flex;
 }
 </style>

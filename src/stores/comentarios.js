@@ -7,28 +7,28 @@ export const useComentarioStore = defineStore('comentario', () => {
         id: 1,
         nomeUser: 'Vini',
         exelencia: 'Exelente!',
-        estrelas: '5',
+        estrelas: 3,
         comentario: 'Painel solar muito grande, recomendo pela qualidade.'
       },
       {
         id: 2,
         nomeUser: 'Vini',
         exelencia: 'Exelente!',
-        estrelas: '5',
+        estrelas: 5,
         comentario: 'Painel solar muito grande, recomendo pela qualidade.'
       },
       {
         id: 3,
         nomeUser: 'Vini',
         exelencia: 'Exelente!',
-        estrelas: '5',
+        estrelas: 5,
         comentario: 'Painel solar muito grande, recomendo pela qualidade.'
       },
       {
         id: 4,
         nomeUser: 'Vini',
         exelencia: 'Exelente!',
-        estrelas: '5',
+        estrelas: 3,
         comentario: 'Painel solar muito grande, recomendo pela qualidade.'
       }
     ])
