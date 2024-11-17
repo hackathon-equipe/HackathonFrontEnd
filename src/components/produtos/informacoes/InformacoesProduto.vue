@@ -1,6 +1,6 @@
 <script setup>
 import { useCartStore } from '@/stores/carrinhoStore';
-import addToCartNotify from '@/components/carrinho/addToCartNotify.vue'
+import addToCartNotify from '@/components/carrinho/componentes/notificacaoAdicionarItem.vue'
 import { ref } from 'vue';
 import { useProdutosStore } from '@/stores/produtosStore';
 import { usePagamentoStore } from '@/stores/pagamentoStore';

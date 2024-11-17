@@ -1,6 +1,4 @@
 <script setup>
-import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
-import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
 import sobrenosImgComp from "@/components/sobrenos/sobrenosImgComp.vue";
 import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, blackInstagramIcon, twitterIcon } from "@/components/icons";
 </script>

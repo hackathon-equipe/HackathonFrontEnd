@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useOrcamentoStore = defineStore('orcamento', () => {
     function calcularOrcamento(userinfo){
+
         // VARIAVEIS INICIAIS
         let consumo_mensal = userinfo.consumo_mensal //kWh mes
         let eficiencia = 0.8 // 80%
@@ -45,9 +46,6 @@ export const useOrcamentoStore = defineStore('orcamento', () => {
                 payback_anos = i
             }
         }
-
-        // MOSTRAR
-        
         return { payback_values, irradiacao, custo_energia, valor_energia_antigo, valor_energia_restante, payback_anos, porcentagem_valor_energia_economizada, consumo_mensal}
     }
     return {calcularOrcamento}
