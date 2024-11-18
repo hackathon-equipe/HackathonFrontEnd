@@ -1,6 +1,35 @@
 <script setup>
+import { ref } from "vue";
 import sobrenosImgComp from "@/components/sobrenos/sobrenosImgComp.vue";
 import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, blackInstagramIcon, twitterIcon } from "@/components/icons";
+import axios from "axios";
+
+const form = ref({
+    tefefone: '',
+    nome: '',
+    user_email: '',
+    mensagem: '',
+})
+
+const sucesso = ref('');
+const error = ref('');
+
+
+const enviarEmail = async () => {
+  try {
+    // Chamada ao endpoint Django
+    const response = await axios.post('/send-email/', form.value);
+
+    // Configura mensagens de sucesso
+    sucesso.value = response.data.success || 'E-mail enviado com sucesso!';
+    error.value = '';
+    form.value = { telefone: '', nome: '',user_email: '', mensagem: '' }; // Limpa o formulário
+  } catch (error) {
+    // Configura mensagens de erro
+    error.value = error.response?.data?.error || 'Erro ao enviar o e-mail.';
+    sucesso.value = '';
+  }
+};
 </script>
 <template>
     <h1 class="page-tittle">Sobre nós</h1>
@@ -54,27 +83,28 @@ import { whiteEmailIcon, whitePhoneIcon, whiteMarkIcon, blackFacebookIcon, black
             </div>
         </div>
         <div class="submit-form">
-            <form>
+            <form @submit.prevent="enviarEmail">
                 <div class="phone-name">
                     <div class="phone-input">
                         <label for="telefone">Telefone:</label>
-                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="12" placeholder="Telefone">
+                        <input type="tel" id="phone" name="phone"  maxlength="12" placeholder="Telefone" v-model="form.tefefone">
                     </div>
                     <div class="name-input">
                         <label for="name">Nome:</label>
-                        <input type="text" id="name" placeholder="Nome">
+                        <input type="text" id="name" placeholder="Nome" v-model="form.nome">
                     </div>
                 </div>
                 <div class="email-input">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" placeholder="Email">
+                    <input type="text" id="email" placeholder="Email" v-model="form.user_email">
                 </div>
                 <div class="feedback-input">
                     <label for="feedback">Feedback:</label>
-                    <textarea cols="5" rows="5">Feedback!</textarea>
+                    <textarea cols="5" rows="5" v-model="form.mensagem">Feedback!</textarea>
                 </div>
                 <div class="button-area">
-                    <input type="submit" class="submit-button">
+                    <!-- <button type="submit" class="submit-button"> -->
+                        <button type="submit">Enviar</button>
                 </div>
             </form>
         </div>
