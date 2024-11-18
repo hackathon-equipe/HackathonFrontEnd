@@ -1,10 +1,9 @@
 <script setup>
 import { useCartStore } from '@/stores/carrinhoStore';
-import addToCartNotify from '@/components/carrinho/addToCartNotify.vue'
+import addToCartNotify from '@/components/carrinho/componentes/notificacaoAdicionarItem.vue'
 import { ref } from 'vue';
 import { useProdutosStore } from '@/stores/produtosStore';
 import { usePagamentoStore } from '@/stores/pagamentoStore';
-import route from '@/router';
 const props = defineProps({
   nome: String,
   preco: Number,
@@ -21,6 +20,9 @@ function addToCart(){
   carrinho.addItem(produto);
   visibleAddCart.value = true;
   setTimeout(() => {visibleAddCart.value = false;}, 4000);
+}
+function closeNotify(){
+  visibleAddCart.value = false
 }
 function comprar(){
   compra.realizarCompra(props, 'solo', 0, 0)

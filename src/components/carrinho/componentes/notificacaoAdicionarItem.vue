@@ -1,6 +1,6 @@
 <script setup>
 import { useCartStore } from '@/stores/carrinhoStore';
-import { XCloseIcon, checkCircle } from '../icons';
+import { XCloseIcon, checkCircle } from '@/components/icons';
 defineProps({
   nome: String,
   preco: Number,
