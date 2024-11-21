@@ -7,6 +7,7 @@ const props = defineProps({
   nome: String,
   preco: String,
   parcelas: String,
+  estrelas:Number
 })
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
@@ -26,8 +27,22 @@ function formatarPreco(numero) {
     </div>
     <div class="informacoes">
       <span class="nome">{{ nome }}</span>
-
-      <img class="oii" src="@/assets/images/estrelas.png" width="80px"/>
+      <div class="estrelas">
+        <div v-for="item in Math.round(estrelas)" :key="item">
+          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#F4AA09" />
+          </svg>
+        </div>  
+        <div v-for="item in ( 5 - Math.round(estrelas))" :key="item">
+          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#D9D9D9" />
+          </svg>
+        </div>  
+      </div>
       <span class="preco">{{ formatarPreco(preco) }}</span>
       <span class="parcelas"> {{ parcelas }}</span>
     </div>
@@ -58,11 +73,10 @@ function formatarPreco(numero) {
   justify-content: center;
   align-items: center;
 }
-.oi {
+.estrelas {
   display: flex;
-  justify-content: center;
-  align-items: center;
   max-height: 250px;
+  margin-top: 3px;
 }
 span {
   display: block;

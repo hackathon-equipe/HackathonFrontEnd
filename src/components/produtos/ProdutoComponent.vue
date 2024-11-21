@@ -19,6 +19,7 @@ const props = defineProps({
   parcelas: String,
   VerMais: String,
   id: Number,
+  estrelas: Number
 });
 const imgSrc = computed(() => {
   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
@@ -32,7 +33,7 @@ const imgSrc = computed(() => {
       <div>
         <ImagemProduto :imagem="imgSrc" />
       </div>
-      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="imgSrc"/>
+      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="imgSrc" :estrelas="estrelas"/>
     </main>
     <ImagensPqn :imagem="imgSrc" />
 

@@ -4,27 +4,25 @@ import { useComentarioStore } from '@/stores/comentarios'
 
 const ComentarioStore = useComentarioStore()
 
-// Variáveis de estado para o formulário
+
 const openAdd = ref(false)
-const nome = ref("")
 const textExelencia = ref("")
 const quantidadeEstrelas = ref("")
 const textComentario = ref("")
 const estrelasAmarelas = ref(0)
 
-// Computed para calcular as estrelas cinzas
+
 const estrelasCinzas = computed(() => 5 - estrelasAmarelas.value)
 
-// Função para adicionar o comentário
+
 function adicionarComentario() {
-  ComentarioStore.addComentario(nome.value, textExelencia.value, estrelasAmarelas.value, textComentario.value)
+  ComentarioStore.addComentario( textExelencia.value, estrelasAmarelas.value, textComentario.value)
   openAdd.value = false
 }
 
-// Watch para resetar os campos quando openAdd mudar para false
+
 watch(openAdd, (newValue) => {
   if (!newValue) {
-    nome.value = ""
     textExelencia.value = ""
     quantidadeEstrelas.value = ""
     textComentario.value = ""
@@ -39,16 +37,17 @@ watch(openAdd, (newValue) => {
     <span>Faça seu comentário</span>
   </div>
 
-  <div class="modal-overlay" v-if="openAdd">
-    <div class="modal-content">
-      <div class="close-modal">
-        <button @click="openAdd = false">x</button>
+  <div class="container-add-comentario" v-if="openAdd">
+    <div class="container">
+      <div class="div-fechar">
+        <button class="fechar" @click="openAdd = false">x</button>
       </div>
 
       <form class="form" @submit.prevent="adicionarComentario">
         <div>
-          <div><span>qual nota vc dá pra esse produto?*</span></div>
-          <div class="estrelas">
+          <div class="centro"><span>qual nota vc dá pra esse produto?*</span></div>
+          <div class="estrelas centro">
+
             <!-- Estrelas Amarelas -->
             <div v-for="item in estrelasAmarelas" :key="item" @click="estrelasAmarelas = item">
               <svg width="30" height="30" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,30 +67,59 @@ watch(openAdd, (newValue) => {
             </div>
           </div>
         </div>
-        <div>
-          <label for="nome">Nome do usuário:</label>
-          <input v-model="nome" type="text" id="nome" required />
+        <div class="centro">
+          <input class="input-comentario" placeholder="titulo" v-model="textExelencia" type="text" id="exelencia"
+            required />
         </div>
 
-        <div>
-          <label for="exelencia">Titulo:</label>
-          <input v-model="textExelencia" type="text" id="exelencia" required />
+        <div class="centro">
+          <textarea class="input-comentario comentario" placeholder="escreva sua opinião" style="display:block"
+            v-model="textComentario" type="text" id="comentario" required />
         </div>
-
-        <div>
-          <label for="comentario">Comentário:</label>
-          <textarea style="display:block" v-model="textComentario" type="text" id="comentario" required />
+        <div class="centro">
+          <button class="button" type="submit">Adicionar Comentário</button>
         </div>
-
-        <button class="button" type="submit">Adicionar Comentário</button>
       </form>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Estilos */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.fechar {
+  border: none;
+  background-color: transparent;
+}
+
+.comentario {
+  height: 20vh;
+}
+
+.input-comentario {
+  padding: 10px;
+  width: 100%;
+  width: 350px;
+  color: #797979af;
+  border: 1px solid #797979af;
+  padding: 8px 10px;
+  margin: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.input-comentario:focus {
+  outline: none;
+  /* Remove a borda de foco padrão */
+  border: 2px solid #313131af;
+  /* Altera a cor da borda para verde quando em foco */
+}
+
+.centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .nota {
   display: flex;
@@ -102,18 +130,20 @@ watch(openAdd, (newValue) => {
 
 .button {
   appearance: none;
-  padding: 20px 30px;
+  padding: 10px 20px;
   border-radius: 3rem;
   background-color: #29375b;
   color: #f6fbff;
   border: none;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
   text-decoration: none;
   transition: .2s linear;
+  font-size: 14px;
+  margin: 15px;
 }
 
 .button:hover {
@@ -125,10 +155,10 @@ button {
 }
 
 .estrelas {
-  display: flex;
+  margin: 5px 0px;
 }
 
-.modal-overlay {
+.container-add-comentario {
   position: fixed;
   top: 0;
   left: 0;
@@ -140,9 +170,10 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  margin-bottom: -80px;
 }
 
-.modal-content {
+.container {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -151,7 +182,7 @@ button {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.close-modal {
+.div-fechar {
   color: white;
   border: none;
   border-radius: 5px;

@@ -17,6 +17,7 @@ const isTwoProducts = computed(() => {
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="text.parcelas"
+        :estrelas="text.estrelas"
       />
     </div>
     <DefaultPaginacao />

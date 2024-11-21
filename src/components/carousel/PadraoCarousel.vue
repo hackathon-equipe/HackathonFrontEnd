@@ -8,7 +8,7 @@ const produtosStore = useProdutosStore()
 <template>
   <Carousel :itemsToShow="5.7" :transition="500">
     <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
-      <SlideComponent class="slide" :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" />
+      <SlideComponent class="slide" :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" :estrelas="text.estrelas"/>
     </Slide>
     <template #addons>
       <Navigation class="aa" />

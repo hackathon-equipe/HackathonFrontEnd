@@ -9,7 +9,8 @@ const props = defineProps({
   nome: String,
   preco: Number,
   id: Number,
-  image: String
+  image: String,
+  estrelas: Number
 })
 
 const produto = useProdutosStore().getProduct(props.id)
@@ -25,7 +26,6 @@ function addToCart(){
 function comprar(){
   compra.realizarCompra(props, 'solo', 0, 0)
 }
-
 </script>
 <template>
     <div class="informacoes">
@@ -33,7 +33,23 @@ function comprar(){
       <span class="descricao"
         >Economia Imediata Certificado pelo INMETRO</span
       >
-      <div class="estrelas"><img class="oii" src="@/assets/images/estrelas.png" /><span>5.0</span></div>
+      <div class="estrelas">
+        <div v-for="item in Math.round(estrelas)" :key="item">
+          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#F4AA09" />
+          </svg>
+        </div>  
+        <div v-for="item in ( 5 - Math.round(estrelas))" :key="item">
+          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+              fill="#D9D9D9" />
+          </svg>
+        </div>  
+        <span>{{estrelas.toFixed(1)}}</span>
+      </div>
       <span class="preco">R$ {{ preco.toFixed(2).replace('.',',') }}</span>
       <div class="frete"><span> Calcule seu frete</span> <img src="@/assets/images/seta-baixo.png" width="10px" height="10px"/></div>
       <router-link class="button-comprar" to="/pagamento" @click="comprar">Comprar</router-link>
