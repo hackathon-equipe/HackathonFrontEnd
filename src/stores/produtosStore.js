@@ -13,6 +13,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       marca: 'elgin',
       parcelas: 'em até 10x de R$ 79,00',
       qntdVendas: 1,
+      estrelas: 4.6,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -49,6 +50,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 400,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 5.0,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -85,6 +87,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 500,
       marca: 'weg',
       qntdVendas: 2,
+      estrelas: 5.0,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -109,7 +112,7 @@ export const useProdutosStore = defineStore('produtos', () => {
         'Peso': '29kg',
         'CARACTERÍSTICAS': 'Economia Imediata Certificado pelo INMETRO Resistente'
       },
-      id: 4,
+      id: 4.3,
       categoria:"inversores",
       promocao:true
     },
@@ -122,6 +125,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 400,
       marca: 'elgin',
       qntdVendas: 1,
+      estrelas: 5.0,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -158,6 +162,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 550,
       marca: 'elgin',
       qntdVendas: 2,
+      estrelas: 4.2,
       VerMais: {
         'descricao': 'Caixa de Conexão IP 68 com 3 diodos de by-pass',
         'Máximo Tensão de Trabalho': '1500Vcc',
@@ -194,6 +199,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 570,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
@@ -223,6 +229,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 555,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
@@ -252,6 +259,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 630,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
@@ -281,6 +289,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 630,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
@@ -310,6 +319,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 555,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
@@ -339,6 +349,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       potencia: 555,
       marca: 'weg',
       qntdVendas: 3,
+      estrelas: 4.0,
       VerMais: {
         'Descrição': 'Kit 3 Placa Solar Fotovoltaico 550W WEG',
         'Eficiência energética da placa solar': '21,48',
