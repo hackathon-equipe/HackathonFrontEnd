@@ -50,7 +50,7 @@ const router = createRouter({
           component: () => import('../views/LoginView.vue')
         },          
         {
-        path: '/pagamento',
+        path: '/pagamento/:status',
         name: 'pagamento',
         component: () => import('../views/pagamentoView.vue')
         },

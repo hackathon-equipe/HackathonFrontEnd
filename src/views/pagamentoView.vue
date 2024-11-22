@@ -1,29 +1,35 @@
-<script setup>
-import { ref } from 'vue';
-const metodo_pagamento = ref(null)
-import { usePagamentoStore } from '@/stores/pagamentoStore';
-import { useCartStore } from '@/stores/carrinhoStore';
-const produto = usePagamentoStore().produto
-const frete = usePagamentoStore().frete
-const desconto = usePagamentoStore().desconto
-const tipo = usePagamentoStore().tipo_compra
-const valorFinal = ref(0)
-const valorCarrinho = useCartStore().valueInCart()
-const pagamento_foi_realizado = ref(false)
+<!-- <script setup>
+// import { ref } from 'vue';
+// const metodo_pagamento = ref(null)
+// import { usePagamentoStore } from '@/stores/pagamentoStore';
+// import { useCartStore } from '@/stores/carrinhoStore';
+// const produto = usePagamentoStore().produto
+// const frete = usePagamentoStore().frete
+// const desconto = usePagamentoStore().desconto
+// const tipo = usePagamentoStore().tipo_compra
+// const valorFinal = ref(0)
+// const valorCarrinho = useCartStore().valueInCart()
+// const pagamento_foi_realizado = ref(false)
 
-if (tipo == 'carrinho') {
-    valorFinal.value = usePagamentoStore().valorFinal
-} else {
-    valorFinal.value = ref(produto.preco + frete - desconto)
-}
+// if (tipo == 'carrinho') {
+//     valorFinal.value = usePagamentoStore().valorFinal
+// } else {
+//     valorFinal.value = ref(produto.preco + frete - desconto)
+// }
 
-function pagamento_realizado(){
-    pagamento_foi_realizado.value = true
-}
-</script>
+// function pagamento_realizado(){
+//     pagamento_foi_realizado.value = true
+// }
+</script> -->
 
 <template>
-    <div class="pagamento">
+    <div class="loading">
+        <div class="animacao-carregamento">
+          <img src="@/assets/images/LoadGif/check-mark-verified.gif" alt="" width="50">
+          <span>Pagamento realizado com suceso!</span>
+        </div>
+    </div>
+    <!-- <div class="pagamento">
         <div class="metodos-pagamento">
             <h1>Como você prefere pagar</h1>
             <ul class="metodos">
@@ -72,10 +78,30 @@ function pagamento_realizado(){
         <img src="../assets/images/LoadGif/check-mark-verified.gif" alt="">
         <h1>Compra realizada com sucesso!!</h1>
         <router-link to="/carrinho" class="confirm-pagamento">Ok, entendi.</router-link>
-    </div>
+    </div> -->
 </template>
 
 <style scoped>
+.animacao-carregamento{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+}
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fique acima de outros conteúdos */
+  }
+
 .pagamento-realizado img{
     width: 200px;
     height: auto;
