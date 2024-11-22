@@ -2,8 +2,10 @@
   import inputAplicarComp from './inputAplicarComp.vue';
   import { useCartStore } from '@/stores/carrinhoStore';
   import { ref, reactive } from 'vue';
- import axios from 'axios'; // Importando Axios
+  import axios from 'axios'; // Importando Axios
   const cart = useCartStore()
+  const isLoading = ref(false); // Variável para controle de carregamento
+
 
  const orderData = reactive({ "title": "Compra na loja oorun", "quantity": cart.itensInCart, "price": cart.valorNoCarrinho});
  
@@ -32,6 +34,7 @@
  
  // Função para manipular o clique e buscar os dados de preferência
  const handleCheckoutClick = async () => {
+  isLoading.value = true; // Ativa o carregamento
    try {
      // Enviar uma requisição para o backend para criar a preferência
      const response = await axios.post('https://backend-api-mercadopago.onrender.com/create_preference', orderData, {
@@ -50,7 +53,9 @@
      // Tratar erros da requisição
      alert('Erro: Não foi possível criar a preferência de pagamento.');
      console.error(error);
-   }
+   }finally {
+    isLoading.value = false; // Desativa o carregamento após a requisição
+  }
  };
 </script>
 
@@ -70,11 +75,38 @@
       </inputAplicarComp>
       <inputAplicarComp titulo="Calcular Frete" tituloBotao="Inserir CEP" inputPlaceholder="Insira seu CEP" />
     </div>
+    <div v-if="isLoading" class="loading">
+      <div class="animacao-carregamento">
+        <img src="@/assets/images/LoadGif/LoadingAnimation.gif" alt="">
+    </div>
+    </div>
     <button @click="handleCheckoutClick" class="finalizar-compra">Finalizar compra</button>
     <div id="wallet_container"></div>
   </div>
 </template>
 <style scoped>
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Garante que fique acima de outros conteúdos */
+}
+.animacao-carregamento img {
+  width: 250px;
+  height: auto;
+}
+
+.animacao-carregamento {
+  height: 100px;
+  overflow: hidden;
+}
+
 .valores-pedido div.item-desativado{
   display: none;
 }
