@@ -9,7 +9,6 @@ const props = defineProps({
   preco: String,
   parcelas: String,
   estrelas:Number
-
 })
 // const imgSrc = computed(() => {
 //   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
@@ -45,7 +44,11 @@ function formatarPreco(numero) {
           </svg>
         </div>  
       </div>
+<<<<<<< HEAD
       <span class="preco">{{ formatarPreco(Number(preco)) }}</span>
+=======
+      <span class="preco">{{ formatarPreco(preco) }}</span>
+>>>>>>> e786577 (Rebase dev)
       <span class="parcelas"> {{ parcelas }}</span>
     </div>
   </div>

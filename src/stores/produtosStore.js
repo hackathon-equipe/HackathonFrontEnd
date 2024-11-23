@@ -5,6 +5,7 @@ import {ref} from 'vue'
 const produtosService = new ProdutosService
 
 export const useProdutosStore = defineStore('produtos', () => {
+
   const produtos = [
     {
       id: 1,
@@ -608,6 +609,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       ]
     }
   ]
+
 
   function getProduct(id) {
     return this.produtos.find((objeto) => objeto.id === id)
