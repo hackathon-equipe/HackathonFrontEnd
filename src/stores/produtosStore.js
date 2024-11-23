@@ -6,7 +6,13 @@ const produtosService = new ProdutosService
 
 export const useProdutosStore = defineStore('produtos', () => {
 
-  const produtos = [
+  const produtos = ref([])
+
+  const carregarProdutos = async () => {
+    produtos.value = await produtosService.BuscarTodosOsProdutos();
+};
+
+  const produtosTeste = [
     {
       id: 1,
       nome: 'Painel Solar 550W Monocristalino Half-Cell',
@@ -614,5 +620,5 @@ export const useProdutosStore = defineStore('produtos', () => {
   function getProduct(id) {
     return this.produtos.find((objeto) => objeto.id === id)
   }
-  return { produtos, getProduct, BuscarProdutos }
+  return { produtos, getProduct, carregarProdutos }
 })

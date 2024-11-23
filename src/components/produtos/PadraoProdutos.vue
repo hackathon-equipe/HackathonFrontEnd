@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import SlideComponent from "@/components/carousel/SlideComponent.vue";
 import { useFiltroStore } from "@/stores/filtros";
 import DefaultPaginacao from "@/components/paginacao/DefaultPaginacao.vue";
@@ -12,6 +12,14 @@ const isTwoProducts = computed(() => {
 function parcelas (preco){
   return `em até 10x de ${preco}`
 }
+
+onMounted(async () => {
+  await ProdutosStore.carregarProdutos()
+  console.log(ProdutosStore.produtos)
+});
+
+
+
 </script>
 <template>
   <div class="produtos" :class="{ 'two-products': isTwoProducts }">
