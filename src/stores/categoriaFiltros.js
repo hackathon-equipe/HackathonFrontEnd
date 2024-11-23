@@ -59,11 +59,11 @@ const bigArray = ref([
       array: [
         {
           nome: "Silício Monocristalino",
-          value: "Silício Monocristalino",
+          value: "Monocristalino",
         },
         {
           nome: "Silício Policristalino",
-          value: "Silício Policristalino",
+          value: "Policristalino",
         },
       ],
     },
@@ -79,19 +79,19 @@ const bigArray = ref([
       array: [
         {
           nome: "590W",
-          value: "590",
+          value: "590W",
         },
         {
           nome: "570W",
-          value: "570",
+          value: "570W",
         },
         {
           nome: "555W",
-          value: "555",
+          value: "555W",
         },
         {
           nome: "550W",
-          value: "550",
+          value: "550W",
         },
       ],
     },

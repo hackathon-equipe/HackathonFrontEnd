@@ -3,21 +3,27 @@ import { computed } from "vue";
 import SlideComponent from "@/components/carousel/SlideComponent.vue";
 import { useFiltroStore } from "@/stores/filtros";
 import DefaultPaginacao from "@/components/paginacao/DefaultPaginacao.vue";
+import { useProdutosStore } from "@/stores/produtosStore";
 const FiltrosStore = useFiltroStore();
+const ProdutosStore = useProdutosStore();
 const isTwoProducts = computed(() => {
   return FiltrosStore.filtro.length === 2;
 });
+function parcelas (preco){
+  return `em até 10x de ${preco}`
+}
 </script>
 <template>
   <div class="produtos" :class="{ 'two-products': isTwoProducts }">
     <div class="produto" v-for="(text, index) in FiltrosStore.filtro" :key="index">
       <SlideComponent
-        :img="text.imageUrl"
+        :id="text.id"
+        :img="text.foto ? text.foto[0].file : ''"
         :imagem="text.imagens"
         :nome="text.nome"
         :preco="text.preco"
-        :parcelas="text.parcelas"
-        :estrelas="text.estrelas"
+        :parcelas="parcelas(text.preco)"
+        :estrelas="3"
       />
     </div>
     <DefaultPaginacao />

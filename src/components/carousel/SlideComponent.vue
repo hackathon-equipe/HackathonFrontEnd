@@ -1,17 +1,19 @@
 <script setup>
-import { ref, computed } from 'vue'
+// import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-const route = useRoute()
+// const route = useRoute()
 const props = defineProps({
-  img: String,
+  id:Number,
   nome: String,
+  img: String,
   preco: String,
   parcelas: String,
   estrelas:Number
+
 })
-const imgSrc = computed(() => {
-  return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
-})
+// const imgSrc = computed(() => {
+//   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
+// })
 function formatarPreco(numero) {
     return numero.toLocaleString('pt-BR', {
         style: 'currency',
@@ -20,10 +22,10 @@ function formatarPreco(numero) {
 }
 </script>
 <template>
-  <router-link class="link" :to="{ name: 'produto', params: { id: props.img } }">
+  <router-link class="link" :to="{ name: 'produto', params: { id: id } }">
   <div class="tudo">
     <div class="img">
-      <img class="oi" :src="imgSrc" />
+      <img class="oi" :src="img" />
     </div>
     <div class="informacoes">
       <span class="nome">{{ nome }}</span>
@@ -43,7 +45,7 @@ function formatarPreco(numero) {
           </svg>
         </div>  
       </div>
-      <span class="preco">{{ formatarPreco(preco) }}</span>
+      <span class="preco">{{ formatarPreco(Number(preco)) }}</span>
       <span class="parcelas"> {{ parcelas }}</span>
     </div>
   </div>
@@ -86,6 +88,7 @@ span {
   font-size: 16px;
 }
 .preco {
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 20px;
 }
