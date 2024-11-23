@@ -1,4 +1,8 @@
 import { defineStore } from 'pinia'
+import ProdutosService from '@/service/produtos'
+import {ref} from 'vue'
+
+const produtosService = new ProdutosService
 
 export const useProdutosStore = defineStore('produtos', () => {
   const produtos = [
@@ -608,5 +612,5 @@ export const useProdutosStore = defineStore('produtos', () => {
   function getProduct(id) {
     return this.produtos.find((objeto) => objeto.id === id)
   }
-  return { produtos, getProduct }
+  return { produtos, getProduct, BuscarProdutos }
 })
