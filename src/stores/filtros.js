@@ -33,7 +33,13 @@ export const useFiltroStore = defineStore('filtro', () => {
 
       // Filtrar produtos pela categoria
       if (categoria && categoria !== 'all' && categoria !== 'promocoes' ) {
-        arrayFiltrada = arrayFiltrada.filter(item => item.categoria === categoria)
+        let categoriaAdaptada = categoria
+        if (categoriaAdaptada == "placas-solares") {
+          categoriaAdaptada = "Placas Solares";
+        } else if (categoriaAdaptada == "kits-solares") {
+          categoriaAdaptada = "Kits Solares";
+        }
+        arrayFiltrada = arrayFiltrada.filter(item => item.categoria.nome === categoriaAdaptada)
       }
       if (categoria == 'promocoes' ) {
         arrayFiltrada = arrayFiltrada.filter(item => item.promocao == true)
@@ -41,26 +47,30 @@ export const useFiltroStore = defineStore('filtro', () => {
       // Filtrando produtos com base em materiais
       if (filtredMateriais.length !== 0) {
         arrayFiltrada = arrayFiltrada.filter(item =>
-          item.material.some(element => newFiltredMateriais.has(element))
-        )
+          item.descricao && item.descricao.TipoDeCelula && filtredMateriais.some(material =>
+            item.descricao.TipoDeCelula.includes(material)
+          )
+        );
       }
+      
+      
       // Filtrando produtos com base em potência
       if (filtredPotencia.length !== 0) {
-        arrayFiltrada = arrayFiltrada.filter(item => filtredPotencia.includes(String(item.potencia)))
+        arrayFiltrada = arrayFiltrada.filter(item => filtredPotencia.includes(String(item.descricao.PotenciaMaxima)))
       }
       // Filtrando produtos com base em marcas
       if (filtredMarcas.length !== 0) {
-        arrayFiltrada = arrayFiltrada.filter(item => filtredMarcas.includes(item.marca))
+        arrayFiltrada = arrayFiltrada.filter(item => filtredMarcas.includes(item.fabricante[0].nome.toLowerCase()))
       }
       // Filtrando produtos com base no preço
       if (minPrice !== '' && maxPrice !== '') {
         arrayFiltrada = arrayFiltrada.filter(
-          item => item.preco >= minPrice && item.preco <= maxPrice
+          item => Number(item.preco) >= minPrice && Number(item.preco) <= maxPrice
         )
       } else if (minPrice !== '') {
-        arrayFiltrada = arrayFiltrada.filter(item => item.preco >= minPrice)
+        arrayFiltrada = arrayFiltrada.filter(item => Number(item.preco) >= minPrice)
       } else if (maxPrice !== '') {
-        arrayFiltrada = arrayFiltrada.filter(item => item.preco <= maxPrice)
+        arrayFiltrada = arrayFiltrada.filter(item => Number(item.preco) <= maxPrice)
       }
       // Pesquisa
       if (pesquisa !== '') {

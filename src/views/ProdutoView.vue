@@ -4,19 +4,20 @@ const route = useRoute();
 import { useProdutosStore } from "@/stores/produtosStore";
 import ProdutoComponent from "@/components/produtos/ProdutoComponent.vue";
 const ProdutosStore = useProdutosStore();
-
+function parcelas (preco){
+  return `em até 10x de ${preco}`
+}
 </script>
 <template>
   <div v-for="(text, index) in ProdutosStore.produtos" :key="index">
     <ProdutoComponent
-      v-if="text.imageUrl == route.params.id"
-      :img="text.imageUrl"
-      :nome="text.nome"
-      :preco="text.preco"
-      :parcelas="text.parcelas"
-      :VerMais="text.VerMais"
-      :id="text.id"
-      :estrelas="text.estrelas"
+      v-if="text.id == route.params.id"
+        :id="text.id"
+        :img="text.foto ? text.foto[0].file : ''"
+        :nome="text.nome"
+        :preco="text.preco"
+        :parcelas="parcelas(text.preco)"
+        :estrelas="3"
     />
   </div>
 </template>

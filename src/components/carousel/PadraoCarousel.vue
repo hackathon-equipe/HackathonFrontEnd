@@ -4,11 +4,23 @@ import SlideComponent from './SlideComponent.vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
+function parcelas (preco){
+  return `em até 10x de ${preco}`
+}
 </script>
+
 <template>
   <Carousel :itemsToShow="5.7" :transition="500">
     <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
-      <SlideComponent class="slide" :img="text.imageUrl" :nome="text.nome" :preco="text.preco" :parcelas="text.parcelas" :estrelas="text.estrelas"/>
+      <SlideComponent
+      :id="text.id"
+      :img="text.foto ? text.foto[0].file : ''"
+      :imagem="text.imagens"
+      :nome="text.nome"
+      :preco="text.preco"
+      :parcelas="parcelas(text.preco)"
+      :estrelas="3"
+    />
     </Slide>
     <template #addons>
       <Navigation class="aa" />

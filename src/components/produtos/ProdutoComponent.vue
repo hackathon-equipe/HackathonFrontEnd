@@ -4,26 +4,26 @@ import TitleCarousel from "@/components/carousel/TitleCarousel.vue";
 import ImagemProduto from "@/components/produtos/imagens/ImagemProduto.vue";
 import ImagensPqn from "@/components/produtos/imagens/ImagensPqn.vue";
 import InformacoesProduto from "@/components/produtos/informacoes/InformacoesProduto.vue";
-import DescricaoProduto from "@/components/produtos/descricao/DescricaoProduto.vue";
+
 import ComentarioProduto from "@/components/produtos/comentarios/ComentarioProduto.vue";
 import AddComentario from "@/components/produtos/comentarios/AddComentario.vue";
 import ButtonMais from "@/components/produtos/comentarios/ButtonMais.vue";
 import FazerOrcamento from "@/components/produtos/orcamento/FazerOrcamento.vue";
 import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
-import { computed } from "vue";
+
 const props = defineProps({
-  img: String,
+  id:Number,
   nome: String,
-  preco: Number,
+  img: String,
+  preco: String,
   parcelas: String,
+  estrelas:Number,
   VerMais: String,
-  id: Number,
-  estrelas: Number
 });
-const imgSrc = computed(() => {
-  return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
-});
+// const imgSrc = computed(() => {
+//   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
+// });
 </script>
 <template>
   <div>
@@ -31,13 +31,13 @@ const imgSrc = computed(() => {
     <PadraoCaminho />
     <main>
       <div>
-        <ImagemProduto :imagem="imgSrc" />
-      </div>
-      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="imgSrc" :estrelas="estrelas"/>
+        <ImagemProduto :imagem="img" />
+      </div> 
+     <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="img" :estrelas="estrelas"/>
     </main>
-    <ImagensPqn :imagem="imgSrc" />
+    <ImagensPqn :imagem="img" />
 
-    <DescricaoProduto :VerMais="VerMais" />
+    <!-- <DescricaoProduto :VerMais="VerMais" /> -->
     <div class="carousel-produtos">
       <TitleCarousel title="Produtos Similares" />
       <PadraoCarousel />
