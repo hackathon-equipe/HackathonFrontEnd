@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 // import { ref } from 'vue';
 // const metodo_pagamento = ref(null)
 // import { usePagamentoStore } from '@/stores/pagamentoStore';
@@ -20,14 +20,50 @@
 // function pagamento_realizado(){
 //     pagamento_foi_realizado.value = true
 // }
-</script> -->
+import { ref, onMounted } from 'vue';
+
+// Variáveis de controle
+const mostrarImagem = ref(true);
+const dataHoraPagamento = ref('');
+
+// Função para obter a data e hora atual no formato desejado
+function obterDataHoraAtual() {
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    const hora = String(data.getHours()).padStart(2, '0');
+    const minuto = String(data.getMinutes()).padStart(2, '0');
+
+    return `${dia}/${mes}/${ano}  às  ${hora}:${minuto}`;
+}
+
+// Quando o componente for montado, definimos a data e hora
+onMounted(() => {
+    dataHoraPagamento.value = `${obterDataHoraAtual()}`;
+    
+    // Configura a imagem para desaparecer após 3 segundos
+    setTimeout(() => {
+        mostrarImagem.value = false;
+    }, 2000);
+});
+</script>
 
 <template>
     <div class="loading">
+        
         <div class="animacao-carregamento">
-          <img src="@/assets/images/LoadGif/check-mark-verified.gif" alt="" width="50">
-          <span>Pagamento realizado com suceso!</span>
-        </div>
+          <img class="confirmacao" v-show="mostrarImagem" src="@/assets/images/LoadGif/check-mark-verified.gif" alt="" width="50">
+          <img class="confirmacao" v-show="!mostrarImagem" src="@/assets/images/LoadGif/pagamento-realizado.png" alt="" width="50">
+          <span class="pagamento-realizado">Pagamento realizado com sucesso!</span>
+          <span class="span-pqn">{{ dataHoraPagamento }}</span> <!-- Exibe a data e hora -->
+          <hr class="hr"/>
+          <span class="span-pqn">valor do pagamento</span>
+          <span class="valor">R$ 200,00</span>
+          <span class="span-pqn">prazo de entrega</span>
+          <span class="prazo">4 a 5 dias úteis</span>
+          <router-link to="/" class="button" >voltar ao site</router-link></div>
+       
     </div>
     <!-- <div class="pagamento">
         <div class="metodos-pagamento">
@@ -82,26 +118,72 @@
 </template>
 
 <style scoped>
+ .button {
+    cursor: pointer;
+    appearance: none;
+    border: 1px solid #406996;
+    background-color: #406996 ;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 25px;
+    border-radius: 3rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px 0px;
+  }
+  .button:hover{
+    background-color: #345475;
+  }
+.prazo{
+    font-size: 16px;
+    font-weight: 550;
+    margin-bottom: 5px;
+}
+.valor{
+    font-size: 30px;
+    font-weight: 550;
+    margin-bottom: 15px;
+}
+.hr{
+    height: 2px;
+    width: 100%;
+    color:black;
+    margin: 30px 0px;
+}
+.span-pqn{
+    font-size: 12px;
+}
+.pagamento-realizado{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
 .animacao-carregamento{
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
     align-items: center;
     justify-content: center;
+    padding:20px 50px;
+    height: min-content;
+}
+.confirmacao{
+    margin:10px;
 }
 .loading {
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+    height: calc(100vh - 80px);
+    background-color: rgb(233, 233, 233); /* Semitransparente */
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 9999; /* Garante que fique acima de outros conteúdos */
   }
-
+/*
 .pagamento-realizado img{
     width: 200px;
     height: auto;
@@ -247,5 +329,5 @@
     cursor: pointer;
     width: 20px;
     height: 20px;
-}
+}*/
 </style>
