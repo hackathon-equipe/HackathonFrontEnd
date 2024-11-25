@@ -9,7 +9,6 @@ const props = defineProps({
   preco: String,
   parcelas: String,
   estrelas:Number
-
 })
 // const imgSrc = computed(() => {
 //   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href
