@@ -20,6 +20,29 @@ export const useRotasStore = defineStore('rotas', () => {
           link: "/sobre",
         },
       ];
+      const titlesAdm = [
+        {
+          text: 'Home',
+          link: '/admin/home'
+        },
+        {
+          text: 'Produtos',
+          link: '/admin/produtos',
+          hover: 'alertfunction'
+        },
+        {
+          text: 'Orcamentos',
+          link: '/admin/orcamentos'
+        },
+        {
+          text: 'Clientes',
+          link: '/admin/clientes'
+        },
+        {
+          text: 'Pedidos',
+          link: '/admin/pedidos'
+        }
+      ]
       const produtos = [
         {
           nome: "Placas Solares",
@@ -66,5 +89,5 @@ export const useRotasStore = defineStore('rotas', () => {
           link: "/all",
         };
       
-  return { titles, produtos, promocoes, verTudo }
+  return { titles, titlesAdm, produtos, promocoes, verTudo }
 })

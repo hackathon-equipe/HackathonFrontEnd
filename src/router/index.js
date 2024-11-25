@@ -11,7 +11,12 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: () => import('../views/HomeView.vue')
-        },
+        }
+  ]},
+    {
+      path: '/cliente',
+      component: () => import('../layouts/DefaultLayout.vue'),
+      children: [
         {
           path: '/produto/:id',
           name: 'produto',
@@ -55,7 +60,44 @@ const router = createRouter({
         component: () => import('../views/pagamentoView.vue')
         },
       ]
-    }
+    },
+    {
+      path: '/admin',
+      component: () => import('../layouts/AdminLayout.vue'),
+      children: [
+        {
+          path: '/admin/home',
+          name: 'homeAdmin',
+          component: () => import('../views/administradores/HomeView.vue')
+        },
+        {
+          path: '/admin/produto/:id',
+          name: 'produtoAdmin',
+          component: () => import('../views/administradores/ProdutoView.vue'),
+          params: true
+        },
+        {
+          path: '/admin/produtos',
+          name: 'produtosAdmin',
+          component: () => import('../views/administradores/ProdutosView.vue'),
+          params: true
+        },
+        {
+          path: '/admin/orcamentos',
+          name: 'orcamentosAdmin',
+          component: () => import('../views/administradores/OrcamentosView.vue')
+        },
+        {
+          path: '/admin/sobre',
+          name: 'sobreAdmin',
+          component: () => import('../views/administradores/SobreView.vue')
+        },
+        {
+          path: '/admin/perfil',
+          name: 'perfilAdmin',
+          component: () => import('../views/administradores/perfilView.vue')
+        }
+  ]}
   ],
   scrollBehavior(to, from, savedPosition) {
     // Verifica se há uma posição salva (no caso de navegação com histórico)
