@@ -7,7 +7,7 @@ const props = defineProps({
   nome: String,
   img: String,
   preco: String,
-  parcelas: String,
+  parcelas: Number,
   estrelas:Number
 })
 // const imgSrc = computed(() => {
@@ -44,12 +44,8 @@ function formatarPreco(numero) {
           </svg>
         </div>  
       </div>
-<<<<<<< HEAD
       <span class="preco">{{ formatarPreco(Number(preco)) }}</span>
-=======
-      <span class="preco">{{ formatarPreco(preco) }}</span>
->>>>>>> e786577 (Rebase dev)
-      <span class="parcelas"> {{ parcelas }}</span>
+      <span class="parcelas"> {{parcelas}}</span>
     </div>
   </div>
   </router-link>
@@ -62,11 +58,7 @@ function formatarPreco(numero) {
 .informacoes {
   text-align: left;
 }
-.img {
-  height: 250px;
-  max-width: 270px;
-  margin-bottom: 20px;
-}
+
 .tudo {
   border: 1px solid #d9d9d9;
   border-radius: 25px;
@@ -77,7 +69,15 @@ function formatarPreco(numero) {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 270px;
+  margin: auto;
+  height: 250px;
 }
+
+.img img{
+  height: 90%;
+}
+
 .estrelas {
   display: flex;
   max-height: 250px;

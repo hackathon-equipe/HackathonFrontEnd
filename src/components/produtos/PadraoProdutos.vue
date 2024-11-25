@@ -10,13 +10,14 @@ const isTwoProducts = computed(() => {
   return FiltrosStore.filtro.length === 2;
 });
 function parcelas (preco){
-  return `em até 10x de ${preco}`
+  return `em até 10x de R$${Number(preco/10).toFixed(2).replace('.', ',')}`
 }
 
 onMounted(async () => {
   await ProdutosStore.carregarProdutos()
   console.log(ProdutosStore.produtos)
 });
+
 
 
 

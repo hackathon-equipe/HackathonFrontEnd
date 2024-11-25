@@ -46,6 +46,7 @@ option {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .opcao-input input[type="checkbox"]:checked,
@@ -76,5 +77,9 @@ input[type="checkbox"]:checked {
 .subtitulo {
   font-weight: 600;
   padding: 10px 0px;
+}
+
+.opcao-input-label{
+  cursor: pointer;
 }
 </style>
