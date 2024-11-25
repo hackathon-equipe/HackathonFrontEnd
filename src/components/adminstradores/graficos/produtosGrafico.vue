@@ -34,7 +34,7 @@ const data = {
 };
 
 onMounted(() => {
-  const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+  const ctx = document.getElementById('ProdutoGrafico') as HTMLCanvasElement;
 
   new Chart(ctx, {
     type: 'doughnut',
@@ -78,14 +78,14 @@ onMounted(() => {
 
 <template>
   <div class="grafico">
-    <canvas id="myChart"></canvas>
+    <canvas id="ProdutoGrafico"></canvas>
   </div>
 </template>
 
 <style>
 .grafico {
-  width: 700px;
-  height: 600px;
+  width: 50%;
+  height: 50%;
   color: #29375be3;
 }
 </style>

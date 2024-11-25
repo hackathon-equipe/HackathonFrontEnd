@@ -1,7 +1,7 @@
 <script setup>
 import ProdutosGrafico from '@/components/adminstradores/graficos/produtosGrafico.vue'
 import EntradaSaida from '@/components/adminstradores/graficos/EntradaSaida.vue'
-import OrçamentosGrafico from '@/components/adminstradores/graficos/OrçamentosGrafico.vue'
+import OrcamentosGrafico from '@/components/adminstradores/graficos/OrçamentosGrafico.vue'
 import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/components/icons'
 import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
 import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
@@ -37,44 +37,100 @@ onMounted(() => {
         </div>
         <div class="home-icons">
           <div>
-            <span><dollarIcon /></span>
+            <span>
+              <dollarIcon />
+            </span>
             <span>valoriza seu imovel</span>
           </div>
           <div class="line-icons">
-            <span><recycleIcon /></span>
+            <span>
+              <recycleIcon />
+            </span>
             <span>energia limpa</span>
           </div>
           <div>
-            <span><downGraphicIcon /></span>
+            <span>
+              <downGraphicIcon />
+            </span>
             <span>reducao de CO₂</span>
           </div>
         </div>
         <div class="home-buttons">
-          <router-link class="button" to="/produtos/placas-solares">Desempenho <LeftArrowIcon class="seta" /></router-link>
+          <router-link class="button" to="/produtos/placas-solares">Desempenho
+            <LeftArrowIcon class="seta" />
+          </router-link>
         </div>
       </div>
       <div>
         <bunnerHomePage />
       </div>
     </div>
-    <OrçamentosGrafico/> 
-    <EntradaSaida/>
-    <ProdutosGrafico/>
+    <div class="container-desempenho">
+      <div class="dados">
+        <div class="dado-container"></div>
+        <div class="dado-container"></div>
+        <div class="dado-container"></div>
+        <div class="dado-container"></div>
+      </div>
+      <div class="graficos-flex">
+      <div class="produtos-grafico">
+        <ProdutosGrafico />
+      </div>
+      <div class="grafico-OrcamentoProdutos">
+        <EntradaSaida/>
+        <OrcamentosGrafico />
+
+      </div>
+</div>
+    </div>
   </div>
 </template>
 <style scoped>
-.seta{
+.produtos-grafico{
+  width: min-content;
+}
+.grafico-OrcamentoProdutos{
+  display: flex;
+  flex-direction: column;
+}
+.graficos-flex {
+  display: flex;
+}
+
+.dados {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dado-container {
+  width: 100px;
+  height: 100px;
+  background-color: #29375b;
+}
+
+.container-desempenho {
+  width: 100vw;
+  height: 100vh;
+  background-color: aliceblue;
+  padding: 100px 200px;
+}
+
+.seta {
   transform: rotate(90deg);
 }
+
 .home {
   padding: 160px 40px 40px 40px;
   display: flex;
   justify-content: space-around;
 }
+
 .home .info-side {
   display: flex;
   flex-direction: column;
 }
+
 .home .info-side .home-tittle h1 {
   width: 700px;
   font-weight: 600;
@@ -84,21 +140,25 @@ onMounted(() => {
   color: transparent;
   line-height: 100px;
 }
+
 .home .info-side .home-icons {
   font-weight: 500;
   margin-top: 20px;
   display: flex;
 }
+
 .home .info-side .home-icons div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .home .info-side .home-icons .line-icons {
   border-left: 1px solid #406996;
   border-right: 1px solid #406996;
 }
+
 .home .info-side .home-icons span {
   display: flex;
   flex-direction: column;
@@ -106,11 +166,13 @@ onMounted(() => {
   padding: 3px 20px;
   height: 36px;
 }
+
 .home .info-side .home-buttons {
   margin-top: 50px;
   display: flex;
   gap: 35px;
 }
+
 .home .info-side .home-buttons .button {
   appearance: none;
   padding: 20px 40px;
@@ -126,11 +188,12 @@ onMounted(() => {
   text-decoration: none;
   transition: .2s linear;
 }
-.home-buttons .button:hover{
+
+.home-buttons .button:hover {
   transform: translateY(-8px);
 }
 
-.carregamento{
+.carregamento {
   width: 100vw;
   height: 90vh;
   display: flex;
@@ -138,9 +201,8 @@ onMounted(() => {
   align-items: center;
 }
 
-.carregamento img{
+.carregamento img {
   width: 15%;
 
 }
-
 </style>
