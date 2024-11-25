@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router' // Importar useRoute
 
 const ProdutosStore = useProdutosStore()
 
+
 export const useFiltroStore = defineStore('filtro', () => {
   const precoMin = ref('')
   const precoMax = ref('')
