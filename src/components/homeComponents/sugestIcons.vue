@@ -77,6 +77,9 @@
     justify-content: center;
     align-items: center;
 }
+::-webkit-scrollbar {
+    width: 6px !important
+}
 
 ::-webkit-scrollbar {
     width: 6px !important

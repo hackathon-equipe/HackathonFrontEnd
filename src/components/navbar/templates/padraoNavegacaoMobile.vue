@@ -6,15 +6,11 @@ import logoStandart from '@/assets/logo/logoStandart.vue'
 import { ref } from 'vue';
 
 const abrirSubMenu = ref(false)
-
 //icons
 import { shopingCartIcon, searchIcon, menuIcon, userblackIcon, XCloseIcon } from '../../icons'
-
-import { useRotasStore } from '@/stores/rotas';
 import { useFiltroStore } from '@/stores/filtros'
 
 const FiltrosStore = useFiltroStore()
-const rotasStore = useRotasStore()
 
 //Barra de Pesuisa
 const barraPesquisa = ref(false)
@@ -51,9 +47,6 @@ const barraPesquisa = ref(false)
                     </router-link>
                 </div>
             </div>
-        </div>
-        <div class="sub-menu" v-if="abrirSubMenu">
-            <ListaTitulos v-for="(text, index) in rotasStore.titles" :key="index" :title="text.text" :link="text.link" @click="onClick(text.text)" class="link" />
         </div>
     </nav>
 </template>

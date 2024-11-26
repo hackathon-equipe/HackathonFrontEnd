@@ -119,7 +119,7 @@ const irParaProdutosAll = () => {
 .input-pesquisar {
   width: 350px;
   border: none;
-  padding: 4px 15px;
+  padding: 4px 6px;
 }
 .input-pesquisar:focus {
   outline: none; /* Remove a borda de foco padrão */
@@ -190,9 +190,11 @@ const irParaProdutosAll = () => {
   flex-direction: column;
   list-style: none;
 }
+
 .filters li {
   cursor: pointer;
 }
+
 .products {
   padding: 15px 0px 0px 60px;
   display: flex;
@@ -204,14 +206,18 @@ const irParaProdutosAll = () => {
   width: 20%;
   cursor: pointer;
 }
+
 .products li:hover {
   text-decoration: underline;
 }
+
 .active {
   font-weight: 600;
 }
+
+/* FIM -> CSS SUBMENU */
 .navbar {
-  z-index: 9999;
+  z-index: 999999999;
   position: fixed;
   width: 100vw;
   height: 40px;
@@ -221,21 +227,31 @@ const irParaProdutosAll = () => {
   align-items: center;
   padding: 40px 40px 40px 25px;
 }
+
 .navbar .logo {
   cursor: pointer;
 }
+
 .navbar .link-list {
   list-style: none;
   display: flex;
   gap: 25px;
 }
+
 .navbar .link-list .link:nth-child(2):hover .submenu {
   background-color: red;
 }
+
 .link {
   text-decoration: none;
   color: black;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .navbar .utilities {
   display: flex;
   align-items: center;
