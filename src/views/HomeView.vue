@@ -32,6 +32,7 @@ useAuth()
 onMounted(() => {
   getUserData()
 })
+
 </script>
 
 <template>
@@ -78,5 +79,32 @@ onMounted(() => {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+@media (max-width: 700px) {
+  .home{
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 40px 40px 40px 40px;
+  }
+  .home .info-side .home-tittle h1{
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .home .info-side .home-icons{
+    display: none;
+  }
+  .home .info-side .home-buttons{
+    display: flex;
+    gap: 0px;
+    flex-direction: column-reverse;
+  }
+  .home .info-side .home-buttons .button{
+    justify-content: center;
+  }
+  .home .home-buttons .button:first-child{
+    background-color: transparent;
+    color: black;
+  }
 }
 </style>
