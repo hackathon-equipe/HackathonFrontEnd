@@ -89,9 +89,13 @@ onMounted(() => {
 </template>
 
 <style>
-.grafico{
-  width: 50%;
-  height: 50%;
-  color:#29375be3
+.grafico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  color: #29375be3;
+  padding: 20px;
 }
 </style>

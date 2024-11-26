@@ -66,8 +66,11 @@ onMounted(() => {
 
 <style>
 .grafico {
-  width: 50%;
-  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
   color: #29375be3;
 }
 </style>

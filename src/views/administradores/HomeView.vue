@@ -65,7 +65,7 @@ onMounted(() => {
         <bunnerHomePage />
       </div>
     </div>
-    <div class="container-desempenho">
+    <!-- <div class="container-desempenho">
       <div class="dados">
         <div class="dado-container"></div>
         <div class="dado-container"></div>
@@ -73,47 +73,103 @@ onMounted(() => {
         <div class="dado-container"></div>
       </div>
       <div class="graficos-flex">
-      <div class="produtos-grafico">
-        <ProdutosGrafico />
-      </div>
-      <div class="grafico-OrcamentoProdutos">
-        <EntradaSaida/>
-        <OrcamentosGrafico />
+        <div class="produtos-grafico">
+          <ProdutosGrafico />
+        </div>
+        <div class="grafico-OrcamentoProdutos">
+          <EntradaSaida />
+          <OrcamentosGrafico />
 
+        </div>
       </div>
-</div>
+    </div> -->
+    <div class="container-desempenho">
+      <div class="um">
+        <div class="bb">
+        <div class="red">        <div class="dado-container"></div></div>
+        <div class="blue"><ProdutosGrafico /></div>
+        </div>
+      </div>
+      <div class="dois">
+      <div class="aa">
+      <div class="pink"> <EntradaSaida /></div>
+      <div class="black"> <OrcamentosGrafico /></div>
+    </div>
+      </div>
     </div>
   </div>
 </template>
 <style scoped>
-.produtos-grafico{
-  width: min-content;
+.red{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38%;
+  width: 100%;
+  border: 1px solid gray;
 }
-.grafico-OrcamentoProdutos{
+.blue{
+  height: 58%;
+  width: 100%;
+  border: 1px solid gray;
+}
+.pink{
+  height: 50%;
+  width: 100%;
+
+}
+.black{
+  height: 50%;
+  width: 100%;
+
+}
+.um{
+height: 90%;
+width: 40vw;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.dois{
+  height: 90%;
+  width: 50vw;
   display: flex;
   flex-direction: column;
-}
-.graficos-flex {
-  display: flex;
-}
-
-.dados {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-}
+  justify-content: center;
+  }
+  .aa{
+    height: 93%;
+    width: 47vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    }
+    .bb{
+      height: 93%;
+      width: 37vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      }
 
 .dado-container {
-  width: 100px;
-  height: 100px;
-  background-color: #29375b;
+  width: 100%;
+  height: 100%;
+  background-color: #29375b00;
 }
 
 .container-desempenho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: aliceblue;
-  padding: 100px 200px;
+  background-color: rgba(240, 248, 255, 0);
 }
 
 .seta {
