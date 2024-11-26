@@ -1,12 +1,5 @@
-
 <script>
+
+    // PAGINA PARA NOTIFICAÇÃO DE REMOÇÃO DE ITEM DO CARRINHO
+
 </script>
-
-<template>
-  
-</template>
-
-
-<style>
-
-</style>

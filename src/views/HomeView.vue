@@ -1,20 +1,15 @@
 <script setup>
 import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/components/icons'
-import {
-  sugestIcons,
-  beneficiesCards,
-  contactComp,
-  lojasParceirasComp
-} from '@/components/homeComponents'
-import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
-import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
+import { sugestIcons,beneficiesCards, contactComp, lojasParceirasComp} from '@/components/homeComponents'
+import bunnerHomePage from '@/assets/images/bunnerHome/padraoBunnerHomePage.vue'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
 import { useAuth } from '@/composables/auth'
-import { useAuthStore } from '@/stores/auth'
 import { useProdutosStore } from '@/stores/produtosStore'
 import { onMounted, ref , computed} from 'vue'
 import axios from 'axios'
+
+
 const user = ref()
 const carregando = ref(false)
 const getUserData = async () => {
@@ -39,6 +34,7 @@ useAuth()
 onMounted(() => {
   getUserData()
 })
+
 </script>
 
 <template>
@@ -53,7 +49,7 @@ onMounted(() => {
         <div class="home-icons">
           <div>
             <span><dollarIcon /></span>
-            <span>valoriza seu imovel</span>
+            <span>valoriza seu imóvel</span>
           </div>
           <div class="line-icons">
             <span><recycleIcon /></span>
@@ -61,19 +57,19 @@ onMounted(() => {
           </div>
           <div>
             <span><downGraphicIcon /></span>
-            <span>reducao de CO₂</span>
+            <span>reduçao de CO₂</span>
           </div>
         </div>
         <div class="home-buttons">
-          <router-link class="button" to="/produtos/placas-solares">Compre sua placa <LeftArrowIcon /></router-link>
-          <router-link class="button" to="/orcamentos">Faca um orcamento <LeftArrowIcon /></router-link>
+          <router-link class="button" to="/produtos/placas-solares">Compre sua placa <LeftArrowIcon/> </router-link>
+          <router-link class="button" to="/orcamentos">Faça um orçamento <LeftArrowIcon/> </router-link>
         </div>
       </div>
       <div>
         <bunnerHomePage />
       </div>
     </div>
-    <sugestIcons />
+    <div class="produtos-sugeridos"><sugestIcons /></div>
     <TitleCarousel title="Mais bem avaliados" />
     <PadraoCarousel />
     <TitleCarousel title="Inspirados no visto por ultimo" />
@@ -159,7 +155,6 @@ onMounted(() => {
 
 .carregamento img{
   width: 15%;
-
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -168,5 +163,32 @@ onMounted(() => {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+@media (max-width: 700px) {
+  .home{
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 40px 40px 40px 40px;
+  }
+  .home .info-side .home-tittle h1{
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .home .info-side .home-icons{
+    display: none;
+  }
+  .home .info-side .home-buttons{
+    display: flex;
+    gap: 0px;
+    flex-direction: column-reverse;
+  }
+  .home .info-side .home-buttons .button{
+    justify-content: center;
+  }
+  .home .home-buttons .button:first-child{
+    background-color: transparent;
+    color: black;
+  }
 }
 </style>

@@ -35,12 +35,14 @@ import { phoneIcon, facebookIcon, whatsappIcon, emailIcon, instagramIcon } from 
 .links-navegacao {
  flex-direction: column;
  display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 
 .links-navegacao span {
  font-weight: 600;
- margin-bottom: 12px;
+ margin: 50px 0px 30px;
 }
 
 

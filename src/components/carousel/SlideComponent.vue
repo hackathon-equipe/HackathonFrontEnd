@@ -53,7 +53,7 @@ function formatarPreco(numero) {
 <style scoped>
 .link{
   text-decoration: none;
-  color:black
+  color:black;
 }
 .informacoes {
   text-align: left;

@@ -8,7 +8,7 @@ const frete = usePagamentoStore().frete
 const desconto = usePagamentoStore().desconto
 const tipo = usePagamentoStore().tipo_compra
 const valorFinal = ref(0)
-const valorCarrinho = useCartStore().valueInCart()
+const valorCarrinho = useCartStore().valueInCart
 const pagamento_foi_realizado = ref(false)
 
 if (tipo == 'carrinho') {

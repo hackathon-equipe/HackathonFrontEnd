@@ -1,11 +1,9 @@
-
-
 <template>
     <div class="frame">
-        <img src="./bunnerParte1.png" alt="">
-        <img src="./bunnerParte2.png" alt="">
-        <img src="./bunnerParte3.png" alt="">
-        <img src="./bunnerParte4.png" alt="">
+        <img src="./bunnerParte1Desk.png" alt="">
+        <img src="./bunnerParte2Desk.png" alt="">
+        <img src="./bunnerParte3Desk.png" alt="">
+        <img src="./bunnerParte4Desk.png" alt="">
         <div class="square p-top"></div>
         <div class="square p-left"></div>
         <div class="square p-right"></div>
@@ -20,6 +18,7 @@
 }
 .frame img{
     position: absolute;
+
 }
 .frame :nth-child(1){
     top: 25px;
@@ -67,8 +66,6 @@
     top: 145px;
     animation: bolinha9 1s infinite linear;
 }
-
-/* ideia 3 */
 
 @keyframes bolinha7{
     0%{left: 104px; top: 0px}

@@ -1,6 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router';
-    const route = useRoute();
+const route = useRoute();
+
 defineProps({
   title: String,
   link: String,
@@ -12,8 +13,7 @@ defineProps({
 
 <template>
   <RouterLink :to="link" @mouseover="onHover(title)" :class="[
-    $route.fullPath == link || $route.fullPath == link + '/' + route.params.id ? 'ativo' : ''
-]">
+    $route.fullPath == link || $route.fullPath == link + '/' + route.params.id ? 'ativo' : '']">
     <li class="li">{{ title }}</li>
   </RouterLink>
 </template>
@@ -25,6 +25,7 @@ defineProps({
 
 .router-link {
   text-decoration: none;
+  color: black;
 }
 .li::after {
   content: '';

@@ -23,37 +23,22 @@ function parcelas (preco){
     />
     </Slide>
     <template #addons>
-      <Navigation class="aa" />
+      <Navigation class="navegacao" />
     </template>
   </Carousel>
 </template>
 
 <style scoped>
-.slide{
-  max-width: 300px;
-}
-.link{
-  position: absolute;
-  left: 0;
-}
 .carousel{
   padding:20px 0px 20px 90px !important;
 }
-.aa {
+.navegacao {
   width: 103px;
   height: 103px;
   background-color: aquamarine;
 }
 .carousel__slide {
   padding: 5px;
-}
-
-.carousel__viewport {
-  perspective: 2000px;
-}
-
-.carousel__track {
-  transform-style: preserve-3d;
 }
 
 .carousel__slide--sliding {
@@ -63,8 +48,8 @@ function parcelas (preco){
 .carousel__slide {
   height: 500px;
   opacity: 0.9;
-  transform: rotateY(-20deg);
 }
+
 /*
 .carousel__slide--prev {
   opacity: 1;

@@ -1,11 +1,15 @@
 
 <script setup>
+import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
+import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
 import { itensNoCarrinho, resumoCarrinho, semItensNoCarrinho } from './componentes';
 import { useCartStore } from '@/stores/carrinhoStore';
 const cart = useCartStore()
 </script>
 
 <template>
+  <PadraoPropagandas />
+  <PadraoCaminho />
   <div class="container" v-if="cart.itensInCart > 0"> 
     <itensNoCarrinho />
     <resumoCarrinho/>

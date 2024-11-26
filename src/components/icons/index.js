@@ -33,8 +33,12 @@ import blackFacebookIcon from "./blackFacebookIcon.vue"
 import blackInstagramIcon from "./blackInstagramIcon.vue"
 import twitterIcon from "./twitterIcon.vue"
 import upArrowIcon from "./upArrowIcon.vue"
+import menuIcon from "./menuIcon.vue"
+import userblackIcon from "./userblackIcon.vue"
 
 export{
+    userblackIcon,
+    menuIcon,
     upArrowIcon,
     blackFacebookIcon,
     blackInstagramIcon,
