@@ -64,8 +64,9 @@ if (props.images.length > 0) {
 }
 
 .img-pqn img {
-  width: 100%;
+
   padding: 15px;
+  height: 100%;
 }
 
 .selectTrue{
