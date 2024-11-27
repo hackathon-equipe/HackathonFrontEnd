@@ -11,16 +11,25 @@ import ButtonMais from "@/components/produtos/comentarios/ButtonMais.vue";
 import FazerOrcamento from "@/components/produtos/orcamento/FazerOrcamento.vue";
 import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
+import { ref } from "vue";
 
 const props = defineProps({
   id:Number,
   nome: String,
-  img: String,
+  img: Array,
   preco: String,
   parcelas: String,
   estrelas:Number,
   VerMais: String,
 });
+
+const imagemAtual = ref(props.img[0]);
+
+function atualizarImagem(novaImagem) {
+  imagemAtual.value = novaImagem;
+  console.log(imagemAtual.value)
+}
+
 // const imgSrc = computed(() => {
 //   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
 // });
@@ -31,11 +40,11 @@ const props = defineProps({
     <PadraoCaminho />
     <main>
       <div>
-        <ImagemProduto :imagem="img" />
+        <ImagemProduto :imagem="imagemAtual" />
       </div> 
      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="img" :estrelas="estrelas"/>
     </main>
-    <ImagensPqn :imagem="img" />
+    <ImagensPqn :images="img"  @selecionarImage="atualizarImagem"/>
 
     <!-- <DescricaoProduto :VerMais="VerMais" /> -->
     <div class="carousel-produtos">

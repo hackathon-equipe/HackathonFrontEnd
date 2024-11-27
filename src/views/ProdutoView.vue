@@ -13,7 +13,7 @@ function parcelas (preco){
     <ProdutoComponent
       v-if="text.id == route.params.id"
         :id="text.id"
-        :img="text.foto ? text.foto[0].file : ''"
+        :img="text.foto ? text.foto : ''"
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="parcelas(text.preco)"

@@ -64,7 +64,16 @@ function formatarPreco(numero) {
   border-radius: 25px;
   height: 460px;
   padding: 30px 30px;
+  transition: .3s;
 }
+
+.tudo:hover{
+  transform: translate3d(0, -3px, 0) scale(1.01);
+  transition: .3s;
+  /* border: 1px solid #3f3b3b; */
+  box-shadow: 0 0 4px 1px #d9d9d9;
+}
+  
 .img{
   display: flex;
   justify-content: center;
