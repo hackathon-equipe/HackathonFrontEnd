@@ -12,7 +12,8 @@ import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
 import { useAuth } from '@/composables/auth'
 import { useAuthStore } from '@/stores/auth'
-import { onMounted, ref } from 'vue'
+import { useProdutosStore } from '@/stores/produtosStore'
+import { onMounted, ref , computed} from 'vue'
 import axios from 'axios'
 const user = ref()
 const carregando = ref(false)
@@ -26,6 +27,14 @@ const getUserData = async () => {
     console.error('Erro ao buscar dados do usuário:', error)
   }
 }
+const ProdutosStore = useProdutosStore()
+
+onMounted(async () => {
+  await ProdutosStore.carregarProdutos();
+});
+
+// Propriedade computada para os produtos
+const produtos = computed(() => ProdutosStore.produtos);
 useAuth()
 onMounted(() => {
   getUserData()
@@ -33,8 +42,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <div v-if="carregando" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div> -->
-  <div>
+  <Transition name="fade">
+  <div v-if="produtos.length == 0" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div>
+  <div v-else>
     <div class="home">
       <div class="info-side">
         <div class="home-tittle">
@@ -72,6 +82,7 @@ onMounted(() => {
     <contactComp />
     <lojasParceirasComp />
   </div>
+</Transition>
 </template>
 <style scoped>
 .home {
@@ -140,7 +151,7 @@ onMounted(() => {
 
 .carregamento{
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,4 +162,11 @@ onMounted(() => {
 
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
