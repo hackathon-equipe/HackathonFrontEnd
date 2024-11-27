@@ -6,9 +6,41 @@ import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/compo
 import bunnerHomePage from '@/assets/images/bunnerHome/bunnerHomePage.vue'
 import LeftArrowIcon from '@/components/icons/leftArrowIcon.vue'
 import { useAuth } from '@/composables/auth'
-import { useAuthStore } from '@/stores/auth'
-import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { useAuthStore } from '@/stores/auth'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// Definir o ref para controlar a visibilidade
+const scrollReached = ref(false)
+
+// Função para verificar a posição do scroll
+const checkScroll = () => {
+  // Se o scroll ultrapassar 200px, defina scrollReached como true
+  if (window.scrollY > 500) {
+    scrollReached.value = true
+  } else {
+    scrollReached.value = false
+  }
+}
+
+// Adicionar o listener do evento scroll quando o componente for montado
+onMounted(() => {
+  window.addEventListener('scroll', checkScroll)
+})
+
+// Remover o listener quando o componente for desmontado
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkScroll)
+})
+
+const goToDesempenho = () => {
+  // Rolar a página para baixo 100vh (altura total da tela)
+  window.scrollTo({
+    top: window.scrollY + (window.innerHeight - 60),  // Rolando a tela para baixo em 100vh
+    behavior: 'smooth' // Rolagem suave
+  })
+}
+
 const user = ref()
 const carregando = ref(false)
 const getUserData = async () => {
@@ -28,7 +60,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <div v-if="carregando" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div> -->
   <div>
     <div class="home">
       <div class="info-side">
@@ -56,113 +87,206 @@ onMounted(() => {
           </div>
         </div>
         <div class="home-buttons">
-          <router-link class="button" to="/produtos/placas-solares">Desempenho
+          <button class="button" @click="goToDesempenho">Desempenho
             <LeftArrowIcon class="seta" />
-          </router-link>
+          </button>
         </div>
       </div>
       <div>
         <bunnerHomePage />
       </div>
     </div>
-    <!-- <div class="container-desempenho">
-      <div class="dados">
-        <div class="dado-container"></div>
-        <div class="dado-container"></div>
-        <div class="dado-container"></div>
-        <div class="dado-container"></div>
-      </div>
-      <div class="graficos-flex">
-        <div class="produtos-grafico">
-          <ProdutosGrafico />
-        </div>
-        <div class="grafico-OrcamentoProdutos">
-          <EntradaSaida />
-          <OrcamentosGrafico />
-
-        </div>
-      </div>
-    </div> -->
     <div class="container-desempenho">
-      <div class="um">
-        <div class="bb">
-        <div class="red">        <div class="dado-container"></div></div>
-        <div class="blue"><ProdutosGrafico /></div>
+      <div v-if="scrollReached" :class="scrollReached ? 'active' : 'not-active'" class="container-esquerda">
+        <div class="container-flex">
+          <div class="dados-produtos">
+            <div class="saldo-container">
+              <div class="dado-container">
+                <div class="center">
+                  <span class="legenda">saldo</span>
+                  <span class="conteudo">R$3.000.000,00</span>
+                </div>
+              </div>
+            </div>
+            <div class="pedidos-usuarios">
+              <div class="dado-container duplo">
+                <div class="center">
+                  <span class="legenda">Pedidos feitos esse mês</span>
+                  <span class="conteudo">30 pedidos</span>
+                </div>
+              </div>
+              <div class="dado-container duplo">
+                <div class="center">
+                  <span class="legenda">Usuarios logados no sistema</span>
+                  <span class="conteudo">100 usuários</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="produtos-grafico">
+            <ProdutosGrafico />
+          </div>
         </div>
       </div>
-      <div class="dois">
-      <div class="aa">
-      <div class="pink"> <EntradaSaida /></div>
-      <div class="black"> <OrcamentosGrafico /></div>
-    </div>
+
+      <div v-if="scrollReached" :class="scrollReached ? 'active' : 'not-active'" class="container-direita">
+        <div class="entradaSaida-orcamentos">
+          <div class="entrada-saida">
+            <EntradaSaida />
+          </div>
+          <div class="orcamentos">
+            <OrcamentosGrafico />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
-.red{
+/* Definindo a transição */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active no Vue 3 */ {
+  opacity: 0;
+  transform: translateY(20px); /* Inicia com um pequeno deslocamento */
+}
+
+/* Para o conteúdo ativo, retorna ao seu estado original */
+.container-esquerda, .container-direita {
+  opacity: 1;
+  transform: translateY(0);
+}
+.center{
+
+  display: flex;
+   flex-direction: column; 
+  justify-content: center;
+
+}
+.pedidos-usuarios{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+}
+.saldo-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.legenda {
+  font-size: 14px;
+  align-self: start;
+}
+
+.conteudo {
+  font-size: 30px;
+  font-weight: 600;
+  align-self: start;
+  color:#212c49;
+}
+
+.dados-produtos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 38%;
+  width: 100%;
+}
+
+.produtos-grafico {
+  height: 58%;
+  width: 100%;
+  border: 1px solid #406a966c;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 5px 15px 0px;
+}
+
+.entrada-saida {
+  height: 50%;
+  width: 100%;
+
+}
+
+.orcamentos {
+  height: 50%;
+  width: 100%;
+
+}
+
+.container-esquerda {
+  height: 90%;
+  width: 40vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 38%;
-  width: 100%;
-  border: 1px solid gray;
+  flex-direction: column;
+  opacity: 0;
 }
-.blue{
-  height: 58%;
-  width: 100%;
-  border: 1px solid gray;
-}
-.pink{
-  height: 50%;
-  width: 100%;
 
-}
-.black{
-  height: 50%;
-  width: 100%;
-
-}
-.um{
-height: 90%;
-width: 40vw;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-}
-.dois{
+.container-direita {
   height: 90%;
   width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  }
-  .aa{
-    height: 93%;
-    width: 47vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid gray;
-    }
-    .bb{
-      height: 93%;
-      width: 37vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      }
-
-.dado-container {
-  width: 100%;
-  height: 100%;
-  background-color: #29375b00;
+}
+.container-esquerda, .container-direita {
+  opacity: 0;
+  transform: translateY(20px); /* Inicialmente os containers estão deslocados um pouco para baixo */
+  transition: opacity 2.5s ease-in-out, transform 2.5s ease-in-out; /* Transição para opacidade e movimento */
 }
 
+.active {
+  opacity: 1;
+  transform: translateY(0); /* A posição final será no lugar correto */
+}
+
+.entradaSaida-orcamentos {
+  height: 93%;
+  width: 47vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #406a966c;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 5px 15px 0px;
+}
+
+.container-flex {
+  height: 93%;
+  width: 37vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dado-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 94%;
+  width: 100%;
+  border: 1px solid #406a966c;
+  border-radius: 25px;
+  padding: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 3px 7px 0px;
+}
+.duplo{
+  width: 48%;
+}
 .container-desempenho {
   display: flex;
   align-items: center;
@@ -262,3 +386,4 @@ flex-direction: column;
 
 }
 </style>
+
