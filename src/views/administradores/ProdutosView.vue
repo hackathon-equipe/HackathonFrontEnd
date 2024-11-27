@@ -2,12 +2,14 @@
 import AsideFiltro from "@/components/filtros/AsideFiltro.vue";
 import ProdutosHeader from "@/components/header/ProdutosHeader.vue";
 import PadraoProdutos from "@/components/produtos/PadraoProdutos.vue";
+import AdminProdutos from "@/components/adminstradores/produtos/AdminProdutos.vue";
+import AdminProdutosHeader from '@/components/adminstradores/header/AdminProdutosHeader.vue'
 </script>
 <template>
-  <ProdutosHeader />
+  <AdminProdutosHeader />
   <main>
     <AsideFiltro />
-    <PadraoProdutos />
+    <AdminProdutos />
   </main>
 </template>
 <style scoped>
