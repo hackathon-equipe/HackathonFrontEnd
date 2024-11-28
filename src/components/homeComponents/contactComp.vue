@@ -82,4 +82,18 @@ import { useScreenSize } from '@/composables/useScreenSize';
         justify-content: center;
     }
 }
+@media (max-width: 768px) {
+    .container{
+        flex-direction: column;
+        margin: 10px 30px;
+    }
+    .content{
+        text-align: center;
+        align-items: center;
+    }
+    .images{
+        display: flex;
+        justify-content: center;
+    }
+}
 </style>
