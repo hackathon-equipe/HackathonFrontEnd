@@ -1,10 +1,9 @@
 <script setup>
 import { padraoCarouselDesktop, padraoCarouselMobile } from './templates';
-
-const isMobile = true
+import { useScreenSize } from '@/composables/useScreenSize';
 </script>
 
 <template>
-  <padraoCarouselMobile v-if="isMobile" />
+  <padraoCarouselMobile v-if="useScreenSize().isMobile" />
   <padraoCarouselDesktop v-else />
 </template>

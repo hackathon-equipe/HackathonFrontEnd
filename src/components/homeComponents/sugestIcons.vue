@@ -86,7 +86,7 @@
     transform: translateY(-10px);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     .container {
         position: flex;
         justify-content: left;

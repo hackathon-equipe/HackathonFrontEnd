@@ -1,8 +1,17 @@
+
+<script setup>
+import imgMobile from './img/svgFaleConosco.vue'
+const isMobile = true
+</script>
+
 <template>
     <div class="container">
         <div class="images">
-            <img src="./img/menorFrame.png" alt="">
-            <img src="./img/maiorFrame.png" alt="">
+            <imgMobile v-if="isMobile" />
+            <div v-else>
+                <img src="./img/menorFrame.png" alt="">
+                <img src="./img/maiorFrame.png" alt="">
+            </div>
         </div>
         <div class="content">
             <h2>Oorun, o seu maior investimento para o futuro</h2>
@@ -12,10 +21,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-
-</script>
 
 <style scoped>
 .container{
@@ -55,5 +60,19 @@
     background-color: white;
     color: #29375B;
     border:1px solid #29375B;
+}
+@media (max-width: 768px) {
+    .container{
+        flex-direction: column;
+        margin: 10px 30px;
+    }
+    .content{
+        text-align: center;
+        align-items: center;
+    }
+    .images{
+        display: flex;
+        justify-content: center;
+    }
 }
 </style>

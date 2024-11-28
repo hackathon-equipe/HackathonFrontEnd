@@ -107,4 +107,9 @@ span {
 .parcelas {
   font-size: 12px;
 }
+@media (max-width: 768px) {
+  .tudo{
+    width: 260px;
+  }
+}
 </style>

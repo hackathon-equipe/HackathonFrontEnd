@@ -1,12 +1,12 @@
 <script setup>
 import { dollarIcon, recycleIcon, downGraphicIcon, leftArrowIcon } from '@/components/icons'
-import { sugestIcons,beneficiesCards, contactComp, lojasParceirasComp} from '@/components/homeComponents'
+import { sugestIcons, beneficiesCards, contactComp, lojasParceirasComp } from '@/components/homeComponents'
 import bunnerHomePage from '@/assets/images/bunnerHome/padraoBunnerHomePage.vue'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
 import { useAuth } from '@/composables/auth'
 import { useProdutosStore } from '@/stores/produtosStore'
-import { onMounted, ref , computed} from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import axios from 'axios'
 
 
@@ -34,51 +34,63 @@ useAuth()
 onMounted(() => {
   getUserData()
 })
-
 </script>
 
 <template>
   <Transition name="fade">
-  <div v-if="produtos.length == 0" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="" /></div>
-  <div v-else>
-    <div class="home">
-      <div class="info-side">
-        <div class="home-tittle">
-          <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
+    <div v-if="produtos.length == 0" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif"
+        alt="" /></div>
+    <div v-else>
+      <div class="home">
+        <div class="info-side">
+          <div class="home-tittle">
+            <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
+          </div>
+          <div class="home-icons">
+            <div>
+              <span>
+                <dollarIcon />
+              </span>
+              <span>valoriza seu imóvel</span>
+            </div>
+            <div class="line-icons">
+              <span>
+                <recycleIcon />
+              </span>
+              <span>energia limpa</span>
+            </div>
+            <div>
+              <span>
+                <downGraphicIcon />
+              </span>
+              <span>reduçao de CO₂</span>
+            </div>
+          </div>
+          <div class="home-buttons">
+            <router-link class="button" to="/produtos/placas-solares">Compre sua placa
+              <LeftArrowIcon />
+            </router-link>
+            <router-link class="button" to="/orcamentos">Faça um orçamento
+              <leftArrowIcon />
+            </router-link>
+          </div>
         </div>
-        <div class="home-icons">
-          <div>
-            <span><dollarIcon /></span>
-            <span>valoriza seu imóvel</span>
-          </div>
-          <div class="line-icons">
-            <span><recycleIcon /></span>
-            <span>energia limpa</span>
-          </div>
-          <div>
-            <span><downGraphicIcon /></span>
-            <span>reduçao de CO₂</span>
-          </div>
-        </div>
-        <div class="home-buttons">
-          <router-link class="button" to="/produtos/placas-solares">Compre sua placa <LeftArrowIcon/> </router-link>
-          <router-link class="button" to="/orcamentos">Faça um orçamento <leftArrowIcon/> </router-link>
+        <div>
+          <bunnerHomePage />
         </div>
       </div>
-      <div>
-        <bunnerHomePage />
+      <div class="produtos-sugeridos">
+        <sugestIcons />
       </div>
+      <TitleCarousel title="Mais bem avaliados" />
+      <PadraoCarousel />
+      <TitleCarousel title="Inspirados no visto por ultimo" />
+      <PadraoCarousel />
+      <beneficiesCards />
+      <contactComp />
+      <lojasParceirasComp />
     </div>
-    <div class="produtos-sugeridos"><sugestIcons /></div>
-    <TitleCarousel title="Mais bem avaliados" />
-    <PadraoCarousel />
-    <TitleCarousel title="Inspirados no visto por ultimo" />
-    <PadraoCarousel />
-    <beneficiesCards />
-    <contactComp />
-    <lojasParceirasComp />
-  </div>
-</Transition>
+  </Transition>
 </template>
 <style scoped>
 .home {
@@ -86,10 +98,12 @@ onMounted(() => {
   display: flex;
   justify-content: space-around;
 }
+
 .home .info-side {
   display: flex;
   flex-direction: column;
 }
+
 .home .info-side .home-tittle h1 {
   width: 700px;
   font-weight: 600;
@@ -99,21 +113,25 @@ onMounted(() => {
   color: transparent;
   line-height: 100px;
 }
+
 .home .info-side .home-icons {
   font-weight: 500;
   margin-top: 20px;
   display: flex;
 }
+
 .home .info-side .home-icons div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .home .info-side .home-icons .line-icons {
   border-left: 1px solid #406996;
   border-right: 1px solid #406996;
 }
+
 .home .info-side .home-icons span {
   display: flex;
   flex-direction: column;
@@ -121,11 +139,13 @@ onMounted(() => {
   padding: 3px 20px;
   height: 36px;
 }
+
 .home .info-side .home-buttons {
   margin-top: 50px;
   display: flex;
   gap: 35px;
 }
+
 .home .info-side .home-buttons .button {
   appearance: none;
   padding: 20px 30px;
@@ -141,11 +161,12 @@ onMounted(() => {
   text-decoration: none;
   transition: .2s linear;
 }
-.home-buttons .button:hover{
+
+.home-buttons .button:hover {
   transform: translateY(-8px);
 }
 
-.carregamento{
+.carregamento {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -153,40 +174,48 @@ onMounted(() => {
   align-items: center;
 }
 
-.carregamento img{
+.carregamento img {
   width: 15%;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
-@media (max-width: 700px) {
-  .home{
+
+@media (max-width: 768px) {
+  .home {
     flex-direction: column-reverse;
     align-items: center;
     padding: 40px 40px 40px 40px;
   }
-  .home .info-side .home-tittle h1{
+
+  .home .info-side .home-tittle h1 {
     font-size: 32px;
     line-height: 40px;
     text-align: center;
   }
-  .home .info-side .home-icons{
+
+  .home .info-side .home-icons {
     display: none;
   }
-  .home .info-side .home-buttons{
+
+  .home .info-side .home-buttons {
     display: flex;
     gap: 0px;
     flex-direction: column-reverse;
   }
-  .home .info-side .home-buttons .button{
+
+  .home .info-side .home-buttons .button {
     justify-content: center;
   }
-  .home .home-buttons .button:first-child{
+
+  .home .home-buttons .button:first-child {
     background-color: transparent;
     color: black;
   }

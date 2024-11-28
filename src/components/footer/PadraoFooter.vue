@@ -1,10 +1,9 @@
 <script setup>
 import { padraoFooterDesktop, padraoFooterMobile } from './templates';
-
-const isMobile = true
+import { useScreenSize } from '@/composables/useScreenSize';
 </script>
 
 <template>
-  <padraoFooterMobile v-if="isMobile"/>
+  <padraoFooterMobile v-if="useScreenSize().isMobile"/>
   <padraoFooterDesktop v-else/>
 </template>
