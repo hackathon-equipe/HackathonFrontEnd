@@ -1,5 +1,5 @@
 <script setup>
-import AsideFiltro from "@/components/filtros/AsideFiltro.vue";
+import AdminFiltro from "@/components/adminstradores/filtros/AdminFiltro.vue";
 import ProdutosHeader from "@/components/header/ProdutosHeader.vue";
 import PadraoProdutos from "@/components/produtos/PadraoProdutos.vue";
 import AdminProdutos from "@/components/adminstradores/produtos/AdminProdutos.vue";
@@ -8,7 +8,7 @@ import AdminProdutosHeader from '@/components/adminstradores/header/AdminProduto
 <template>
   <AdminProdutosHeader />
   <main>
-    <AsideFiltro />
+    <AdminFiltro />
     <AdminProdutos />
   </main>
 </template>

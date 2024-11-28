@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import PadraoCaminho from "./caminho/PadraoCaminho.vue";
-import OrdenarFiltro from "../../filtros/OrdenarFiltro.vue";
+import AddProduto from "../filtros/AddProduto.vue";
 import { useRotasStore } from "@/stores/rotas";
 import { useRoute } from "vue-router"; // Importar useRoute
 const route = useRoute(); // Usar useRoute para acessar a rota
@@ -33,7 +33,7 @@ const produtoNome = computed(() => {
     <PadraoCaminho />
     <h1 class="titulo-produtos">{{ produtoNome }}</h1>
   </div>
-  <OrdenarFiltro />
+  <AddProduto />
 </template>
 <style scoped>
 .titulo-produtos {

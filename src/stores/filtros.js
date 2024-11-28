@@ -13,6 +13,7 @@ export const useFiltroStore = defineStore('filtro', () => {
   const material = ref([])
   const potencia = ref([])
   const marca = ref([])
+  const categoriaAdm = ref([])
   
   const route = useRoute() // Usar useRoute para acessar a rota
 
@@ -26,9 +27,9 @@ export const useFiltroStore = defineStore('filtro', () => {
       maxPrice,
       sortOrder,
       pesquisa,
-      categoria // Adicionar categoria como parâmetro
+      categoria, // Adicionar categoria como parâmetro
+      categoriaAdm,
     ) {
-      const newFiltredMateriais = new Set(filtredMateriais)
       let arrayFiltrada = produtos
 
       // Filtrar produtos pela categoria
@@ -53,7 +54,6 @@ export const useFiltroStore = defineStore('filtro', () => {
         );
       }
       
-      
       // Filtrando produtos com base em potência
       if (filtredPotencia.length !== 0) {
         arrayFiltrada = arrayFiltrada.filter(item => filtredPotencia.includes(String(item.descricao.PotenciaMaxima)))
@@ -71,6 +71,13 @@ export const useFiltroStore = defineStore('filtro', () => {
         arrayFiltrada = arrayFiltrada.filter(item => Number(item.preco) >= minPrice)
       } else if (maxPrice !== '') {
         arrayFiltrada = arrayFiltrada.filter(item => Number(item.preco) <= maxPrice)
+      }
+      if (categoriaAdm.length !== 0) {
+        arrayFiltrada = arrayFiltrada.filter(item =>
+          item.categoria && item.categoria.nome && categoriaAdm.some(catego =>
+            item.categoria.nome.includes(catego)
+          )
+        );
       }
       // Pesquisa
       if (pesquisa !== '') {
@@ -104,8 +111,9 @@ export const useFiltroStore = defineStore('filtro', () => {
       ordem.value,
       pesquisa.value,
       categoria.value, // Passando a categoria para a função de filtragem
+      categoriaAdm.value,
     )
   })
   
-  return { precoMin, precoMax, material, potencia, marca, ordem, filtro, pesquisa }
+  return { precoMin, precoMax, material, potencia, marca, ordem, filtro, pesquisa, categoriaAdm }
 })
