@@ -6,18 +6,18 @@ import logoStandart from '@/assets/logo/logoStandart.vue'
 import { ref } from 'vue';
 
 const abrirSubMenu = ref(false)
-const abrirProdutosMenu = ref(false)
+
 //icons
 import { shopingCartIcon, searchIcon, menuIcon, userblackIcon, XCloseIcon } from '../../icons'
 
 import { useRotasStore } from '@/stores/rotas';
+import { useFiltroStore } from '@/stores/filtros'
+
+const FiltrosStore = useFiltroStore()
 const rotasStore = useRotasStore()
 
-function onClick(e) {
-  if (e == 'Produtos') {
-    abrirProdutosMenu.value = true
-  }
-}
+//Barra de Pesuisa
+const barraPesquisa = ref(false)
 </script>
 
 <template>
@@ -29,7 +29,11 @@ function onClick(e) {
                     <menuIcon v-else />
                 </div>
                 <div class="item">
-                    <searchIcon />
+                    <searchIcon @click="barraPesquisa = !barraPesquisa" /> 
+                    <div  v-if="barraPesquisa" class="input-pesquisar">
+                        <input type="text" v-model="FiltrosStore.pesquisa" @blur="closePesquisar" placeholder="Pesquisar..."/>
+                        <searchIcon class="icon" />
+                    </div>
                 </div>
             </div>
             <div class="menu-base-logo">
@@ -49,14 +53,38 @@ function onClick(e) {
             </div>
         </div>
         <div class="sub-menu" v-if="abrirSubMenu">
-            <ListaTitulos v-for="(text, index) in rotasStore.titles" :key="index" :title="text.text" :link="text.link" @click="onClick(text.text)" class="link">
-                <h1>Teste</h1>
-            </ListaTitulos>
+            <ListaTitulos v-for="(text, index) in rotasStore.titles" :key="index" :title="text.text" :link="text.link" @click="onClick(text.text)" class="link" />
         </div>
     </nav>
 </template>
 
 <style scoped>
+.input-pesquisar{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    width: 100%;
+    top: 80px;
+    height: 38px;
+    padding: 0px 50px;
+}
+.input-pesquisar input{
+    width: 100%;
+    height: 38px;
+    padding: 0px 40px;
+    border: 1px solid #A1A1A1;
+    border-radius: 3rem
+}
+.input-pesquisar input:focus{
+    outline: none;
+}
+.input-pesquisar .icon{
+    opacity: 0.4;
+    position: absolute;
+    right: 60px;
+}
 .sub-menu a{
     display: flex;
     text-align: center;

@@ -56,7 +56,7 @@ li {
   color: white;
   height: 40px;
   width: 100vw;
-  margin-top: 80px;
+  margin-top: 65px;
 }
 
 @keyframes slide {

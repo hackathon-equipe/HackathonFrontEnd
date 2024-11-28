@@ -20,5 +20,9 @@ main {
   justify-content: center;
   width: 100vw;
 }
-
+@media (max-width: 768px) {
+  main{
+    flex-direction: column;
+  }
+}
 </style>

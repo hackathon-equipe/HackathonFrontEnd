@@ -35,6 +35,7 @@ import twitterIcon from "./twitterIcon.vue"
 import upArrowIcon from "./upArrowIcon.vue"
 import menuIcon from "./menuIcon.vue"
 import userblackIcon from "./userblackIcon.vue"
+import filterIcon from "./filterIcon.vue"
 
 export{
     userblackIcon,
@@ -74,4 +75,5 @@ export{
     whiteEmailIcon,
     whitePhoneIcon,
     whiteMarkIcon,
+    filterIcon,
 }
