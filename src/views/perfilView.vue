@@ -1,23 +1,31 @@
+<script setup>
+import PadraoPerfil from '@/components/perfil/PadraoPerfil.vue';</script>
 <template>
+<PadraoPerfil/>
+</template>
+
+<!-- <template>
   <PadraoPropagandas />
   <PadraoCaminho />
   <div class="container" v-if="!carregando">
     <div class="span-nav">
       <div class="foto">
-        <img src="/src/assets/images/usersemfoto.jpg" alt="Foto perfil">
+        <img :src="useAuth.user.foto? useAuth.user.foto.url: usuario?.foto && usuario.foto.trim() ? usuario.foto : '/src/assets/images/usersemfoto.jpg'" alt="Foto de perfil">
+
+
       </div>
-      <!-- <label for="file-upload" class="file"> Mudar foto </label>
-      <input type="file" id="file-upload" @change="handleFileUpload($event)" /> -->
+      <label for="file-upload" class="file"> Mudar foto </label>
+      <input type="file" id="file-upload" @change="handleFileUpload($event)" />
       <div class="links">
         <ul>
-          <li class="active"><userIcon /> Meus dados</li>
-          <li><markerPinIcon /> Meus enderecos</li>
-          <li><packageIcon /> Meus pedidos</li>
-          <li><walletIcon /> Meus cupons</li>
+          <li class="active" @click="teste= 1"><userIcon /> Meus dados</li>
+          <li @click="teste = 2"><markerPinIcon /> Meus enderecos</li>
+          <li @click="teste = 3"><packageIcon /> Meus pedidos</li>
+          <li @click="teste = 4"><walletIcon /> Meus cupons</li>
         </ul>
       </div>
     </div>
-    <div class="perfil-info">
+    <div class="perfil-info" v-if="teste == 1">
       <div><h1>Meus Dados</h1></div>
       <div class="inputs" v-if="usuario">
         <div class="input-div">
@@ -49,84 +57,161 @@
         <button @click="submitUpdate()">Salvar alteracoes</button>
       </div>
     </div>
+    <div v-if="teste==2">Enderecos</div>
+    <div v-if="teste == 3">Pedidos</div>
+    <div v-if="teste == 4">Cupons</div>
   </div>
   <div v-else class="carregamento">
     <img src="/src/assets/images/LoadGif/LoadingAnimation.gif" alt="gif carregamento">
+
   </div>
 </template>
 
 <script setup>
-import { walletIcon, userIcon, packageIcon, markerPinIcon } from '@/components/icons'
-import PadraoPropagandas from '@/components/header/propagandas/PadraoPropagandas.vue'
-import PadraoCaminho from '@/components/header/caminho/PadraoCaminho.vue'
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import { useAuthStore } from '@/stores/auth'
-
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import { useAuthStore } from "@/stores/auth";
+import ImageService from "@/service/image";
+import AuthService from "@/service/auth";
+import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas.vue";
+import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
+const authService = new AuthService();
+const teste = ref(1)
 const usuario = ref({
-  name: '',
-  email: '',
-  telefone: { ddd: '', numero: '' },
-  senha: '',
-  senhaConfirmacao: '',
-})
+  name: "",
+  email: "",
+  telefone: { ddd: "", numero: "" },
+  senha: "",
+  senhaConfirmacao: "",
+  foto: "",
+});
 
+const useAuth = useAuthStore();
+const imagem = new ImageService();
+const carregando = ref(false);
+const message = ref("");
+const file = ref(null);  // Salvar o arquivo diretamente aqui
+const authToken = localStorage.getItem("psg_auth_token");
 
-const useAuth = useAuthStore()
-const carregando = ref(false)
-const getUserData = async () => {
-  try {
-    carregando.value = true
-    const response = await axios.get('/usuarios/me')
-    usuario.value = response.data
-    carregando.value = false
-    if (!usuario.value.telefone) {
-      usuario.value.telefone = { ddd: '', numero: '' }
-    }
-  } catch (error) {
-    console.error('Erro ao buscar dados do usuário:', error)
+// Função para capturar o arquivo selecionado
+function handleFileUpload(e) {
+  const target = e.target;
+  if (target && target.files) {
+    file.value = target.files[0];
+    usuario.value.foto = URL.createObjectURL(file.value);  // Apenas para exibição local
   }
 }
 
+// Função para enviar a imagem ao backend
+async function baixarImagem() {
+  if (!file.value) {
+    console.warn("Nenhuma imagem selecionada.");
+    return null;
+  }
 
+  const formData = new FormData();
+  formData.append("file", file.value);
+
+  try {
+    // Chama a função AdcionarImage e espera pela resposta completa
+    const response = await imagem.AdcionarImage(formData, authToken);
+
+    console.log('Resposta da API:', response);  // Verifique a resposta da API no console
+
+    // Verifica se a resposta contém o ID
+    if (response && response.attachment_key) {
+      message.value = "Imagem enviada com sucesso!";
+      console.log('ID da imagem:', response.attachment_key);  // Exibe o ID da imagem
+      return response.attachment_key;  // Retorna o ID da imagem
+    } else {
+      console.error("Erro no upload da imagem: ID não encontrado na resposta.", response);
+      return null;
+    }
+  } catch (error) {
+    console.error("Erro ao enviar a imagem:", error);
+    return null;
+  }
+}
+
+// Função para buscar dados do usuário
+const getUserData = async () => {
+  try {
+    carregando.value = true;
+    const response = await axios.get("/usuarios/me");
+    usuario.value = response.data;
+    carregando.value = false;
+
+    if (!usuario.value.telefone) {
+      usuario.value.telefone = { ddd: "", numero: "" };
+    }
+  } catch (error) {
+    console.error("Erro ao buscar dados do usuário:", error);
+    carregando.value = false;
+  }
+};
+
+// Função para enviar as alterações do usuário
 async function submitUpdate() {
   try {
-    // Verificando se as senhas coincidem
+    // Verifica se as senhas coincidem
     if (usuario.value.senha && usuario.value.senha !== usuario.value.senhaConfirmacao) {
-      alert('As senhas não coincidem.')
-      return
+      alert("As senhas não coincidem.");
+      return;
     }
 
-    let telefoneId = usuario.value.telefone
-    if (!telefoneId) {
-      // Cria um novo número de telefone se não existir
-      const telefoneResponse = await axios.post('/telefones/', {
-        ddd: usuario.value.telefone.ddd,
-        numero: usuario.value.telefone.numero
-      })
-      telefoneId = telefoneResponse.data.id
+    // Definir o telefone, caso o usuário tenha alterado
+    let telefoneId = null;
+    if (usuario.value.telefone.ddd && usuario.value.telefone.numero) {
+      // Se o telefone foi preenchido, criamos ou obtemos o ID do telefone
+      if (!usuario.value.telefone.id) {
+        const telefoneResponse = await axios.post("/telefones/", {
+          ddd: usuario.value.telefone.ddd,
+          numero: usuario.value.telefone.numero,
+        });
+        telefoneId = telefoneResponse.data.id;
+      } else {
+        telefoneId = usuario.value.telefone.id;
+      }
     }
 
+    // Envia a imagem, se houver
+    let imageKey = null;
+    if (file.value) {
+      imageKey = await baixarImagem();  // Faz o upload da imagem e obtém o ID
+    }
+
+    console.log('Image ID:', imageKey);  // Verifica se o ID da imagem foi gerado corretamente
+
+    // Cria o objeto com os dados atualizados
     const updatedUser = {
       name: usuario.value.name,
       email: usuario.value.email,
-      telefone: telefoneId,
-      senha: usuario.value.senha || undefined,
-      // foto: usuario.value.foto // Atualiza o campo 'foto' com a ID da imagem
+      senha: usuario.value.senha || undefined,  // Só envia senha se houver uma alteração
+      foto_attachment_key: imageKey || null,  // Se não houver imagem, envia null (não undefined)
+    };
+
+    // Envia o ID do telefone apenas se ele foi alterado ou se um novo telefone foi criado
+    if (telefoneId) {
+      updatedUser.telefone = telefoneId;
     }
 
-    await useAuth.updateUser(updatedUser) // Supondo que isso seja um método de atualização do usuário no store
-    alert('Dados atualizados com sucesso!')
+    console.log('Payload para o backend:', updatedUser); 
+
+    // Envia os dados para a API para atualização do usuário
+    await authService.updateUserData(useAuth.user.id, updatedUser, authToken);
+    alert("Dados atualizados com sucesso!");
   } catch (error) {
-    console.error('Erro ao atualizar os dados:', error.response ? error.response.data : error)
-    alert('Erro ao atualizar os dados. Tente novamente.')
+    console.error("Erro ao atualizar os dados:", error.response?.data || error);
+    alert("Erro ao atualizar os dados. Tente novamente.");
   }
 }
 
+
 onMounted(() => {
-  getUserData()
-})
+  getUserData();
+});
 </script>
+
 
 <style scoped>
 .active {
@@ -137,7 +222,7 @@ onMounted(() => {
   display: flex;
   gap: 80px;
   justify-content: center;
-  padding: 50px 80px 120px 80px;
+  padding: 50px 80px 200px 80px;
 }
 .span-nav {
   width: 250px;
@@ -156,7 +241,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   border: 1px solid #afe67e;
-  margin-bottom: 90px;
+  margin-bottom: 30px;
 }
 
 .span-nav .foto img {
@@ -239,8 +324,10 @@ onMounted(() => {
 
 }
 
-/* input[type='file'] {
+input[type='file'] {
   display: none;
+  cursor: pointer;
+
 }
 
 .file {
@@ -250,5 +337,6 @@ onMounted(() => {
   cursor: pointer;
   border-radius: 15px;
   margin-bottom: 30px;
-} */
-</style>
+  cursor: pointer;
+}
+</style> -->
