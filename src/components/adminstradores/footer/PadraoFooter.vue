@@ -1,25 +1,22 @@
 <script setup>
-import LinksFooter from './Navegação/LinksFooter.vue'
 import SloganFooter from './logo/SloganFooter.vue'
 </script>
 <template>
   <footer>
-    <section>
       <SloganFooter />
-      <div class="footer-info">
-        <LinksFooter />
-      </div>
-    </section>
-    <hr />
     <div class="footer-direitos">&copy 2024 Oorun. Todos os direitos reservados.</div>
   </footer>
 </template>
 <style scoped>
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 100vw;
-  height: 400px;
+  height: auto;
   background-color: #29375b;
-  padding: 70px 100px 32px 100px;
+  padding: 40px 0px 40px 0px;
   color: white;
   font-size: 16px;
 }
@@ -35,15 +32,8 @@ footer section {
   display: flex;
 }
 
-hr {
-  width: 80%;
-  margin: auto;
-  color: #ebebeb75;
-}
-
 .footer-direitos {
   width: 100%;
-  margin: 20px 0;
   font-weight: 500;
   display: flex;
   justify-content: center;

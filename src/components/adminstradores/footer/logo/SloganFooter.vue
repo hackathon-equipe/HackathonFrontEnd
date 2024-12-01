@@ -5,11 +5,10 @@ import logoFooter from '@/assets/logo/logoFooter.vue'
 <template>
     <div>
        <div>
-         <router-link to="/">
+         <router-link to="/admin/home">
            <logoFooter />
          </router-link>
        </div>
-       <div class="footer-slogan">Investimento, sustentabilidade e economia</div>
      </div>
 </template>
 
