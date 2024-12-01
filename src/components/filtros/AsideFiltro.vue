@@ -7,7 +7,7 @@ const CategoriaFiltrosStore = useCategoriaFiltroStore();
 
 <template>
   <div class="filtros">
-    <span class="subtitulo filtro-titulo">Filtros </span>
+    <span class="filtro-titulo">Filtros </span>
     <InputPreco :filtroPreco="CategoriaFiltrosStore.filtroPreco" />
     <ItensSelect :filtroLista="CategoriaFiltrosStore.bigArray" />
   </div>
@@ -24,10 +24,21 @@ const CategoriaFiltrosStore = useCategoriaFiltroStore();
 .filtro-titulo {
   border-bottom: 1px solid #d9d9d9;
   margin-bottom: 5px;
-}
-
-.subtitulo {
   font-weight: 600;
   padding: 10px 0px;
+}
+
+@media (max-width: 768px) {
+  .filtros {
+    width: 100%;
+    margin-top: 0px;
+    padding: 0px;
+  }
+  .filtro-titulo {
+    padding: 20px 0px;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 40px 40px 0px 0px;
+  }
 }
 </style>
