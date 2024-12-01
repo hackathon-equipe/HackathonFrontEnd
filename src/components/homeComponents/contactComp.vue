@@ -103,6 +103,7 @@ import { useScreenSize } from '@/composables/useScreenSize';
         margin: 10px 30px;
     }
     .content{
+        justify-content: center;
         text-align: center;
         align-items: center;
     }
