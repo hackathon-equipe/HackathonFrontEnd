@@ -32,7 +32,6 @@ const isMobile = true
     margin: 0px 10px;
 }
 .content{
-    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,6 +41,7 @@ const isMobile = true
     width: 350px;
 }
 .content h2{
+    width: 350px;
     font-size: 24px;
 }
 .content button{
@@ -67,6 +67,7 @@ const isMobile = true
         margin: 10px 30px;
     }
     .content{
+        justify-content: center;
         text-align: center;
         align-items: center;
     }

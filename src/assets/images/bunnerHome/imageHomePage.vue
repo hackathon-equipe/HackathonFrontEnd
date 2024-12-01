@@ -7,7 +7,3 @@ const isMobile = true
     <bunnerHomePageMobile v-if="isMobile" />
     <bunnerHomePageDesktop v-else />
 </template>
-
-<style scoped>
-
-</style>

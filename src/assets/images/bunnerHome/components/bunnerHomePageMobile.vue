@@ -1,7 +1,7 @@
 <template>
     <div class="frame">
         <div>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="370" height="383" viewBox="0 0 370 383" fill="none">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="570" height="500" viewBox="0 0 370 383" fill="none">
                 <rect width="82.333" height="178.342" rx="41.1665" transform="matrix(0.803912 0.594748 -0.632205 0.774801 121.628 11.6387)" fill="url(#pattern0_322_1922)"/>
                 <rect width="82.333" height="330.455" rx="41.1665" transform="matrix(0.803912 0.594748 -0.632205 0.774801 214.096 33.0991)" fill="url(#pattern1_322_1922)"/>
                 <rect width="82.333" height="256.759" rx="41.1665" transform="matrix(0.803912 0.594748 -0.632205 0.774801 261.484 110.27)" fill="url(#pattern2_322_1922)"/>
