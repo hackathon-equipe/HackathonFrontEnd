@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import SlideComponent from "@/components/carousel/SlideComponent.vue";
+import SlideComponent from "./ProdutoAdm.vue";
 import { useFiltroStore } from "@/stores/filtros";
 import DefaultPaginacao from "@/components/paginacao/DefaultPaginacao.vue";
 import { useProdutosStore } from "@/stores/produtosStore";
@@ -24,6 +24,7 @@ function parcelas (preco){
         :preco="text.preco"
         :parcelas="parcelas(text.preco)"
         :estrelas="3"
+        :quantidade="text.quantidade"
       />
     </div>
     <DefaultPaginacao />
@@ -32,16 +33,15 @@ function parcelas (preco){
 <style scoped>
 .produtos {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
   padding: 0px 7vw 0px 50px;
   width: 71vw;
   margin-bottom: 100px;
 }
 
 .produto {
-  width: 20vw;
+  width: 100%;
   padding: 5px;
 }
 

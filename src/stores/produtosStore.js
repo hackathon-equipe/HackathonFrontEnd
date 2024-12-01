@@ -620,6 +620,18 @@ export const useProdutosStore = defineStore('produtos', () => {
   function getProduct(id) {
     return this.produtos.find((objeto) => objeto.id === id)
   }
-  return { produtos, getProduct, carregarProdutos }
+  function addProduto(nome, preco, descricao, garantia_anos, quantidade) {
+      produtos.value.push({
+        id: produtos.value.length > 0 ? produtos.value[produtos.value.length - 1].id + 1 : 1,
+        nome: nome,
+        preco: preco,
+        descricao: descricao,
+        garantia_anos: garantia_anos,
+        quantidade: quantidade,
+      });
+      alert(`${produtos[produtos.value.length > 0 ? produtos.value[produtos.value.length - 1].id + 1 : 1]}`)
+    }
+  
+  return { produtos, getProduct, carregarProdutos, produtosTeste, addProduto }
 
 })
