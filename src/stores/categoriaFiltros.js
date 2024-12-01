@@ -8,6 +8,7 @@ export const useCategoriaFiltroStore = defineStore('categoriaFiltro', () => {
     const testeMaterial = ref([]);
 const testePotencia = ref([]);
 const testeMarca = ref([]);
+const testeCategoria = ref([]);
 
 // Função que será chamada sempre que `valor` mudar
 const MudarMaterial = (novoValor) => {
@@ -21,15 +22,21 @@ const MudarPotencia = (novoValor) => {
 const MudarMarca = (novoValor) => {
   FiltrosStore.marca = novoValor;
 };
+const MudarCategoria = (novoValor) => {
+  FiltrosStore.categoriaAdm = novoValor;
+};
 watch(testeMaterial, MudarMaterial);
 watch(testePotencia, MudarPotencia);
 watch(testeMarca, MudarMarca);
+watch(testeCategoria, MudarCategoria);
     const materialAberto = ref(true);
 const potenciaAberto = ref(true);
 const marcasAberto = ref(true);
 const precoAberto = ref(true);
+const categoriaAberto = ref(true);
 const precoMin = ref("");
 const precoMax = ref("");
+
     // Função para redefinir as variáveis
     const resetFilters = () => {
       testeMaterial.value = [];
@@ -116,6 +123,48 @@ const bigArray = ref([
       ],
     },
   ]);
+
+  const admProdutos = ref([
+    {
+      titulo: "Tipo",
+      funcao: () => {
+        testeCategoria.value = [];
+        FiltrosStore.categoriaAdm = [];
+        categoriaAberto.value = false;
+      },
+      aberto: categoriaAberto,
+      model: testeCategoria,
+      array: [
+        { nome: 'Placas Solares', value: 'Placas Solares' },
+        { nome: 'Inversores', value: 'Inversores' },
+        { nome: 'Conectores', value: 'Conectores' },
+        { nome: 'Cabos', value: 'Cabos' },
+        { nome: 'Kits Solares', value: 'Kits Solares' },
+        { nome: 'Estruturas', value: 'Estruturas' },
+        { nome: 'Micro Inversores', value: 'Micro Inversores' }
+      ],
+    },
+    {
+      titulo: "Marcas",
+      funcao: () => {
+        testeMarca.value = [];
+        FiltrosStore.marca = [];
+        marcasAberto.value = false;
+      },
+      aberto: marcasAberto,
+      model: testeMarca,
+      array: [
+        {
+          nome: "weg",
+          value: "weg",
+        },
+        {
+          nome: "elgin",
+          value: "elgin",
+        },
+      ],
+    },
+  ]);
   const filtroPreco = ref({
     titulo: "Preço",
     aberto: precoAberto,
@@ -133,4 +182,4 @@ const bigArray = ref([
     },
   });
 
-  return {bigArray, filtroPreco, materialAberto, potenciaAberto, marcasAberto, precoAberto, precoMin, precoMax};})
+  return {bigArray, filtroPreco, materialAberto, potenciaAberto, marcasAberto, precoAberto, precoMin, precoMax, admProdutos};})
