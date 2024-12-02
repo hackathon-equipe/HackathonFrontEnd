@@ -24,4 +24,10 @@ const cart = useCartStore()
   gap: 50px;
   margin-bottom: 150px;
 }
+@media (max-width: 768px) {
+  .container{
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 </style>
