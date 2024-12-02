@@ -51,13 +51,10 @@ const closePesquisar = () => {
     </ul>
     
     <div class="utilities">
-      <Transition name="fade" mode="out-in">
       <span v-if="!openPesquisar" @click="togglePesquisar"> <searchIcon /> Pesquisar </span>
-      </Transition>
       <!-- Exibe o texto "Pesquisar" se openPesquisar for falso -->
       <!-- Exibe o input de pesquisa se openPesquisar for verdadeiro -->
       <div>
-        <Transition name="fade" mode="out-in">
         <input
           v-if="openPesquisar"
           type="text"
@@ -66,10 +63,9 @@ const closePesquisar = () => {
           placeholder="Digite para pesquisar..."
           class="input-pesquisar"
         />
-</Transition>
-<Transition name="fade" mode="out-in">
+
         <button v-if="openPesquisar" @click="closePesquisar" class="close-btn">X</button>
- </Transition>
+
       </div>
       <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
         <img :src="useAuth.user.foto?.url || '/src/assets/images/usersemfoto.jpg'" alt="foto usuario" />
@@ -113,11 +109,11 @@ const closePesquisar = () => {
   width: 350px;
   border: none;
   padding: 4px 6px;
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
 }
 .input-pesquisar:focus {
-  outline: none; /* Remove a borda de foco padrão */
-  border-bottom: 1px solid #797979af; /* Altera a cor da borda para verde quando em foco */
-  
+  outline: none;
 }
 .close-btn {
   background-color: #ffffff;
