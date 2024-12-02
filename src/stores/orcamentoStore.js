@@ -1,6 +1,69 @@
 import { defineStore } from 'pinia'
 
 export const useOrcamentoStore = defineStore('orcamento', () => {
+    const clientes = [
+        {
+          nome: "Júlia Fuck",
+          data: "22/10/2024"
+        },
+        {
+          nome: "Carlos Silva",
+          data: "18/11/2024"
+        },
+        {
+          nome: "Ana Souza",
+          data: "05/12/2024"
+        },
+        {
+          nome: "Pedro Almeida",
+          data: "12/01/2024"
+        },
+        {
+          nome: "Mariana Costa",
+          data: "09/02/2024"
+        },
+        {
+          nome: "Lucas Pereira",
+          data: "15/03/2024"
+        },
+        {
+          nome: "Beatriz Oliveira",
+          data: "28/04/2024"
+        },
+        {
+          nome: "Ricardo Gomes",
+          data: "11/05/2024"
+        },
+        {
+          nome: "Laura Martins",
+          data: "07/06/2024"
+        },
+        {
+          nome: "Gabriel Santos",
+          data: "03/07/2024"
+        },
+        {
+          nome: "Fernanda Lima",
+          data: "19/08/2024"
+        },
+        {
+          nome: "Eduardo Barbosa",
+          data: "25/09/2024"
+        },
+        {
+          nome: "Renata Alves",
+          data: "17/10/2024"
+        },
+        {
+          nome: "Rafael Costa",
+          data: "23/11/2024"
+        },
+        {
+          nome: "Juliana Pereira",
+          data: "30/12/2024"
+        }
+      ];
+      
     function calcularOrcamento(userinfo){
 
         // VARIAVEIS INICIAIS
@@ -48,5 +111,5 @@ export const useOrcamentoStore = defineStore('orcamento', () => {
         }
         return { payback_values, irradiacao, custo_energia, valor_energia_antigo, valor_energia_restante, payback_anos, porcentagem_valor_energia_economizada, consumo_mensal}
     }
-    return {calcularOrcamento}
+    return {calcularOrcamento, clientes}
 })
