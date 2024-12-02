@@ -124,7 +124,7 @@ function comprar(){
   }
   .descricao span{
     margin-left: calc(15vw - 30px);
-      font-size: 16px;
+    font-size: 16px;
   }
   .descricao {
     margin: 15px 0px;
@@ -135,7 +135,6 @@ function comprar(){
   }
   .estrelas span{
     margin: 10px;
-  
   }
   .preco {
     font-weight: 600;
@@ -191,4 +190,14 @@ function comprar(){
     width: 100%;
     height: 50px;
   }
+
+@media (max-width: 768px) {
+  .informacoes{
+    width: 100%;
+    padding: 30px 30px;
+  }
+  .preco{
+    margin: 10px 0px 40px;
+  }
+}
 </style>

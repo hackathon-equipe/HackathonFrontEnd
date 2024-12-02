@@ -77,4 +77,13 @@ const handleMouseLeave = () => {
   transform: scale(1.8);
   transform-origin: var(--x) var(--y);
 }
+
+@media (max-width: 768px) {
+  .img{
+    width: auto;
+    height: auto;
+    padding: 20px;
+    margin: 0px 20px;
+  }
+}
 </style>

@@ -17,7 +17,7 @@ const isMobile = true
             <h2>Oorun, o seu maior investimento para o futuro</h2>
             <p>Você sabia que a energia solar é ideal para o clima tropical do Brasil? </p>
             <p>Entre em contato conosco o mais rápido possível para obter a sua energia solar Oorun!</p>
-            <button>Fale conosco</button>
+            <router-link class="button" to="/sobre">Fale conosco</router-link>
         </div>
     </div>
 </template>
@@ -44,7 +44,7 @@ const isMobile = true
     width: 350px;
     font-size: 24px;
 }
-.content button{
+.content .button{
     width: 200px;
     height: 50px;
     border-radius: 50px;
@@ -60,6 +60,14 @@ const isMobile = true
     background-color: white;
     color: #29375B;
     border:1px solid #29375B;
+    transition: .2s linear;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content .button:hover{
+    transform: translateX(5px)
 }
 @media (max-width: 768px) {
     .container{

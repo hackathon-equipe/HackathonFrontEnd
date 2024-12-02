@@ -64,6 +64,7 @@ import { natureIcon, reciveDolarIcon, houseIcon, toolsIcon, upDolarIcon, traject
     gap: 45px;
     width: 100%;
     justify-content: center;
+    max-width: 1300px;
 }
 .card{
     display: flex;
