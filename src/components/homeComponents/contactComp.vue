@@ -48,9 +48,12 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
-    transition: .2s linear;
+    transition: .5s linear;
 }
 .content button:hover{
-    transform: translateX(5px)
+    transform: translateX(5px);
+    background-color: white;
+    color: #29375B;
+    border:1px solid #29375B;
 }
 </style>

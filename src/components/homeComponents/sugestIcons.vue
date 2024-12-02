@@ -62,6 +62,11 @@
     align-items: center;
     width: 120px;
     height: auto;
+    transition: 0.5s;
+}
+
+.card:hover{
+    transform: translateY(-10px);
 }
 .card-image{
     width: 90px;

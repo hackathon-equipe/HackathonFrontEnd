@@ -51,11 +51,13 @@ const closePesquisar = () => {
     </ul>
     
     <div class="utilities">
+      <Transition name="fade" mode="out-in">
       <span v-if="!openPesquisar" @click="togglePesquisar"> <searchIcon /> Pesquisar </span>
-      
+      </Transition>
       <!-- Exibe o texto "Pesquisar" se openPesquisar for falso -->
       <!-- Exibe o input de pesquisa se openPesquisar for verdadeiro -->
       <div>
+        <Transition name="fade" mode="out-in">
         <input
           v-if="openPesquisar"
           type="text"
@@ -64,7 +66,10 @@ const closePesquisar = () => {
           placeholder="Digite para pesquisar..."
           class="input-pesquisar"
         />
+</Transition>
+<Transition name="fade" mode="out-in">
         <button v-if="openPesquisar" @click="closePesquisar" class="close-btn">X</button>
+ </Transition>
       </div>
       <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
         <img :src="useAuth.user.foto?.url || '/src/assets/images/usersemfoto.jpg'" alt="foto usuario" />
@@ -111,8 +116,8 @@ const closePesquisar = () => {
 }
 .input-pesquisar:focus {
   outline: none; /* Remove a borda de foco padrão */
-  border: 1px solid #797979af; /* Altera a cor da borda para verde quando em foco */
-  border-radius: 3rem;
+  border-bottom: 1px solid #797979af; /* Altera a cor da borda para verde quando em foco */
+  
 }
 .close-btn {
   background-color: #ffffff;
@@ -269,8 +274,13 @@ const closePesquisar = () => {
   border-radius: 3rem;
   cursor: pointer;
   text-decoration: none;
+  transition: 0.5s;
 }
 
+.navbar .utilities .button:hover{
+background-color: #406996;
+color: white;
+}
 .perfil {
   display: flex;
   gap: 15px;
@@ -287,4 +297,19 @@ const closePesquisar = () => {
 .perfil span {
   color: black;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  visibility: hidden; /* Substitui display */
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 0;
+  visibility: visible;
+  position: absolute;
+}
+
 </style>
