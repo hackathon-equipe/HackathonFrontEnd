@@ -69,7 +69,15 @@
     width: 120px;
     height: auto;
     transition: 0.5s;
+    justify-content: center;
+    align-items: center;
 }
+.card-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 ::-webkit-scrollbar {
     width: 6px !important
 }

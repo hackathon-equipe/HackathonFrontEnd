@@ -52,18 +52,19 @@ function parcelas (preco){
 @media (max-width: 1250px) {
   .produtos{
     justify-content: center;
-    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .produto {
-    width: 250px;
+    width: 180px;
     padding: 5px;
-    min-width: 200px;
+    min-width: 180px;
   }
   .produtos{
     width: 100%;
+    padding: 0px 0px;
+    gap: 0px;
   }
 }
 </style>
