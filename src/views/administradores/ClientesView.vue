@@ -1,23 +1,23 @@
 <script setup>
 import PadraoCaminho from "@/components/adminstradores/header/caminho/PadraoCaminho.vue"
-import { useOrcamentoStore } from "@/stores/orcamentoStore";
-import OrcamentosAdm from "@/components/adminstradores/orcamentos/OrcamentosAdm.vue";
+import { useClientesStore } from "@/stores/clientes";
+import ClientesAdm from "@/components/adminstradores/clientes/ClientesAdm.vue";
 import OrdenarFiltro from "@/components/filtros/OrdenarFiltro.vue";
-const OrcamentoStore = useOrcamentoStore()
+const ClientesStore = useClientesStore()
 
 
 </script>
 <template>
     <div class="orcamentos-header">
       <PadraoCaminho />
-      <h1 class="titulo-orcamentos">Orçamentos</h1>
+      <h1 class="titulo-orcamentos">Clientes</h1>
     </div>
     <OrdenarFiltro/>
     <div class="orcamentos">
-        <OrcamentosAdm  v-for="(text, index) in OrcamentoStore.clientes" :key="index"
+        <ClientesAdm  v-for="(text, index) in ClientesStore.clientes" :key="index"
           :index="index+1"
           :cliente="text.nome"
-          :data="text.data"
+          :email="text.email"
         />
       </div>
   </template>
