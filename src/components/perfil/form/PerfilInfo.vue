@@ -7,7 +7,6 @@ const usuario = ref({
     telefone: { ddd: "", numero: "" },
     senha: "",
     senhaConfirmacao: "",
-    foto: "",
   });
 
   onMounted(() =>{
@@ -46,7 +45,7 @@ const usuario = ref({
           </div>
         </div>
         <div class="button">
-          <button @click="submitUpdate()">Salvar alteracoes</button>
+          <button @click="$emit('enviarDados', usuario)">Salvar alterações</button>
         </div>
     </div>
 </template>
@@ -87,6 +86,7 @@ const usuario = ref({
   .button {
     display: flex;
     justify-content: center;
+    cursor: pointer;
   }
   .button button {
     width: 280px;

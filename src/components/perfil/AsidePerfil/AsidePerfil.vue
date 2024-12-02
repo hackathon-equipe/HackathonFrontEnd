@@ -1,36 +1,78 @@
 <script setup>
-const props = defineProps(['usuario', 'opcao'])
-import { useAuthStore } from '@/stores/auth'
-const useAuth = useAuthStore()
-const local = props.opcao
+import { ref } from 'vue';
+const props = defineProps(['usuario', 'opcao']);
+const emit = defineEmits(['salvarFoto', 'selecionarComponente', 'sair']);
+import { useAuthStore } from '@/stores/auth';
+const useAuth = useAuthStore();
+const local = props.opcao;
+const previewFoto = ref(null);
+const file = ref(null)
+function handleFileChange(event) {
+  file.value = event.target.files[0]; 
+  if (file.value) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      previewFoto.value = reader.result;
+      console.log('Arquivo selecionado:', file.value);
+      console.log('Pré-visualização:', previewFoto.value); 
+      emit('salvarFoto', file.value); 
+    };
+    reader.readAsDataURL(file.value); 
+  }
+}
 </script>
+
 <template>
   <div class="span-nav">
     <div class="foto">
       <img
         :src="
-          useAuth.user.foto
-            ? useAuth.user.foto.u
-            : usuario?.foto && usuario.foto.trim()
-              ? usuario.foto
-              : '/src/assets/images/usersemfoto.jpg'
+          previewFoto
+            ? previewFoto
+            : useAuth.user.foto
+              ? useAuth.user.foto.url
+                : '/src/assets/images/usersemfoto.jpg'
         "
         alt="Foto de perfil"
       />
     </div>
-    <label for="file-upload" class="file"> Mudar foto </label>
-    <input type="file" id="file-upload" @change="$emit('CarregarImagem', $event)" />
+    <label for="file-upload" class="file">Mudar foto</label>
+    <input type="file" id="file-upload" @change="handleFileChange" />
     <div class="links">
       <ul>
-        <li :class="local === 1 ? 'active' : ''" @click="$emit('selecionarComponente', 1)"><userIcon /> Meus dados</li>
-        <li :class="local === 2 ? 'active' : ''" @click="$emit('selecionarComponente', 2)"><markerPinIcon /> Meus enderecos</li>
-        <li :class="local === 3 ? 'active' : ''" @click="$emit('selecionarComponente', 3)"><packageIcon /> Meus pedidos</li>
-        <li :class="local === 4 ? 'active' : ''" @click="$emit('selecionarComponente', 4)"><walletIcon /> Meus cupons</li>
+        <li :class="local === 1 ? 'active' : ''" @click="emit('selecionarComponente', 1)">
+          <userIcon /> Meus dados
+        </li>
+        <li :class="local === 2 ? 'active' : ''" @click="emit('selecionarComponente', 2)">
+          <markerPinIcon /> Meus endereços
+        </li>
+        <li :class="local === 3 ? 'active' : ''" @click="emit('selecionarComponente', 3)">
+          <packageIcon /> Meus pedidos
+        </li>
+        <li :class="local === 4 ? 'active' : ''" @click="emit('selecionarComponente', 4)">
+          <walletIcon /> Meus cupons
+        </li>
       </ul>
     </div>
+    <div><button @click="emit('sair')">Sair</button></div>
   </div>
 </template>
+
 <style scoped>
+
+.span-nav button{
+  padding: 5px 20px 5px 20px;
+  background-color: white;
+  border: 1px solid #29375b;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.span-nav button:hover{
+  color: white;
+  background-color: #29375b;
+}
 .active {
   padding-left: 5px;
   font-weight: 600;
