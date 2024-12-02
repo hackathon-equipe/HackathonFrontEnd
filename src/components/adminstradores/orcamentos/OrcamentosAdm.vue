@@ -61,16 +61,6 @@ const props = defineProps({
   font-weight: 600;
   margin-left: 30px;
 }
-.svg{
-  margin-right: 10px;
-}
-.link{
-  text-decoration: none;
-  color:black
-}
-.informacoes {
-  text-align: left;
-}
 
 .tudo {
   display: flex;
@@ -88,36 +78,5 @@ const props = defineProps({
   transition: .3s;
   /* border: 1px solid #3f3b3b; */
   box-shadow: 0 0 4px 1px #d9d9d9;
-}
-  
-.img{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.img img{
-  height: 60px;
-}
-
-.estrelas {
-  display: flex;
-  max-height: 250px;
-  margin-top: 3px;
-}
-span {
-  display: block;
-  font-family: 'Poppins', sans-serif;
-}
-.nome {
-  font-size: 16px;
-}
-.preco {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-}
-.parcelas {
-  font-size: 12px;
 }
 </style>
