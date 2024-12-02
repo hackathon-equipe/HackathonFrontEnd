@@ -255,6 +255,12 @@ function pagamento_realizado() {
     justify-content: space-between;
 }
 
+.produto div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .pagamento {
     display: flex;
     justify-content: center;
