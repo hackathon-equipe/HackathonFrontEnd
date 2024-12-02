@@ -1,31 +1,19 @@
 <script setup>
 import { ref } from 'vue';
-const metodo_pagamento = ref(null)
 import { usePagamentoStore } from '@/stores/pagamentoStore';
-import { useCartStore } from '@/stores/carrinhoStore';
-const produto = usePagamentoStore().produto
-const frete = usePagamentoStore().frete
-const desconto = usePagamentoStore().desconto
-const tipo = usePagamentoStore().tipo_compra
-const valorFinal = ref(0)
-const valorCarrinho = useCartStore().valueInCart
 const pagamento_foi_realizado = ref(false)
 
-if (tipo == 'carrinho') {
-    valorFinal.value = usePagamentoStore().valorFinal
-} else {
-    valorFinal.value = ref(produto.preco + frete - desconto)
-}
-
-function pagamento_realizado(){
+function pagamento_realizado() {
     pagamento_foi_realizado.value = true
 }
+
+const metodo_pagamento = ref(null)
 </script>
 
 <template>
     <div class="pagamento">
         <div class="metodos-pagamento">
-            <h1>Como você prefere pagar</h1>
+            <h1>Como você prefere pagar </h1>
             <ul class="metodos">
                 <li class="metodo" @click="metodo_pagamento = 'cartao de credito'">
                     <label for="cartao-creido" class="metodo-nome">Cartão de crédito</label><input type="radio"
@@ -45,23 +33,29 @@ function pagamento_realizado(){
         </div>
         <div class="detalhes-compra">
             <h2>Detalhe da sua compra</h2>
-            <div class="produto" v-if="tipo != 'carrinho'">
-                <span>{{ produto.nome }}</span><span>R${{ produto.preco }}</span>
+
+            <!-- Versao - Compra direta -->
+            <div class="produto" v-if="usePagamentoStore().tipo_compra == 'direta'">
+                <div><span>{{ usePagamentoStore().produto.nome }}</span><span>R${{ usePagamentoStore().produto.preco }}</span></div>
             </div>
-            <div class="produto" v-if="tipo == 'carrinho'">
-                <div v-for="item in produto" :key="item.id" class="produto-carrinho" > <span>{{ item.nome }}</span> <span>R${{ item.preco }}</span> </div>
+
+            <!-- Versao - Compra Pelo Carrinho-->
+            <div class="produto" v-else>
+                <div v-for="item in usePagamentoStore().produto" :key="item.id" class="produto-carrinho">
+                    <span>{{item.nome}} {{item.quantidade}}x</span>
+                    <span>R${{ item.preco }}</span>
+                </div>
             </div>
 
             <div class="valores">
                 <ul>
-                    <li v-if="tipo != 'carrinho'"><span>Subtotal</span><span>R${{ produto.preco }}</span></li>
-                    <li v-else><span>Subtotal</span><span>R${{ valorCarrinho.toFixed(2).replace('.',',') }}</span></li>
-                    <li> <span>Frete</span><span>R${{ frete.toFixed(2).replace('.',',') }}</span> </li>
-                    <li> <span>Desconto</span><span>R${{ desconto.toFixed(2).replace('.',',') }}</span> </li>
+                    <li><span>Subtotal</span><span>R$0</span></li>
+                    <li> <span>Frete</span><span>R$0</span> </li>
+                    <li> <span>Desconto</span><span>R$0</span> </li>
                 </ul>
             </div>
             <div class="valor-final">
-                <span>A pagar</span><span class="valor">R$ {{ valorFinal }}</span>
+                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final }}</span>
             </div>
             <div class="confirm-button">
                 <button @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()">Confirmar Compra</button>
@@ -76,11 +70,12 @@ function pagamento_realizado(){
 </template>
 
 <style scoped>
-.pagamento-realizado img{
+.pagamento-realizado img {
     width: 200px;
     height: auto;
 }
-.confirm-pagamento{
+
+.confirm-pagamento {
     background-color: #29375b;
     text-decoration: none;
     color: white;
@@ -88,7 +83,8 @@ function pagamento_realizado(){
     padding: 5px 20px;
     border-radius: 5px;
 }
-.pagamento-realizado{
+
+.pagamento-realizado {
     gap: 20px;
     z-index: 999999999999999;
     top: 0;
@@ -102,10 +98,13 @@ function pagamento_realizado(){
     align-items: center;
     background-color: rgb(255, 255, 255);
 }
-.produto-carrinho{
+
+.produto-carrinho {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
+
 .confirm-button button {
     background-color: #29375b;
     color: white;
@@ -158,11 +157,18 @@ function pagamento_realizado(){
 
 .produto {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 10px;
     padding: 20px 0px;
     align-items: center;
     border-bottom: 2px solid rgba(128, 128, 128, 0.6);
+}
+
+.produto div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .pagamento {

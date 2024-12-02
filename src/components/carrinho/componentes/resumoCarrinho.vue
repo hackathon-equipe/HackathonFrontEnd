@@ -1,7 +1,9 @@
 <script setup>
   import inputAplicarComp from './inputAplicarComp.vue';
   import { useCartStore } from '@/stores/carrinhoStore';
+  import { usePagamentoStore } from '@/stores/pagamentoStore';
   const cart = useCartStore()
+  const pagamento = usePagamentoStore
 </script>
 
 <template>
@@ -20,7 +22,7 @@
       </inputAplicarComp>
       <inputAplicarComp titulo="Calcular Frete" tituloBotao="Inserir CEP" inputPlaceholder="Insira seu CEP" />
     </div>
-    <router-link to="/pagamento" class="finalizar-compra">Finalizar compra</router-link>
+    <router-link to="/pagamento" @click="usePagamentoStore().realizarCompra(cart.itens, 'carrinho', cart.valorFinal)" class="finalizar-compra">Finalizar compra</router-link>
   </div>
 </template>
 <style scoped>

@@ -130,6 +130,6 @@ const barraPesquisa = ref(false)
     position: fixed;
     top: env(safe-area-inset-top, 20px);
     padding-top: env(safe-area-inset-top, 20px);
-    z-index: 9999999999999999999;
+    z-index: 9999;
 }
 </style>

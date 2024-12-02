@@ -32,7 +32,7 @@ function parcelas (preco){
 .produtos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
   padding: 0px 7vw 0px 50px;
   width: 71vw;
@@ -42,9 +42,28 @@ function parcelas (preco){
 .produto {
   width: 20vw;
   padding: 5px;
+  min-width: 210px;
 }
 
-.produtos.two-products {
+.two-products {
   justify-content: flex-start; /* Ou outro valor desejado */
+}
+
+@media (max-width: 1250px) {
+  .produtos{
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .produto {
+    width: 250px;
+    padding: 5px;
+    min-width: 200px;
+  }
+  .produtos{
+    width: 100%;
+  }
 }
 </style>
