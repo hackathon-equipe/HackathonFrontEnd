@@ -10,12 +10,13 @@ import { leftArrowIcon } from '@/components/icons';
         <h1>Não há produtos em seu carrinho</h1>
         <router-link class="sem-itens-botao" to="/produtos/all">
             Adicionar produtos
-            <leftArrowIcon />
+            <leftArrowIcon  class="teste" />
         </router-link>
     </div>
 </template>
 
 <style scoped>
+
 .animacao-carregamento img {
     width: 250px;
     height: auto;
@@ -29,7 +30,7 @@ import { leftArrowIcon } from '@/components/icons';
 .sem-itens {
     gap: 20px;
     width: 100vw;
-    height: 70vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,5 +51,9 @@ import { leftArrowIcon } from '@/components/icons';
     display: flex;
     align-items: center;
     gap: 10px;
+    transition: 0.5s;
 }
+
+.sem-itens-botao:hover{
+    transform: translateY(-10px);}
 </style>

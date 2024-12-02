@@ -32,4 +32,5 @@
     align-items: center;
     gap: 75px;
 }
+
 </style>

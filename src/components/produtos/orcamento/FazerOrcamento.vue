@@ -27,5 +27,13 @@
   font-weight: 500;
   margin: 20px 0px 100px 0px;
   padding: 30px 40px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button-orcamento:hover{
+  background-color: white;
+  border: 1px solid #29375b;
+  color: #29375b;
 }
 </style>

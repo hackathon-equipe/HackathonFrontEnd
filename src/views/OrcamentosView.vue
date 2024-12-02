@@ -197,6 +197,9 @@ function realizarCalculo() {
 }
 .background{
     padding: 50px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 form{
     width: 100%;

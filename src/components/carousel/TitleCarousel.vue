@@ -19,5 +19,15 @@ defineProps({
     height: 3px;
     background-color: #406996;
     margin:0px 100px;
+    animation: crescer 2.5s infinite;
+  }
+
+  @keyframes crescer {
+    0%{
+      width: 0;
+    }
+    100%{
+      width: 70px;
+    }
   }
 </style>

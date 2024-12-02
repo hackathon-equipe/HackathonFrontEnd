@@ -227,6 +227,13 @@ form button {
   text-align: center;
   border-radius: 25px;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+form button:hover{
+  background-color: white;
+  border: 1px solid #29375b;
+  color: #29375b;
 }
 .feedback-input textarea {
   height: 150px;
@@ -241,6 +248,7 @@ form button {
   scrollbar-width: thin; /* "auto" or "thin" */
   scrollbar-color: rgba(64, 64, 64, 0) rgb(255, 255, 255, 0);
 }
+
 
 .submit-form form {
   display: flex;
