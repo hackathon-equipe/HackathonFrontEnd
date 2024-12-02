@@ -80,27 +80,6 @@ const closePesquisar = () => {
       </span>
     </div>
   </div>
-  <div class="menu" v-if="showMenu" @mouseleave="showMenu = false">
-    <div class="submenu">
-      <div class="filter-menu">
-        <ul class="filters">
-          <ListaProdutos title="Promoções" link="/produtos/promocoes" class="link link-all" />
-          <ListaProdutos title="Ver Tudo" link="/produtos/all" class="active link link-all" />
-        </ul>
-      </div>
-      <div class="products-list">
-        <ul class="products">
-          <ListaProdutos
-            v-for="(text, index) in RotasStore.produtos"
-            :key="index"
-            :title="text.nome"
-            :link="text.link"
-            class="link link-produto"
-          />
-        </ul>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped>
