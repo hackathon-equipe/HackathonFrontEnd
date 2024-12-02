@@ -20,9 +20,14 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function updateUser(newUserData) {
+    if(authToken){
+      console.log('foiii')
+    }
+    console.log('foiii')
     const updatedUserData = await authService.updateUserData(user.value.id,newUserData,authToken);
     if (updatedUserData) {
       user.value = updatedUserData; // Atualiza o estado com os dados novos
+ 
     }
   }
 

@@ -247,7 +247,7 @@ form button {
   flex-direction: column;
   gap: 20px;
   width: 530px;
-  height: 510px;
+  height: 550px;
   border: 1px solid #d9d9d9;
   border-radius: 50px;
   padding: 20px 45px;
