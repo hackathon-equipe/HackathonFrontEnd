@@ -44,7 +44,7 @@ function atualizarImagem(novaImagem) {
       </div> 
      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="img" :estrelas="estrelas"/>
     </main>
-    <ImagensPqn class="sub-imagens" images="img"  @selecionarImage="atualizarImagem"/>
+    <ImagensPqn class="sub-imagens" :images="img"  @selecionarImage="atualizarImagem"/>
 
     <!-- <DescricaoProduto :VerMais="VerMais" /> -->
     <div class="carousel-produtos">
