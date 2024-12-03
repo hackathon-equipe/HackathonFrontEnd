@@ -16,16 +16,18 @@ function fechar() {
 </script>
 
 <template>
-  <div class="container">
-    <span class="subtitulo">{{ filtroPreco.titulo }}</span>
-    <button v-if="precoAberto" @click="fechar()">-</button>
-    <button v-if="!precoAberto" @click="precoAberto = !precoAberto">+</button>
-  </div>
-  <div class="container" v-if="precoAberto">
-    <input class="input-min-max" placeholder="min" v-model="filtroPreco.precoMin" />
-    <span>-</span>
-    <input class="input-min-max" placeholder="max" v-model="filtroPreco.precoMax" />
-    <button @click="filtroPreco.funcaoClicked">></button>
+  <div class="item">
+    <div class="container">
+      <span class="subtitulo">{{ filtroPreco.titulo }}</span>
+      <button v-if="precoAberto" @click="fechar()">-</button>
+      <button v-if="!precoAberto" @click="precoAberto = !precoAberto">+</button>
+    </div>
+    <div class="container inputs" v-if="precoAberto">
+      <input class="input-min-max" placeholder="min" v-model="filtroPreco.precoMin" />
+      <span>-</span>
+      <input class="input-min-max" placeholder="max" v-model="filtroPreco.precoMax" />
+      <button class="filtrar-preco" @click="filtroPreco.funcaoClicked">></button>
+    </div>
   </div>
 </template>
 <style scoped>
@@ -57,5 +59,23 @@ button {
 .subtitulo {
   font-weight: 600;
   padding: 10px 0px;
+}
+@media (max-width: 768px) {
+  .input-min-max {
+    width: 105px;
+    height: 40px;
+  }
+  .inputs{
+    justify-content: center;
+    gap: 15px;
+  }
+  .filtrar-preco{
+    display: none
+  }
+  .item{
+    border-bottom: 1px solid #d9d9d9;
+    margin: 0px 15px;
+    padding: 0px 10px 10px;
+  }
 }
 </style>

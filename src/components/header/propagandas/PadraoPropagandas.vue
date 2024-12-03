@@ -85,4 +85,10 @@ li {
     transform: translateX(-300%);
   }
 }
+
+@media (max-width: 768px) {
+  .container-propagandas {
+    margin-top: 65px;
+  }
+}
 </style>

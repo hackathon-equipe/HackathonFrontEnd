@@ -12,4 +12,8 @@ defineProps({
   <RouterLink :to="link" @mouseover="onHover(title)">
     <li>{{ title }}</li>
   </RouterLink>
+  <div>
+    <slot>
+    </slot>
+  </div>
 </template>

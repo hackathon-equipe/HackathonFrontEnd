@@ -1,81 +1,9 @@
 <script setup>
-import { useProdutosStore } from '@/stores/produtosStore';
-import SlideComponent from './SlideComponent.vue'
-import { Carousel, Navigation, Slide } from 'vue3-carousel';
-import 'vue3-carousel/dist/carousel.css'
-const produtosStore = useProdutosStore()
-function parcelas (preco){
-  return `em até 10x de ${preco}`
-}
+import { padraoCarouselDesktop, padraoCarouselMobile } from './templates';
+import { useScreenSize } from '@/composables/useScreenSize';
 </script>
 
 <template>
-  <Carousel :itemsToShow="5.7" :transition="500">
-    <Slide v-for="(text, index) in produtosStore.produtos" :key="index">
-      <SlideComponent
-      :id="text.id"
-      :img="text.foto ? text.foto[0].file : ''"
-      :imagem="text.imagens"
-      :nome="text.nome"
-      :preco="text.preco"
-      :parcelas="parcelas(text.preco)"
-      :estrelas="3"
-    />
-    </Slide>
-    <template #addons>
-      <Navigation class="aa" />
-    </template>
-  </Carousel>
+  <padraoCarouselMobile v-if="useScreenSize().isMobile" />
+  <padraoCarouselDesktop v-else />
 </template>
-
-<style scoped>
-.slide{
-  max-width: 300px;
-}
-.link{
-  position: absolute;
-  left: 0;
-}
-.carousel{
-  padding:20px 0px 20px 90px !important;
-}
-.aa {
-  width: 103px;
-  height: 103px;
-  background-color: aquamarine;
-}
-.carousel__slide {
-  padding: 5px;
-}
-
-.carousel__viewport {
-  perspective: 2000px;
-}
-
-.carousel__track {
-  transform-style: preserve-3d;
-}
-
-.carousel__slide--sliding {
-  transition: 0.5s;
-}
-
-.carousel__slide {
-  height: 500px;
-  opacity: 0.9;
-  transform: rotateY(-20deg);
-}
-/*
-.carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg);
-}
-
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg);
-}
-.carousel__slide--active {
-  opacity: 1;
-}*/
-</style>

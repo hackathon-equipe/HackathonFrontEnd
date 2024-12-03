@@ -9,11 +9,11 @@ const cart = useCartStore()
 
 <template>
   <div class="itens-area">
-    <span class="itens-info">Todos os itens ({{ cart.itens.length }})</span>
-    <p class="itens-info">
-      <div v-if="cart.freeShip"><truckIcon /> Você já concluiu os requisitos para o frete gratis</div>
-      <div v-else><truckIcon /> Faltam <span>R$ {{(950 - cart.valorFinal).toFixed(2).replace('.',',')}}</span> para voce ganhar frete gratis</div>
-    </p>
+    <p class="itens-info">Todos os itens ({{ cart.itens.length }})</p>
+    <span class="itens-info">
+      <div v-if="cart.freeShip" class="frete"><truckIcon /><p>Você já concluiu os requisitos para o frete grátis</p></div>
+      <div v-else class="frete"><truckIcon /><p>Faltam <b class="valor-frete">R${{950 - cart.valorFinal}} </b> para você ganhar frete grátis</p></div>
+    </span>
     <div v-for="(item, index) in cart.itens" :key="index">
       <itemCarrinho :img="item.imageUrl" :nome="item.nome" :preco="item.preco" :parcelas="item.parcelas" :id="item.id"
         :quantidade="item.quantidade" :removeMsg="removeMsg" />
@@ -39,12 +39,41 @@ const cart = useCartStore()
 
 .itens-info div {
   display: flex;
-  align-items: center;
   gap: 8px;
   margin-bottom: 25px;
 }
 
-.itens-info span {
-  font-weight: 600;
+
+
+@media (max-width: 768px) {
+  .itens-area{
+    margin: 0px 20px;
+  }
+  .itens-info{
+    font-size: 14px;
+  }
+  .frete{
+    display: flex;
+    align-items: center
+  }
+  .frete p{
+    font-size: 14px;
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+  }
+  .valor-frete{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0px 5px;
+  }
+}
+@media (max-width: 380px) {
+  .frete p{
+    font-size: 12px;
+  }
+  .valor-frete{
+    font-size: 12px;
+  }
 }
 </style>

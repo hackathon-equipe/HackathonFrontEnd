@@ -62,8 +62,9 @@ import { natureIcon, reciveDolarIcon, houseIcon, toolsIcon, upDolarIcon, traject
     display: flex;
     flex-wrap: wrap;
     gap: 45px;
-    width: 1000px;
+    width: 100%;
     justify-content: center;
+    max-width: 1300px;
 }
 .card{
     display: flex;
@@ -88,5 +89,26 @@ import { natureIcon, reciveDolarIcon, houseIcon, toolsIcon, upDolarIcon, traject
 }
 .card p{
     font-size: 10px;
+}
+@media (max-width: 768px) {
+   .card p{
+    display: none
+   } 
+   .card{
+    width: 125px;
+    height: auto;
+    border: none;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+   }
+   .cards{
+    margin: 50px 0px;
+    flex-direction: row;
+    width: 100vw;
+    gap: 10px;
+    max-width: 500px;
+   }
+   .container{
+    margin: 100px 30px 50px;
+   }
 }
 </style>

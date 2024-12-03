@@ -8,13 +8,13 @@ defineProps({
 </script>
 
 <template>
-  <div v-for="(item, index) in filtroLista" :key="index">
+  <div v-for="(item, index) in filtroLista" :key="index" class="item">
     <div class="container">
       <span class="subtitulo">{{ item.titulo }}</span>
-      <button class="pointer" @click="item.funcao" v-if="item.aberto">-</button>
-      <button class="pointer" @click="item.aberto = !item.aberto" v-if="!item.aberto">+</button>
+      <button class="pointer" @click="item.funcao, item.aberto = !item.aberto" v-if="!item.aberto">-</button>
+      <button class="pointer" @click="item.aberto = !item.aberto" v-else>+</button>
     </div>
-    <div class="opcoes" v-if="item.aberto">
+    <div class="opcoes" v-if="!item.aberto">
       <div v-for="(item2, index) in item.array" :key="index" class="opcao-input">
         <input
           class="opcao"
@@ -81,5 +81,13 @@ input[type="checkbox"]:checked {
 
 .opcao-input-label{
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .item{
+    margin: 0px 15px;
+    padding: 10px 10px;
+    border-bottom: 1px solid #d9d9d9;
+  }
 }
 </style>

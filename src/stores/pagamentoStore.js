@@ -7,18 +7,14 @@ export const usePagamentoStore = defineStore('pagamento', () => {
 
     const produto = ref(null)
     const tipo_compra = ref(null)
-    const frete = ref(0)
-    const desconto = ref(0)
-    const valorFinal = ref(0)
+    const valor_final = ref('')
     
-    function realizarCompra(item, tipo, valor_frete, valor_desconto, valor_final){
+    function realizarCompra(item, tipo, valorFinal){
         produto.value = item
         tipo_compra.value = tipo
-        frete.value = valor_frete
-        desconto.value = valor_desconto
-        valorFinal.value = valor_final
+        valor_final.value = valorFinal
     }
-    console.log(produto)
+
     function confirmarCompra(){
         if(tipo_compra.value == 'carrinho'){
             while(carrinho.itens.length){
@@ -30,5 +26,5 @@ export const usePagamentoStore = defineStore('pagamento', () => {
             }
         }
     }
-    return { produto, realizarCompra, confirmarCompra, frete, desconto, tipo_compra, valorFinal}
+    return { produto, realizarCompra, confirmarCompra, tipo_compra, valor_final}
 })

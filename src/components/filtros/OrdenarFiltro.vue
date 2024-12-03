@@ -121,4 +121,10 @@ const options = [
   outline: none;
   border-color: #ebebeb;
 }
+
+@media (max-width: 768px ) {
+  .ordenar{
+    display: none;
+  }
+}
 </style>

@@ -9,7 +9,8 @@
   font-size: 20px;
   padding: 100px 0px 20px 0px;
   text-align: center;
-  font-weight: 610;
+  font-weight: 600;
+  flex-wrap: wrap;
 }
 .orcamento{
   display: flex;

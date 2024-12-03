@@ -33,7 +33,6 @@ import { phoneIcon, facebookIcon, whatsappIcon, emailIcon, instagramIcon } from 
 
 
 .links-navegacao {
- width: 10vw;
  flex-direction: column;
  display: flex;
 }

@@ -38,7 +38,7 @@ defineProps({
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.35);
-    z-index: 99999999999;
+    z-index: 99999;
 }
 .addCartMsg{
     display: flex;
@@ -51,7 +51,7 @@ defineProps({
     width: 350px;
     height: 300px;
     background-color: white;
-    z-index: 9999999999999999;
+    z-index: 99999;
 }
 .CartMsg-tittle{
     display: flex;

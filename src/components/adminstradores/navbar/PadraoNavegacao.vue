@@ -132,7 +132,7 @@ const closePesquisar = () => {
 }
 /* CSS SUBMENU */
 .menu {
-  z-index: 9999999;
+  z-index: 9999;
   position: fixed;
   width: 100vw;
   top: 75px;
@@ -189,7 +189,7 @@ const closePesquisar = () => {
 
 /* FIM -> CSS SUBMENU */
 .navbar {
-  z-index: 999999999;
+  z-index: 9999;
   position: fixed;
   width: 100vw;
   height: 40px;

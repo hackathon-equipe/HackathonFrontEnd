@@ -53,7 +53,7 @@ function formatarPreco(numero) {
 <style scoped>
 .link{
   text-decoration: none;
-  color:black
+  color:black;
 }
 .informacoes {
   text-align: left;
@@ -106,5 +106,26 @@ span {
 }
 .parcelas {
   font-size: 12px;
+}
+@media (max-width: 768px) {
+  .img img{
+    height: 50%;
+  }
+  .nome{
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .tudo{
+    width: 180px;
+    height: 100%;
+    padding: 15px;
+  }
+  .parcelas {
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 </style>
