@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import sobrenosImgComp from '@/components/sobrenos/sobrenosImgComp.vue'
+import { useScreenSize } from '@/composables/useScreenSize'
 import {
   whiteEmailIcon,
   whitePhoneIcon,
@@ -69,7 +70,7 @@ const enviarEmail = async () => {
           opinião é muito importante.
         </p>
       </div>
-      <div>
+      <div v-if="!useScreenSize().isMobile">
         <ul class="contact-list">
           <li>
             <span class="icon-background"><whitePhoneIcon /></span>
@@ -94,7 +95,7 @@ const enviarEmail = async () => {
           </li>
         </ul>
       </div>
-      <div class="social-media">
+      <div class="social-media" v-if="!useScreenSize().isMobile">
         <div class="social-tittle">Redes Sociais</div>
         <div class="social-icons">
           <blackFacebookIcon />
@@ -135,8 +136,7 @@ const enviarEmail = async () => {
             v-model="form.mensagem"
             placeholder="Deixe registrado seu comentário"
             required
-          >
-Feedback!</textarea
+          >Feedback!</textarea
           >
           <span class="validacao-span" v-if="!form.mensagem.trim()">Campo Obrigatório!</span>
         </div>
@@ -147,6 +147,39 @@ Feedback!</textarea
       </form>
       <div v-if="validacao" class="error-servidor">
         <span>Erro ao enviar a mensagem. Servidor fora do ar!</span>
+      </div>
+    </div>
+    <div v-if="useScreenSize().isMobile">
+      <ul class="contact-list">
+        <li>
+          <span class="icon-background"><whitePhoneIcon /></span>
+          <div>
+            <h3 class="list-tittle">Telefone</h3>
+            <p class="contact-info">(47) 98765-6789</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon-background"><whiteEmailIcon /></span>
+          <div>
+            <h3 class="list-tittle">Email</h3>
+            <p class="contact-info">oorunplacassolare@gmail.com</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon-background"><whiteMarkIcon /></span>
+          <div>
+            <h3 class="list-tittle">Localização</h3>
+            <p class="contact-info">Joinville, Santa Catarina, Brasil</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="social-media" v-if="useScreenSize().isMobile">
+      <div class="social-tittle">Redes Sociais</div>
+      <div class="social-icons">
+        <blackFacebookIcon />
+        <blackInstagramIcon />
+        <twitterIcon />
       </div>
     </div>
   </div>
@@ -365,5 +398,67 @@ form button:hover{
   display: flex;
   justify-content: center;
   gap: 50px;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .page-bunner{
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact{
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .social-media{
+    margin: 30px 20px;
+  }
+  .contact-tittle{
+    text-align: center;
+  }
+  .submit-form{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    min-height: 100%;
+    height: 650px;
+  }
+}
+
+@media (max-width: 768px) {
+  .submit-form{
+    width: 100%;
+  }
+  .submit-form form{
+    border: none;
+    width: 100%;
+  }
+  .phone-input input, .name-input input{
+    width: 100%;
+    gap: 20px;
+  }
+  .button-area button{
+    width: 300px;
+    border: none;
+  }
+  .contact-show-info{
+    width: 100%;
+    padding: 0px 30px;
+  }
+  .bunner-info{
+    width: 100%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 490px) {
+  .phone-name{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .phone-input input, .name-input input{
+    width: 100%;
+  }
 }
 </style>
