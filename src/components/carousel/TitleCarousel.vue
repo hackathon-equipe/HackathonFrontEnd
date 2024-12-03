@@ -44,7 +44,7 @@ hr {
     width: 70px;
     height: 3px;
     background-color: #406996;
-    margin:0px 100px;
+    margin:0px 0px;
     animation: crescer 2.5s infinite;
   }
 

@@ -54,21 +54,19 @@ const isMobile = true
     font-weight: 600;
     cursor: pointer;
     transition: .5s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
-.content button:hover{
+.content .button:hover{
     transform: translateX(5px);
     background-color: white;
     color: #29375B;
     border:1px solid #29375B;
-    transition: .2s linear;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: .1s linear;
 }
-.content .button:hover{
-    transform: translateX(5px)
-}
+
 @media (max-width: 768px) {
     .container{
         flex-direction: column;

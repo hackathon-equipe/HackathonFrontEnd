@@ -6,7 +6,7 @@ const produtosStore = useProdutosStore()
 console.log(produtosStore.produtos)
 
 function parcelas(preco) {
-    return `em até 10x de ${preco}`
+    return `em até 10x de ${(preco / 10).toFixed(2)}`
 }
 </script>
 

@@ -4,13 +4,19 @@ import PadraoPropagandas from "@/components/header/propagandas/PadraoPropagandas
 import PadraoCaminho from "@/components/header/caminho/PadraoCaminho.vue";
 import { itensNoCarrinho, resumoCarrinho, semItensNoCarrinho } from './componentes';
 import { useCartStore } from '@/stores/carrinhoStore';
+import { useScreenSize } from "@/composables/useScreenSize";
 const cart = useCartStore()
 </script>
 
 <template>
   <PadraoPropagandas />
   <PadraoCaminho />
-  <div class="container" v-if="cart.itensInCart > 0"> 
+  <div class="container" v-if="cart.itensInCart > 0 && useScreenSize().isMobile"> 
+    <resumoCarrinho inferior="disabled"/>
+    <itensNoCarrinho />
+    <resumoCarrinho superior="disabled"/>
+  </div>
+  <div class="container" v-else-if="cart.itensInCart > 0"> 
     <itensNoCarrinho />
     <resumoCarrinho/>
   </div>

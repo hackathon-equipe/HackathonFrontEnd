@@ -105,6 +105,7 @@ import { natureIcon, reciveDolarIcon, houseIcon, toolsIcon, upDolarIcon, traject
     flex-direction: row;
     width: 100vw;
     gap: 10px;
+    max-width: 500px;
    }
    .container{
     margin: 100px 30px 50px;

@@ -5,7 +5,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
 function parcelas (preco){
-  return `em até 10x de ${preco}`
+  return `em até 10x de ${(preco / 10).toFixed(2)}`
 }
 </script>
 

@@ -115,4 +115,23 @@ function removeFromCart() {
     background-color: #383838cc;
     font-weight: 500;
 }
+
+@media (max-width: 768px) {
+    .item-img{
+        width: 150px;
+        height: 150px;
+    }
+    .item {
+        border-bottom: 1px solid #A1A1A1;
+        gap: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .item-valor{
+        font-size: 16px;
+    }
+    .item-info {
+        gap: 10px;
+    }
+}
 </style>
