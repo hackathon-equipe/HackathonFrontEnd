@@ -1,36 +1,71 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
+import { useCartStore } from '@/stores/carrinhoStore'
 import { usePagamentoStore } from '@/stores/pagamentoStore';
+import axios from 'axios'; // Importando Axios
+const carrinho = useCartStore()
 const pagamento_foi_realizado = ref(false)
-
 function pagamento_realizado() {
     pagamento_foi_realizado.value = true
 }
+  const isLoading = ref(false); // Variável para controle de carregamento
 
-const metodo_pagamento = ref(null)
+
+ const orderData = reactive({ "title": "Compra na loja oorun", "quantity":(carrinho.itens.length), "price": Number( usePagamentoStore().valor_final)});
+ 
+ // MercadoPago initialization
+ const mp = new MercadoPago('APP_USR-b2ad37f2-01f8-4ed9-b5be-7ddb974c6eb0', { locale: 'pt-BR' });
+ 
+ // Reactive state to hold preference ID
+ const preferenceId = ref(null);
+ 
+ // Função para criar o botão de checkout após obter o ID da preferência
+ const createCheckoutButton = (preferenceId) => {
+   const bricksBuilder = mp.bricks();
+ 
+   const renderComponent = async () => {
+     // Remover qualquer botão anterior, se existir (gerenciado pelo Vue agora)
+     // Criar o botão de checkout do Mercado Pago no 'wallet_container'
+     await bricksBuilder.create('wallet', 'wallet_container', {
+       initialization: {
+         preferenceId: preferenceId,
+       },
+     });
+   };
+ 
+   renderComponent();
+ };
+ 
+ // Função para manipular o clique e buscar os dados de preferência
+ const handleCheckoutClick = async () => {
+  isLoading.value = true; // Ativa o carregamento
+   try {
+     // Enviar uma requisição para o backend para criar a preferência
+     const response = await axios.post('https://backend-api-mercadopago.onrender.com/create_preference', orderData, {
+       headers: {
+         'Content-Type': 'application/json',
+       },
+     });
+ 
+     // Obter o ID da preferência da resposta
+     const preference = response.data;
+ 
+     // Armazenar o ID da preferência e criar o botão de checkout
+     preferenceId.value = preference.id;
+     createCheckoutButton(preference.id);
+   } catch (error) {
+     // Tratar erros da requisição
+     alert('Erro: Não foi possível criar a preferência de pagamento.');
+     console.error(error);
+   }finally {
+    isLoading.value = false; // Desativa o carregamento após a requisição
+  }
+ };
+ handleCheckoutClick()
 </script>
 
 <template>
     <div class="pagamento">
-        <div class="metodos-pagamento">
-            <h1>Como você prefere pagar </h1>
-            <ul class="metodos">
-                <li class="metodo" @click="metodo_pagamento = 'cartao de credito'">
-                    <label for="cartao-creido" class="metodo-nome">Cartão de crédito</label><input type="radio"
-                        id="cartao-credito" class="metodo-confirm" value="cartao de credito"
-                        v-model="metodo_pagamento" />
-                </li>
-                <li class="metodo" @click="metodo_pagamento = 'pix'">
-                    <label for="pix" class="metodo-nome">PIX</label><input type="radio" id="pix" class="metodo-confirm"
-                        value="pix" v-model="metodo_pagamento" />
-                </li>
-                <li class="metodo" @click="metodo_pagamento = 'boleto bancario'">
-                    <label for="boleto-bancario" class="metodo-nome">Boleto bancário</label><input type="radio"
-                        id="boleto-bancario" class="metodo-confirm" value="boleto bancario"
-                        v-model="metodo_pagamento" />
-                </li>
-            </ul>
-        </div>
         <div class="detalhes-compra">
             <h2>Detalhe da sua compra</h2>
 
@@ -58,18 +93,39 @@ const metodo_pagamento = ref(null)
                 <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final }}</span>
             </div>
             <div class="confirm-button">
-                <button @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()">Confirmar Compra</button>
+                <div id="wallet_container" @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()"></div>
             </div>
         </div>
-    </div>
-    <div class="pagamento-realizado" v-if="pagamento_foi_realizado">
-        <img src="../assets/images/LoadGif/check-mark-verified.gif" alt="">
-        <h1>Compra realizada com sucesso!!</h1>
-        <router-link to="/carrinho" class="confirm-pagamento">Ok, entendi.</router-link>
+        <div v-if="isLoading" class="loading">
+            <div class="animacao-carregamento">
+              <img src="@/assets/images/LoadGif/LoadingAnimation.gif" alt="">
+          </div>
+          </div>
     </div>
 </template>
 
 <style scoped>
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fique acima de outros conteúdos */
+  }
+  .animacao-carregamento img {
+    width: 250px;
+    height: auto;
+  }
+  
+  .animacao-carregamento {
+    height: 100px;
+    overflow: hidden;
+  }
 .pagamento-realizado img {
     width: 200px;
     height: auto;
@@ -191,41 +247,4 @@ const metodo_pagamento = ref(null)
     font-weight: 600;
 }
 
-.metodos-pagamento {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    gap: 80px;
-}
-
-.metodos-pagamento h1 {
-    font-size: 24px;
-    font-weight: 600;
-    padding-top: 80px;
-}
-
-.metodos {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding-bottom: 80px;
-}
-
-.metodo {
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.26);
-    height: 75px;
-    border-radius: 5px;
-    padding: 0px 30px;
-    align-items: center;
-    cursor: pointer;
-}
-
-.metodo-confirm {
-    color: rgb(149, 149, 240);
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-}
 </style>
