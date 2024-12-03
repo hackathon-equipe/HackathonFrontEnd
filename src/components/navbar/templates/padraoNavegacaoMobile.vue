@@ -39,7 +39,7 @@ const barraPesquisa = ref(false)
             </div>
             <div class="menu-base-itens">
                 <div class="item user-icon">
-                    <userblackIcon />
+                    <router-link to="/perfil"><userblackIcon /></router-link>
                 </div>
                 <div class="item">
                     <router-link to="/carrinho">
