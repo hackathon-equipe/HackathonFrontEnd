@@ -244,6 +244,7 @@ const enviarEmail = async () => {
 .validacao-span {
   color: #29375b;
   padding: 5px 0 0 20px;
+  font-size: 12px;
 }
 
 .button-area {
