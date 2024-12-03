@@ -260,6 +260,7 @@ form h1{
     }
 }
 @media (max-width: 768px) {
+    
     .background{
         padding: 0px;
     }
@@ -281,12 +282,21 @@ form h1{
     }
     .componente-resultado{
         background-color: rgb(64, 105, 150, 0.00);
+        padding: 40px 0px;
     }
     .resultado{
         flex-direction: column;
     }
     .resultado-grafico{
         width: 100%;
+        min-height: 200px;
+        background-color: rgb(64, 105, 150, 0.00);
+    }
+    .resultado-info{
+        text-align: center;
+    }
+    .third-section{
+        padding: 0px 20px;
     }
 }
 </style>
