@@ -3,7 +3,6 @@ import inputAplicarComp from './inputAplicarComp.vue';
 import { useCartStore } from '@/stores/carrinhoStore';
 import { usePagamentoStore } from '@/stores/pagamentoStore';
 const cart = useCartStore()
-const pagamento = usePagamentoStore
 
 defineProps({
   superior: String,

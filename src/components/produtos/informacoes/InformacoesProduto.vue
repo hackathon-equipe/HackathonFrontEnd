@@ -75,9 +75,9 @@ function closeNotify(){
   visibleAddCart.value = false
 }
 function comprar(){
-  router.push('/pagamento')
   compra.realizarCompra(props, 'direta', props.preco)
-  console.log(props.preco)
+  console.log(props.preco)  
+  router.push('/pagamento')
 }
 </script>
 <template>
@@ -105,8 +105,7 @@ function comprar(){
       </div>
       <span class="preco">R$ {{ Number(preco).toFixed(2).replace('.',',') }}</span>
       <div class="frete"><span> Calcule seu frete</span> <img src="@/assets/images/seta-baixo.png" width="10px" height="10px"/></div>
-      <button class="button-comprar" @click="comprar()">Comprar</button>
-      <div id="wallet_container"></div>
+      <router-link class="button-comprar" :class="inferior" to="/pagamento" @click="comprar()">Comprar</router-link>
       <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
     </div>
     <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="Number(preco)" :image="image" :closeFunction="closeNotify"/>

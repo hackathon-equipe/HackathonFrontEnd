@@ -1,18 +1,34 @@
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { useCartStore } from '@/stores/carrinhoStore'
 import { usePagamentoStore } from '@/stores/pagamentoStore';
 import axios from 'axios'; // Importando Axios
+// Acessando o pagamentoStore
+const pagamentoStore = usePagamentoStore();
+
+// Calculando o subtotal (soma do preço dos itens * quantidade)
+const subtotal = computed(() => {
+  return pagamentoStore.produto.reduce((total, item) => {
+    return total + (item.preco * item.quantidade); // multiplicar o preço pela quantidade
+  }, 0);
+});
+const descontos = computed(() => {
+  return (subtotal.value - Number(pagamentoStore.valor_final)).toFixed(2)
+});
 const carrinho = useCartStore()
 const pagamento_foi_realizado = ref(false)
 function pagamento_realizado() {
     pagamento_foi_realizado.value = true
 }
   const isLoading = ref(false); // Variável para controle de carregamento
-
-
- const orderData = reactive({ "title": "Compra na loja oorun", "quantity":(carrinho.itens.length), "price": Number( usePagamentoStore().valor_final)});
+  let orderData = reactive();
  
+        if(usePagamentoStore().tipo_compra.value == 'carrinho'){
+             orderData = { "title": "Compra na loja oorun", "quantity":(carrinho.itens.length), "price": Number( usePagamentoStore().valor_final)};
+        }
+        else{
+                orderData = { "title": "Compra na loja oorun", "quantity":(1), "price": Number( usePagamentoStore().valor_final)};
+        }
  // MercadoPago initialization
  const mp = new MercadoPago('APP_USR-b2ad37f2-01f8-4ed9-b5be-7ddb974c6eb0', { locale: 'pt-BR' });
  
@@ -65,6 +81,7 @@ function pagamento_realizado() {
 </script>
 
 <template>
+    <div class="container-pagamento">
     <div class="pagamento">
         <div class="detalhes-compra">
             <h2>Detalhe da sua compra</h2>
@@ -84,13 +101,13 @@ function pagamento_realizado() {
 
             <div class="valores">
                 <ul>
-                    <li><span>Subtotal</span><span>R$0</span></li>
-                    <li> <span>Frete</span><span>R$0</span> </li>
-                    <li> <span>Desconto</span><span>R$0</span> </li>
+                    <li><span>Subtotal</span><span>R${{subtotal.toFixed(2)}}</span></li>
+                    <li> <span>Frete</span><span>R${{Number(0).toFixed(2)}}</span> </li>
+                    <li> <span>Descontos</span><span>R${{descontos}}</span> </li>
                 </ul>
             </div>
             <div class="valor-final">
-                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final }}</span>
+                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final.toFixed(2)}}</span>
             </div>
             <div class="confirm-button">
                 <div id="wallet_container" @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()"></div>
@@ -101,17 +118,27 @@ function pagamento_realizado() {
               <img src="@/assets/images/LoadGif/LoadingAnimation.gif" alt="">
           </div>
           </div>
-    </div>
+    </div></div>
 </template>
 
 <style scoped>
+.container-pagamento{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh ;
+    min-width: 100vw;
+}
+#wallet_container{
+    width: 100%;
+}
 .loading {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+    background-color: rgb(255, 255, 255); /* Semitransparente */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,7 +194,7 @@ function pagamento_realizado() {
     font-weight: 600;
     border: none;
     display: flex;
-    width: 100%;
+    width: 300px;
     justify-content: center;
     height: 40px;
     align-items: center;
@@ -218,7 +245,7 @@ function pagamento_realizado() {
     gap: 10px;
     padding: 20px 0px;
     align-items: center;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.6);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.6);
 }
 
 .produto div{
@@ -228,17 +255,18 @@ function pagamento_realizado() {
 }
 
 .pagamento {
-    padding: 80px 0px 0px 0px;
     display: flex;
     justify-content: center;
     gap: 50px;
+    width: 40%;
 }
 
 .detalhes-compra {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 100%;
     background-color: #F5F5F5;
+    border-radius: 20px;
     padding: 40px 40px;
 }
 

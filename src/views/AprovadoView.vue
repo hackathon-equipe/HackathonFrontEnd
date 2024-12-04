@@ -21,6 +21,14 @@
 //     pagamento_foi_realizado.value = true
 // }
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
+
+// Definindo variáveis reativas
+const payment = ref(null);
+const route = useRoute();
+
+// Função executada ao montar o componente
 
 // Variáveis de controle
 const mostrarImagem = ref(true);
@@ -59,7 +67,7 @@ onMounted(() => {
           <span class="span-pqn">{{ dataHoraPagamento }}</span> <!-- Exibe a data e hora -->
           <hr class="hr"/>
           <span class="span-pqn">valor do pagamento</span>
-          <span class="valor">R$ 200,00</span>
+          <span class="valor">R$ 20.000,00</span>
           <span class="span-pqn">prazo de entrega</span>
           <span class="prazo">4 a 5 dias úteis</span>
           <router-link to="/" class="button" >voltar ao site</router-link></div>
@@ -146,7 +154,7 @@ onMounted(() => {
     margin-bottom: 15px;
 }
 .hr{
-    height: 2px;
+    height: 1px;
     width: 100%;
     color:black;
     margin: 30px 0px;
@@ -178,7 +186,7 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: calc(100vh - 80px);
-    background-color: rgb(233, 233, 233); /* Semitransparente */
+    background-color: rgb(255, 255, 255); /* Semitransparente */
     display: flex;
     align-items: center;
     justify-content: center;
