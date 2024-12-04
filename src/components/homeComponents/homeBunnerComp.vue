@@ -13,7 +13,7 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
             <HomeIconsComp />
             <div class="home-buttons">
                 <router-link class="button" to="/produtos/placas-solares">Compre sua placa
-                    <LeftArrowIcon />
+                    <leftArrowIcon />
                 </router-link>
                 <router-link class="button" to="/orcamentos">Faça um orçamento
                     <leftArrowIcon />
@@ -65,7 +65,11 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
     gap: 10px;
     cursor: pointer;
     text-decoration: none;
-    transition: .2s linear;
+    transition: .1s linear;
+}
+
+.home .info-side .home-buttons .button:hover{
+    transform: translateY(-5px);
 }
 
 @media (max-width: 768px) {
