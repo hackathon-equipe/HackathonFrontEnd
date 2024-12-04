@@ -8,16 +8,16 @@ const local = props.opcao;
 const previewFoto = ref(null);
 const file = ref(null)
 function handleFileChange(event) {
-  file.value = event.target.files[0]; 
+  file.value = event.target.files[0];
   if (file.value) {
     const reader = new FileReader();
     reader.onload = () => {
       previewFoto.value = reader.result;
       console.log('Arquivo selecionado:', file.value);
-      console.log('Pré-visualização:', previewFoto.value); 
-      emit('salvarFoto', file.value); 
+      console.log('Pré-visualização:', previewFoto.value);
+      emit('salvarFoto', file.value);
     };
-    reader.readAsDataURL(file.value); 
+    reader.readAsDataURL(file.value);
   }
 }
 </script>
@@ -25,19 +25,15 @@ function handleFileChange(event) {
 <template>
   <div class="span-nav">
     <div class="foto">
-      <img
-        :src="
-          previewFoto
-            ? previewFoto
-            : useAuth.user.foto
-              ? useAuth.user.foto.url
-                : '/src/assets/images/usersemfoto.jpg'
-        "
-        alt="Foto de perfil"
-      />
+      <img :src="previewFoto
+          ? previewFoto
+          : useAuth.user.foto
+            ? useAuth.user.foto.url
+            : '/src/assets/images/usersemfoto.jpg'
+        " alt="Foto de perfil" />
     </div>
     <label for="file-upload" class="file">Mudar foto</label>
-    <input type="file" id="file-upload" @change="handleFileChange" />
+    <input type="file" class="file-upload" id="file-upload" @change="handleFileChange" />
     <div class="links">
       <ul>
         <li :class="local === 1 ? 'active' : ''" @click="emit('selecionarComponente', 1)">
@@ -54,13 +50,12 @@ function handleFileChange(event) {
         </li>
       </ul>
     </div>
-    <div><button @click="emit('sair')">Sair</button></div>
+    <div class="log-out-button"><button @click="emit('sair')">Sair</button></div>
   </div>
 </template>
 
 <style scoped>
-
-.span-nav button{
+.span-nav button {
   padding: 5px 20px 5px 20px;
   background-color: white;
   border: 1px solid #29375b;
@@ -69,10 +64,11 @@ function handleFileChange(event) {
   transition: 0.5s;
 }
 
-.span-nav button:hover{
+.span-nav button:hover {
   color: white;
   background-color: #29375b;
 }
+
 .active {
   padding-left: 5px;
   font-weight: 600;
@@ -80,6 +76,7 @@ function handleFileChange(event) {
 
 .span-nav {
   width: 250px;
+  min-width: 250px;
   padding: 30px;
   border: 1px solid #ececec;
   border-radius: 25px;
@@ -87,6 +84,7 @@ function handleFileChange(event) {
   align-items: center;
   flex-direction: column;
 }
+
 .span-nav .foto {
   width: 130px;
   height: 130px;
@@ -109,12 +107,14 @@ function handleFileChange(event) {
 .span-nav .links {
   padding-bottom: 40px;
 }
+
 .span-nav ul {
   display: flex;
   flex-direction: column;
   gap: 20px;
   list-style: none;
 }
+
 .span-nav ul li {
   display: flex;
   align-items: center;
@@ -122,10 +122,12 @@ function handleFileChange(event) {
   border-bottom: 1px solid #ececec;
   padding: 0px 0px 15px 0px;
 }
+
 input[type='file'] {
   display: none;
   cursor: pointer;
 }
+
 .file {
   border: 1px solid #ccc;
   display: inline-block;
@@ -134,5 +136,16 @@ input[type='file'] {
   border-radius: 15px;
   margin-bottom: 30px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .span-nav {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid transparent !important;
+  }
+  .file-upload, .links, .file, .log-out-button{
+    display: none;
+  }
 }
 </style>

@@ -98,4 +98,22 @@ const usuario = ref({
     cursor: pointer;
   }
 
+  @media (max-width: 768px) {
+    .perfil-info{
+      padding: 0px 20px;
+    }
+    .inputs input{
+      width: 100%;
+    }
+    .input-div{
+      width: 100%;
+    }
+    .button{
+      margin-top: 40px;
+    }
+    .perfil-info input.inputInteiro {
+      width: 100%px;
+    }
+  }
+
 </style>
