@@ -44,6 +44,7 @@ vfor   -->
 import { ref, computed, watch } from "vue";
 import { useRoute, RouterLink } from "vue-router";
 import { useProdutosStore } from '@/stores/produtosStore'; // Importando a store de produtos
+import { useCarouselStore } from '@/stores/ProdutosCarousel';
 
 // Inicializando a rota
 const route = useRoute();
@@ -98,7 +99,7 @@ watch(path, () => {
 <template>
   <div class="rota-atual">
     <!-- Link para Home, seguido de '>' -->
-    <RouterLink class="link" to="/">Home</RouterLink>
+    <RouterLink class="link" to="/">{{produtosStore.produtos[useCarouselStore().produtoId]}}</RouterLink>
     <span v-if="partesRota.length > 0"> &gt; </span> <!-- Adiciona '>' entre Home e a próxima parte -->
 
     <!-- Gera links dinâmicos para cada parte da rota -->

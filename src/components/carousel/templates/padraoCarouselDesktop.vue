@@ -4,6 +4,9 @@ import SlideComponent from '../SlideComponent.vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 const produtosStore = useProdutosStore()
+
+import { useRoute } from 'vue-router' // Importar useRoute
+const route = useRoute() // Usar useRoute para acessar a rota
 function parcelas (preco){
   return `em até 10x de ${(preco / 10).toFixed(2)}`
 }
