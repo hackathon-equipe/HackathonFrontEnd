@@ -105,7 +105,7 @@ const closePesquisar = () => {
 .input-pesquisar {
   width: 350px;
   border: none;
-  padding: 4px 6px;
+  padding: 4px 15px;
 }
 .input-pesquisar:focus {
   outline: none; /* Remove a borda de foco padrão */

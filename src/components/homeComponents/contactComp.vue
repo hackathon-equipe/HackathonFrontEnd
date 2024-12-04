@@ -1,13 +1,13 @@
 
 <script setup>
 import imgMobile from './img/svgFaleConosco.vue'
-const isMobile = true
+import { useScreenSize } from '@/composables/useScreenSize';
 </script>
 
 <template>
     <div class="container">
         <div class="images">
-            <imgMobile v-if="isMobile" />
+            <imgMobile v-if="useScreenSize().isMobile" />
             <div v-else>
                 <img src="./img/menorFrame.png" alt="">
                 <img src="./img/maiorFrame.png" alt="">
