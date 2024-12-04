@@ -9,7 +9,7 @@ import "@passageidentity/passage-elements/passage-auth";
   </div>
 </template>
 
-<style>
+<style scoped>
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f9;
