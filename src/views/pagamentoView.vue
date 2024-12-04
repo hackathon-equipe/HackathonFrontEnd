@@ -1,36 +1,88 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive, computed } from 'vue';
+import { useCartStore } from '@/stores/carrinhoStore'
 import { usePagamentoStore } from '@/stores/pagamentoStore';
-const pagamento_foi_realizado = ref(false)
+import axios from 'axios'; // Importando Axios
+// Acessando o pagamentoStore
+const pagamentoStore = usePagamentoStore();
 
+// Calculando o subtotal (soma do preço dos itens * quantidade)
+const subtotal = computed(() => {
+  return pagamentoStore.produto.reduce((total, item) => {
+    return total + (item.preco * item.quantidade); // multiplicar o preço pela quantidade
+  }, 0);
+});
+const descontos = computed(() => {
+  return (subtotal.value - Number(pagamentoStore.valor_final)).toFixed(2)
+});
+const carrinho = useCartStore()
+const pagamento_foi_realizado = ref(false)
 function pagamento_realizado() {
     pagamento_foi_realizado.value = true
 }
-
-const metodo_pagamento = ref(null)
+  const isLoading = ref(false); // Variável para controle de carregamento
+  let orderData = reactive();
+ 
+        if(usePagamentoStore().tipo_compra.value == 'carrinho'){
+             orderData = { "title": "Compra na loja oorun", "quantity":(carrinho.itens.length), "price": Number( usePagamentoStore().valor_final)};
+        }
+        else{
+                orderData = { "title": "Compra na loja oorun", "quantity":(1), "price": Number( usePagamentoStore().valor_final)};
+        }
+ // MercadoPago initialization
+ const mp = new MercadoPago('APP_USR-b2ad37f2-01f8-4ed9-b5be-7ddb974c6eb0', { locale: 'pt-BR' });
+ 
+ // Reactive state to hold preference ID
+ const preferenceId = ref(null);
+ 
+ // Função para criar o botão de checkout após obter o ID da preferência
+ const createCheckoutButton = (preferenceId) => {
+   const bricksBuilder = mp.bricks();
+ 
+   const renderComponent = async () => {
+     // Remover qualquer botão anterior, se existir (gerenciado pelo Vue agora)
+     // Criar o botão de checkout do Mercado Pago no 'wallet_container'
+     await bricksBuilder.create('wallet', 'wallet_container', {
+       initialization: {
+         preferenceId: preferenceId,
+       },
+     });
+   };
+ 
+   renderComponent();
+ };
+ 
+ // Função para manipular o clique e buscar os dados de preferência
+ const handleCheckoutClick = async () => {
+  isLoading.value = true; // Ativa o carregamento
+   try {
+     // Enviar uma requisição para o backend para criar a preferência
+     const response = await axios.post('https://backend-api-mercadopago.onrender.com/create_preference', orderData, {
+       headers: {
+         'Content-Type': 'application/json',
+       },
+     });
+ 
+     // Obter o ID da preferência da resposta
+     const preference = response.data;
+ 
+     // Armazenar o ID da preferência e criar o botão de checkout
+     preferenceId.value = preference.id;
+     createCheckoutButton(preference.id);
+   } catch (error) {
+     // Tratar erros da requisição
+     alert('Erro: Não foi possível criar a preferência de pagamento.');
+     console.error(error);
+   }finally {
+    isLoading.value = false; // Desativa o carregamento após a requisição
+  }
+ };
+ handleCheckoutClick()
 </script>
 
 <template>
+    <div class="container-pagamento">
     <div class="pagamento">
-        <div class="metodos-pagamento">
-            <h1>Como você prefere pagar </h1>
-            <ul class="metodos">
-                <li class="metodo" @click="metodo_pagamento = 'cartao de credito'">
-                    <label for="cartao-creido" class="metodo-nome">Cartão de crédito</label><input type="radio"
-                        id="cartao-credito" class="metodo-confirm" value="cartao de credito"
-                        v-model="metodo_pagamento" />
-                </li>
-                <li class="metodo" @click="metodo_pagamento = 'pix'">
-                    <label for="pix" class="metodo-nome">PIX</label><input type="radio" id="pix" class="metodo-confirm"
-                        value="pix" v-model="metodo_pagamento" />
-                </li>
-                <li class="metodo" @click="metodo_pagamento = 'boleto bancario'">
-                    <label for="boleto-bancario" class="metodo-nome">Boleto bancário</label><input type="radio"
-                        id="boleto-bancario" class="metodo-confirm" value="boleto bancario"
-                        v-model="metodo_pagamento" />
-                </li>
-            </ul>
-        </div>
         <div class="detalhes-compra">
             <h2>Detalhe da sua compra</h2>
 
@@ -49,27 +101,58 @@ const metodo_pagamento = ref(null)
 
             <div class="valores">
                 <ul>
-                    <li><span>Subtotal</span><span>R$0</span></li>
-                    <li> <span>Frete</span><span>R$0</span> </li>
-                    <li> <span>Desconto</span><span>R$0</span> </li>
+                    <li><span>Subtotal</span><span>R${{subtotal.toFixed(2)}}</span></li>
+                    <li> <span>Frete</span><span>R${{Number(0).toFixed(2)}}</span> </li>
+                    <li> <span>Descontos</span><span>R${{descontos}}</span> </li>
                 </ul>
             </div>
             <div class="valor-final">
-                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final }}</span>
+                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final.toFixed(2)}}</span>
             </div>
             <div class="confirm-button">
-                <button @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()">Confirmar Compra</button>
+                <div id="wallet_container" @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()"></div>
             </div>
         </div>
-    </div>
-    <div class="pagamento-realizado" v-if="pagamento_foi_realizado">
-        <img src="../assets/images/LoadGif/check-mark-verified.gif" alt="">
-        <h1>Compra realizada com sucesso!!</h1>
-        <router-link to="/carrinho" class="confirm-pagamento">Ok, entendi.</router-link>
-    </div>
+        <div v-if="isLoading" class="loading">
+            <div class="animacao-carregamento">
+              <img src="@/assets/images/LoadGif/LoadingAnimation.gif" alt="">
+          </div>
+          </div>
+    </div></div>
 </template>
 
 <style scoped>
+.container-pagamento{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh ;
+    min-width: 100vw;
+}
+#wallet_container{
+    width: 100%;
+}
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255); /* Semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fique acima de outros conteúdos */
+  }
+  .animacao-carregamento img {
+    width: 250px;
+    height: auto;
+  }
+  
+  .animacao-carregamento {
+    height: 100px;
+    overflow: hidden;
+  }
 .pagamento-realizado img {
     width: 200px;
     height: auto;
@@ -111,7 +194,7 @@ const metodo_pagamento = ref(null)
     font-weight: 600;
     border: none;
     display: flex;
-    width: 100%;
+    width: 300px;
     justify-content: center;
     height: 40px;
     align-items: center;
@@ -162,7 +245,7 @@ const metodo_pagamento = ref(null)
     gap: 10px;
     padding: 20px 0px;
     align-items: center;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.6);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.6);
 }
 
 .produto div{
@@ -172,17 +255,18 @@ const metodo_pagamento = ref(null)
 }
 
 .pagamento {
-    padding: 80px 0px 0px 0px;
     display: flex;
     justify-content: center;
     gap: 50px;
+    width: 40%;
 }
 
 .detalhes-compra {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 100%;
     background-color: #F5F5F5;
+    border-radius: 20px;
     padding: 40px 40px;
 }
 
@@ -191,41 +275,4 @@ const metodo_pagamento = ref(null)
     font-weight: 600;
 }
 
-.metodos-pagamento {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    gap: 80px;
-}
-
-.metodos-pagamento h1 {
-    font-size: 24px;
-    font-weight: 600;
-    padding-top: 80px;
-}
-
-.metodos {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding-bottom: 80px;
-}
-
-.metodo {
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.26);
-    height: 75px;
-    border-radius: 5px;
-    padding: 0px 30px;
-    align-items: center;
-    cursor: pointer;
-}
-
-.metodo-confirm {
-    color: rgb(149, 149, 240);
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-}
 </style>
