@@ -41,10 +41,13 @@ span {
 
 vfor   -->
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRoute, RouterLink } from "vue-router";
+import { useProdutosStore } from '@/stores/produtosStore'; // Importando a store de produtos
 
+// Inicializando a rota
 const route = useRoute();
+const produtosStore = useProdutosStore();
 let path = ref(route.path);
 
 // Remove '/all' da URL, se existir
@@ -62,15 +65,7 @@ const caminhos = computed(() => {
     return '/' + partesRota.value.slice(0, index + 1).join('/');
   });
 });
-const caminhosRota = computed(() => {
-  // Substitui '/produto' ou '/produtos' por '/produtos/all' em qualquer item do array
-  return caminhos.value.map(caminho => {
-    if (caminho === '/produto' || caminho === '/produtos') {
-      return '/produtos/all'; // Redireciona 'produto' ou 'produtos' para 'produtos/all'
-    }
-    return caminho; // Para outras rotas, retorna o caminho original
-  });
-});
+
 // Computa a rota atual em formato "Home > detalhes" por exemplo
 const rotaAtual = computed(() => {
   return path.value.replace(/\//g, " > ");
@@ -81,6 +76,23 @@ const rotaBold = computed(() => {
   const regex = new RegExp(`(${partesRota.value[partesRota.value.length - 1]})`, "g");
   return rotaAtual.value.replace(regex, "<strong>$1</strong>");
 });
+
+// Substituindo o 'id' do produto pelo nome correspondente na URL
+watch(path, () => {
+  // Verifica se a rota contém "/produto/:id"
+  const produtoId = partesRota.value[partesRota.value.indexOf('produto') + 1];
+  
+  if (produtoId) {
+    // Acessa o produto na store pelo id
+    const produto = produtosStore.produtos.find(p => p.id === parseInt(produtoId));
+
+    if (produto) {
+      // Substitui o 'id' pelo nome do produto na URL
+      path.value = path.value.replace(produtoId, produto.nome.toLowerCase().replace(/\s+/g, '-'));
+    }
+  }
+}, { immediate: true });
+
 </script>
 
 <template>
@@ -92,7 +104,7 @@ const rotaBold = computed(() => {
     <!-- Gera links dinâmicos para cada parte da rota -->
     <span v-for="(parte, index) in partesRota" :key="index">
       <!-- Para a última parte, formatar em negrito -->
-      <RouterLink :to="caminhosRota[index]" class="link" :class="{ 'active': index === partesRota.length - 1 }">
+      <RouterLink :to="caminhos[index]" class="link" :class="{ 'active': index === partesRota.length - 1 }">
         <span v-if="index === partesRota.length - 1" v-html="'<strong>' + parte + '</strong>'"></span>
         <span v-else>{{ parte }}</span>
       </RouterLink>
@@ -102,6 +114,7 @@ const rotaBold = computed(() => {
     </span>
   </div>
 </template>
+
 
 <style scoped>
 .rota-atual {
