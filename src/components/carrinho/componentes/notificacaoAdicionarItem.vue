@@ -48,7 +48,7 @@ defineProps({
     padding: 30px;
     top: 0px;
     right: 0px;
-    width: 350px;
+    width: 400px;
     height: 300px;
     background-color: white;
     z-index: 99999;
@@ -76,7 +76,7 @@ defineProps({
 
 .addCartMsg img{
     width: 110px;
-    height: 120px;
+    height: auto;
 }
 .CartMsg-button{
     display: flex;
