@@ -134,7 +134,7 @@ function comprar(){
     <div id="wallet_container"></div>
     <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
   </div>
-  <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="Number(preco)" :image="image"
+  <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="Number(preco)" :image="image[0]"
     :closeFunction="closeNotify" />
 </template>
 <style scoped>

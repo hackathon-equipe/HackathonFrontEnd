@@ -4,7 +4,7 @@ import { XCloseIcon, checkCircle } from '@/components/icons';
 defineProps({
   nome: String,
   preco: Number,
-  image: String,
+  image: Array,
   closeFunction: Function,
 })
 
@@ -18,7 +18,7 @@ defineProps({
               <div><XCloseIcon class="button" @click="closeFunction()"/></div>
             </div>
             <div class="CartMsg-desc">
-              <div class="CartMsg-desc-img"><img :src="image" alt=""></div>
+              <div class="CartMsg-desc-img"><img :src="image.file" alt=""></div>
               <div class="CartMsg-desc-prod">
                 <span>{{ nome }}</span>
                 <span class="prod-type"> Tipo </span>
@@ -93,5 +93,24 @@ defineProps({
     display: flex;
     width: 300px;
     height: 50px;
+}
+@media (max-width:768px) {
+    .addCartMsg{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        padding: 30px;
+        top: 0px;
+        right: 0px;
+        width: 100%;
+        height: 300px;
+        background-color: white;
+        z-index: 99999;
+    }
+    .addCartMsg img{
+        width: 110px;
+        height: auto;
+    }
 }
 </style>
