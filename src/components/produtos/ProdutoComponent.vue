@@ -39,12 +39,12 @@ function atualizarImagem(novaImagem) {
     <PadraoPropagandas />
     <PadraoCaminho />
     <main>
-      <div>
+      <div class="imagem-produto">
         <ImagemProduto :imagem="imagemAtual" />
+        <ImagensPqn class="sub-imagens" :images="img"  @selecionarImage="atualizarImagem"/>
       </div> 
      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="img" :estrelas="estrelas"/>
     </main>
-    <ImagensPqn class="sub-imagens" :images="img"  @selecionarImage="atualizarImagem"/>
 
     <!-- <DescricaoProduto :VerMais="VerMais" /> -->
     <div class="carousel-produtos">
@@ -77,6 +77,12 @@ main {
   padding: 100px;
   text-align: center;
   font-weight: 600;
+}
+
+.imagem-produto{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 @media (max-width: 768px) {

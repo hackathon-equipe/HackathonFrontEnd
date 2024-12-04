@@ -129,7 +129,7 @@ function comprar(){
       <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
     </div>
     <span class="preco">R$ {{ Number(preco).toFixed(2).replace('.', ',') }}</span>
-    <inputAplicarComp :class="inferior" class="frete" titulo="Calcular Frete" tituloBotao="Inserir CEP" inputPlaceholder="Insira seu CEP" />
+    <inputAplicarComp :class="inferior" type=1  class="frete" titulo="Calcular Frete" tituloBotao="Inserir CEP" inputPlaceholder="Insira seu CEP" />
     <button class="button-comprar" @click="comprar()">Comprar</button>
     <div id="wallet_container"></div>
     <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
@@ -139,9 +139,9 @@ function comprar(){
 </template>
 <style scoped>
 .informacoes {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 35vw;
 }
 
