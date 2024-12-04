@@ -57,8 +57,12 @@ export const useFiltroStore = defineStore('filtro', () => {
       
       // Filtrando produtos com base em potência
       if (filtredPotencia.length !== 0) {
-        arrayFiltrada = arrayFiltrada.filter(item => filtredPotencia.includes(String(item.descricao.PotenciaMaxima)))
-      }
+        // Filtra o array com base em PotenciaMaxima ou PotenciaDoKit dentro de descricao
+        arrayFiltrada = arrayFiltrada.filter(item => 
+            filtredPotencia.includes(String(item.descricao.PotenciaMaxima)) || 
+            filtredPotencia.includes(String(item.descricao.PotenciaDoKit))
+        );
+    }
       // Filtrando produtos com base em marcas
       if (filtredMarcas.length !== 0) {
         arrayFiltrada = arrayFiltrada.filter(item => filtredMarcas.includes(item.fabricante[0].nome.toLowerCase()))

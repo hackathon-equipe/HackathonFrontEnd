@@ -1,5 +1,5 @@
 <template>
-  <div class="container-paginacao2">
+  <div v-if="mostrarPaginacao" class="container-paginacao2">
     <ul>
       <li v-for="passenger in passengers" :key="passenger.id">
         {{ passenger.name }}
@@ -17,13 +17,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import Pagination from "./PaginacaoVue.vue";
+import { useFiltroStore } from '@/stores/filtros';
+
+const filtroStore = useFiltroStore();
+
+// Computed para verificar se há mais de 6 itens
+const mostrarPaginacao = computed(() => filtroStore.filtro.length > 6);
+
 // import axios from "axios";
 
 const passengers = ref([]);
 const offset = ref(0);
-const total = ref(22);
+const total = ref(2);
 const limit = 1;
 
 const changePagePrev = (value) => {

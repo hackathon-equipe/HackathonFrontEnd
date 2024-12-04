@@ -89,16 +89,40 @@ const bigArray = ref([
           value: "590W",
         },
         {
-          nome: "570W",
-          value: "570W",
-        },
-        {
-          nome: "555W",
-          value: "555W",
+          nome: "450W",
+          value: "450W",
         },
         {
           nome: "550W",
           value: "550W",
+        },
+        {
+          nome: "3kWp",
+          value: "0 kWp até 3 kWp",
+        },
+        {
+          nome: "5kWp",
+          value: "3,1 kWp até 5 kWp",
+        },
+        {
+          nome: "7,5kWp",
+          value: "5,1 kWp até 7,5 kWp",
+        },
+        {
+          nome: "10kWp",
+          value: "7,51 kWp até 10 kWp",
+        },
+        {
+          nome: "20kWp",
+          value: "10,1 kWp até 20 kWp",
+        },
+        {
+          nome: "50kWp",
+          value: "20,1 kWp até 50 kWp",
+        },
+        {
+          nome: "100kWp",
+          value: "50,1 kWp até 100 kWp",
         },
       ],
     },
