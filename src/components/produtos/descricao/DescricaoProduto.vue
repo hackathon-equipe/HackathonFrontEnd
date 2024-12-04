@@ -1,13 +1,51 @@
 <script setup>
- defineProps({
-  VerMais: String
+import { computed, ref } from 'vue';
+const props = defineProps({
+  desc: Array
 })
+
+
+// Função para tratar as chaves
+function separarChave(key) {
+  if (key.includes('_')) {
+    // Trata snake_case
+    return key.replace(/_/g, ' ');
+  } else {
+    // Trata CamelCase
+    return key.replace(/([a-z])([A-Z])/g, '$1 $2');
+  }
+}
+
+// Computed para criar um novo objeto com as chaves transformadas
+const novaDesc = computed(() => {
+  const result = {};
+  for (const key in props.desc) {
+    result[separarChave(key)] = props.desc[key];
+  }
+  return result;
+});
+
+const pdfTecnico = ref('');
+
+// Função para separar "PDF Tecnico"
+function separarPdfTecnico() {
+  pdfTecnico.value = novaDesc.value["PDF Tecnico"]; // Copia o valor
+  console.log(pdfTecnico.value)
+  delete novaDesc.value["PDF Tecnico"]; // Remove a chave do objeto
+}
+
+separarPdfTecnico();
+
+
 </script>
 <template>
     <h1 class="titulo-descricao">Descrição do Produto</h1>
-    <div class="descricao"> 
-      <span v-for="(value, key) of VerMais" :key="key">{{ key }}: <strong>{{ value }}</strong></span>
-      <span>DOWNLOAD CENTER</span>
+    <div class="descricao">
+      <ul>
+        <li v-if="pdfTecnico != undefined"><a :href="pdfTecnico">PDF Tecnico</a></li>
+        <li v-for="(value, key) of novaDesc" :key="key">{{ key }}: <strong>{{ value }}</strong></li>
+        <li>DOWNLOAD CENTER</li>
+      </ul>
      </div>
 </template>
 <style scoped>
@@ -17,9 +55,32 @@
     text-align: center;
     font-weight: 610;
   }
-  .descricao span{
-    display: block;
-    margin-left: calc(15vw - 30px);
+  .descricao{
+    display: flex;
+    padding: 0px 50px;
     font-size: 16px;
+  }
+  .descricao ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+  }
+  .descricao ul li{
+    padding: 2px 0px;
+  }
+  @media (max-width:768px) {
+    .descricao{
+      padding: 20px;
+    }
+    .titulo-descricao{
+      padding: 80px 20px;
+    }
+    .descricao ul li:nth-child(even){
+      background-color: #f1f1f1;
+    }
+    .descricao ul li{
+      padding: 10px;
+    }
   }
 </style>

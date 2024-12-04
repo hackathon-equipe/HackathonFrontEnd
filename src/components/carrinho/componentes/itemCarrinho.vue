@@ -55,7 +55,7 @@ function removeFromCart() {
 <style scoped>
 .item {
     width: 700px;
-    border-bottom: 1px solid #A1A1A1;
+    border-bottom: 1px solid #a1a1a150;
     display: flex;
     gap: 30px;
     padding-bottom: 10px;
