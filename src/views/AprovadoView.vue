@@ -67,7 +67,7 @@ onMounted(() => {
           <span class="span-pqn">{{ dataHoraPagamento }}</span> <!-- Exibe a data e hora -->
           <hr class="hr"/>
           <span class="span-pqn">valor do pagamento</span>
-          <span class="valor">R$ 20.000,00</span>
+          <span class="valor">R$ 766,00</span>
           <span class="span-pqn">prazo de entrega</span>
           <span class="prazo">4 a 5 dias úteis</span>
           <router-link to="/" class="button" >voltar ao site</router-link></div>

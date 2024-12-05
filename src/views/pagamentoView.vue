@@ -5,6 +5,7 @@ import { usePagamentoStore } from '@/stores/pagamentoStore';
 import axios from 'axios'; // Importando Axios
 // Acessando o pagamentoStore
 const pagamentoStore = usePagamentoStore();
+const frete = ref(76)
 
 // Calculando o subtotal (soma do preço dos itens * quantidade)
 const subtotal = computed(() => {
@@ -102,12 +103,12 @@ function pagamento_realizado() {
             <div class="valores">
                 <ul>
                     <li><span>Subtotal</span><span>R${{subtotal.toFixed(2)}}</span></li>
-                    <li> <span>Frete</span><span>R${{Number(0).toFixed(2)}}</span> </li>
+                    <li> <span>Frete</span><span>R${{Number(frete).toFixed(2)}}</span> </li>
                     <li> <span>Descontos</span><span>R${{descontos}}</span> </li>
                 </ul>
             </div>
             <div class="valor-final">
-                <span>A pagar</span><span class="valor">R${{ usePagamentoStore().valor_final.toFixed(2)}}</span>
+                <span>A pagar</span><span class="valor">R${{( usePagamentoStore().valor_final+frete).toFixed(2)}}</span>
             </div>
             <div class="confirm-button">
                 <div id="wallet_container" @click="usePagamentoStore().confirmarCompra(), pagamento_realizado()"></div>
