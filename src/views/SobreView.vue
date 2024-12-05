@@ -31,7 +31,7 @@ const enviarEmail = async () => {
     error.value = ''
     setTimeout(() => {
       popup.value = false
-    }, 1300)
+    }, 2500)
     form.value = { telefone: '', nome: '', user_email: '', mensagem: '' } // Limpa o formulário
   } catch (error) {
     validacao.value = true
@@ -251,11 +251,13 @@ const enviarEmail = async () => {
   display: flex;
   justify-content: center;
 }
+
 form button {
   text-indent: 0px;
   width: 200px;
   height: 50px;
   background-color: #29375b;
+  border: 1px solid #29375b;
   color: white;
   font-weight: 600;
   text-align: center;

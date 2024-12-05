@@ -215,6 +215,11 @@ const irParaProdutosAll = () => {
   font-weight: 600;
 }
 
+.navbar .utilities .button:hover{
+  background-color: #406996;
+  color: white;
+}
+
 /* FIM -> CSS SUBMENU */
 .navbar {
   z-index: 9999;
@@ -274,6 +279,7 @@ const irParaProdutosAll = () => {
   border-radius: 3rem;
   cursor: pointer;
   text-decoration: none;
+  transition: all .1s linear;
 }
 .perfil {
   display: flex;
