@@ -44,7 +44,7 @@ onMounted(() => {
         <sugestIcons />
       </div>
       <TitleCarousel title="Mais bem avaliados" />
-      <PadraoCarousel />
+      <PadraoCarousel :tipo="'Bem Avaliado'" />
       <TitleCarousel title="Inspirados no visto por ultimo" />
       <PadraoCarousel />
       <beneficiesCards />
