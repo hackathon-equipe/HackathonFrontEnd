@@ -3,6 +3,7 @@ import { computed} from "vue";
 import SlideComponent from "@/components/carousel/SlideComponent.vue";
 import { useFiltroStore } from "@/stores/filtros";
 import DefaultPaginacao from "@/components/paginacao/DefaultPaginacao.vue";
+import { useComentarioStore } from "@/stores/comentarios";
 const FiltrosStore = useFiltroStore();
 const isTwoProducts = computed(() => {
   return FiltrosStore.filtro.length === 2;
@@ -10,6 +11,7 @@ const isTwoProducts = computed(() => {
 function parcelas (preco){
   return `em até 10x de R$${Number(preco/10).toFixed(2).replace('.', ',')}`
 }
+
 
 </script>
 <template>
@@ -22,7 +24,7 @@ function parcelas (preco){
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="parcelas(text.preco)"
-        :estrelas="4"
+        :estrelas="Math.floor(useComentarioStore().mediaProdutos(id))"
       />
     </div>
     <DefaultPaginacao />

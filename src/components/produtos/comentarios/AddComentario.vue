@@ -242,6 +242,9 @@ import { ref, computed, watch } from 'vue'
 import { useComentarioStore } from '@/stores/comentarios'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+const route = useRoute(); // Captura a rota atual
+const produtoid = parseInt(route.params.id);
 
 const router = useRouter();
   const useAuth=useAuthStore()
@@ -259,7 +262,7 @@ const estrelasAmarelas = ref(0)
 const estrelasCinzas = computed(() => 5 - estrelasAmarelas.value)
 
 function comentar() {
-  if(!useAuth.loggedIn){
+  if(useAuth.loggedIn){
     openAdd.value = true }
     else{
       router.replace("/login")
@@ -267,14 +270,14 @@ function comentar() {
 }
 
 function adicionarComentario() {
-  ComentarioStore.addComentario( textExelencia.value, estrelasAmarelas.value, textComentario.value)
+  ComentarioStore.addComentario( estrelasAmarelas.value, textComentario.value, produtoid)
   openAdd.value = false
+  ComentarioStore.carregarAvaliacoes()
 }
 
 
 watch(openAdd, (newValue) => {
   if (!newValue) {
-    textExelencia.value = ""
     quantidadeEstrelas.value = ""
     textComentario.value = ""
     estrelasAmarelas.value = 0
