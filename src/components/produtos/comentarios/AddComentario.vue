@@ -104,7 +104,7 @@ watch(openAdd, (newValue) => {
       </form>
     </div>
   </div>
-</template> -->
+</template> 
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
@@ -234,7 +234,7 @@ button {
 .comentario-button span {
   font-weight: 650;
 }
-</style>
+</style>-->
 
 
 <script setup>
