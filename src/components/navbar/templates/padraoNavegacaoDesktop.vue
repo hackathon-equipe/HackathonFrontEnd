@@ -75,7 +75,11 @@ const irParaProdutosAll = () => {
         <button v-if="openPesquisar" @click="closePesquisar" class="close-btn">X</button>
       </div>
       <router-link to="/perfil" v-if="useAuth.loggedIn" class="perfil">
-        <img src="/src/assets/images/usersemfoto.jpg" alt="foto usuario" />
+        <img  :src="
+       useAuth.user.foto
+            ? useAuth.user.foto.url
+              : '/src/assets/images/usersemfoto.jpg'
+      " alt="foto usuario" />
         <span>{{ useAuth.user.name }}</span>
       </router-link>
       <router-link to="/login" class="button" v-else>cadastro</router-link>
@@ -265,6 +269,8 @@ const irParaProdutosAll = () => {
   height: 44px;
   border-radius: 50%;
   text-decoration: none;
+  object-fit: cover;
+
 }
 .perfil span {
   color: black;
