@@ -32,13 +32,12 @@ onUnmounted(() => {
   window.removeEventListener('scroll', checkScroll)
 })
 
-const goToDesempenho = () => {
-  // Rolar a página para baixo 100vh (altura total da tela)
-  window.scrollTo({
-    top: window.scrollY + (window.innerHeight - 60),  // Rolando a tela para baixo em 100vh
-    behavior: 'smooth' // Rolagem suave
-  })
-}
+const scrollToSection = () => {
+  const target = document.getElementById("desempenho"); // Obtém o elemento alvo pelo ID
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth" }); // Rolagem suave para a div
+  }
+};
 
 const user = ref()
 const carregando = ref(false)
@@ -86,8 +85,8 @@ onMounted(() => {
           </div>
         </div>
         <div class="home-buttons">
-          <button class="button" @click="goToDesempenho">Desempenho
-            <leftArrowIcon class="seta" />
+          <button class="button" @click="scrollToSection">Desempenho
+            <LeftArrowIcon class="seta" />
           </button>
         </div>
       </div>
@@ -95,7 +94,7 @@ onMounted(() => {
         <bunnerHomePage />
       </div>
     </div>
-    <div class="container-desempenho">
+    <div class="container-desempenho" id="desempenho">
       <div v-if="scrollReached" :class="scrollReached ? 'active' : 'not-active'" class="container-esquerda">
         <div class="container-flex">
           <div class="dados-produtos">

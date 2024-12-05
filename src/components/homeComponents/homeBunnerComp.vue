@@ -7,7 +7,7 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
 <template>
     <div class="home">
         <div class="info-side">
-            <div class="home-tittle">
+            <div class="home-tittle" v-motion-slide-visible-once-left :delay="300" :duration="300">
                 <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
             </div>
             <HomeIconsComp />
@@ -20,7 +20,7 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
                 </router-link>
             </div>
         </div>
-        <imageHomePage class="responsive-class" />
+        <imageHomePage class="responsive-class" v-motion-slide-visible-once-right :delay="300" :duration="400" />
     </div>
 </template>
 

@@ -7,13 +7,13 @@ import { useScreenSize } from '@/composables/useScreenSize';
 <template>
     <div class="container">
         <div class="images">
-            <imgMobile v-if="useScreenSize().isMobile" />
+            <imgMobile v-if="isMobile" v-motion-slide-visible-once-left :delay="300" :duration="400" />
             <div v-else>
                 <img src="./img/menorFrame.png" alt="">
                 <img src="./img/maiorFrame.png" alt="">
             </div>
         </div>
-        <div class="content">
+        <div class="content" v-motion-slide-visible-once-right :delay="300" :duration="400">
             <h2>Oorun, o seu maior investimento para o futuro</h2>
             <p>Você sabia que a energia solar é ideal para o clima tropical do Brasil? </p>
             <p>Entre em contato conosco o mais rápido possível para obter a sua energia solar Oorun!</p>
