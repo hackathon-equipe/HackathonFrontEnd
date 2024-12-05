@@ -1,23 +1,33 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useComentarioStore } from '@/stores/comentarios'
-import { useAuthStore } from '@/stores/auth'
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-  const useAuth=useAuthStore()
-
+import { useAuthStore } from '@/stores/auth';
+import { useRoute } from 'vue-router';
+const route = useRoute(); // Captura a rota atual
+const produtoid = parseInt(route.params.id); 
+const authStore = useAuthStore()
 const ComentarioStore = useComentarioStore()
-
+const usuario = authStore.user.id
 
 const openAdd = ref(false)
-const textExelencia = ref("")
+// const textExelencia = ref("")
 const quantidadeEstrelas = ref("")
-const textComentario = ref("")
-const estrelasAmarelas = ref(0)
+const comentario = ref("")
+const nota = ref(0)
 
+const avaliacao = ref( {
+  'quantidadeEstrelas':'',
+  'comentario': '',
+  'nota': 0,
+  'usuario':authStore.user.id,
+  'produto': parseInt(route.params.id)
+  
 
-const estrelasCinzas = computed(() => 5 - estrelasAmarelas.value)
+})
+
+console.log(avaliacao.value)
+
+const estrelasCinzas = computed(() => 5 - avaliacao.value.nota)
 
 function comentar() {
   if(!useAuth.loggedIn){
@@ -28,17 +38,17 @@ function comentar() {
 }
 
 function adicionarComentario() {
-  ComentarioStore.addComentario( textExelencia.value, estrelasAmarelas.value, textComentario.value)
+  console.log(avaliacao.value)
+  ComentarioStore.postarComentario(avaliacao.value)
   openAdd.value = false
 }
 
 
 watch(openAdd, (newValue) => {
   if (!newValue) {
-    textExelencia.value = ""
-    quantidadeEstrelas.value = ""
-    textComentario.value = ""
-    estrelasAmarelas.value = 0
+    avaliacao.value.quantidadeEstrelas = ""
+    avaliacao.value.comentario = ""
+    avaliacao.value.nota = 0
   }
 })
 </script>
@@ -61,7 +71,7 @@ watch(openAdd, (newValue) => {
           <div class="estrelas centro">
 
             <!-- Estrelas Amarelas -->
-            <div v-for="item in estrelasAmarelas" :key="item" @click="estrelasAmarelas = item">
+            <div v-for="item in avaliacao.nota" :key="item" @click="avaliacao.nota = item">
               <svg width="30" height="30" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
@@ -70,7 +80,7 @@ watch(openAdd, (newValue) => {
             </div>
 
             <!-- Estrelas Cinzas -->
-            <div v-for="item in estrelasCinzas" :key="item" @click="estrelasAmarelas = item + estrelasAmarelas">
+            <div v-for="item in estrelasCinzas" :key="item" @click="avaliacao.nota = item + avaliacao.nota">
               <svg width="30" height="30" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
@@ -79,10 +89,14 @@ watch(openAdd, (newValue) => {
             </div>
           </div>
         </div>
+        <!-- <div class="centro">
+          <input class="input-comentario" placeholder="titulo" v-model="textExelencia" type="text" id="exelencia"
+            required />
+        </div> -->
 
         <div class="centro">
           <textarea class="input-comentario comentario" placeholder="escreva sua opinião" style="display:block"
-            v-model="textComentario" type="text" id="comentario" required />
+            v-model="avaliacao.comentario" type="text" id="comentario" required />
         </div>
         <div class="centro">
           <button class="button" type="submit">Adicionar Comentário</button>

@@ -1,11 +1,35 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
+import AvaliacaoService from '@/service/avaliacoes'
 
-
+const avaliacaoService = new AvaliacaoService()
+const authToken = localStorage.getItem('psg_auth_token');
 export const useComentarioStore = defineStore('comentario', () => {
   const useAuth=useAuthStore()
-    const comentarios = ref([
+
+    const comentarios = ref([])
+
+    const carregarAvaliacoes = async () => {
+      comentarios.value = await avaliacaoService.BuscarTodosAsAvaliacoes();
+      console.log(comentarios.value)
+  };
+
+
+  const postarComentario = async (comentario) => {
+    try {
+      const response = await avaliacaoService.AdcionarAvaliacao(comentario, authToken);
+      comentarios.value.push(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao postar comentário:', error);
+      throw error; // Repassa o erro para tratamento no componente
+    }
+  };
+  
+  
+
+    const comentariostESTE = ref([
       {
         id: 1,
         nomeUser: 'Vini',
@@ -44,5 +68,5 @@ export const useComentarioStore = defineStore('comentario', () => {
     }}
     
 
-  return { comentarios, addComentario }
+  return { comentarios, addComentario, carregarAvaliacoes, postarComentario }
 })
