@@ -17,7 +17,7 @@ function parcelas (preco){
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="parcelas(text.preco)"
-        :estrelas="3"
+        :estrelas="4"
     />
   </div>
 </template>
