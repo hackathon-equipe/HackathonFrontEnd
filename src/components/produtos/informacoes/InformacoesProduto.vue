@@ -4,7 +4,11 @@ import addToCartNotify from '@/components/carrinho/componentes/notificacaoAdicio
 import { ref, reactive } from 'vue';
 import { useProdutosStore } from '@/stores/produtosStore';
 import { usePagamentoStore } from '@/stores/pagamentoStore';
-import router from '@/router';
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+  const useAuth=useAuthStore()
 // import axios from 'axios'; // Importando Axios
 const props = defineProps({
   nome: String,
@@ -67,17 +71,27 @@ const compra = usePagamentoStore()
 
 const visibleAddCart = ref(false);
 function addToCart(){
-  cart.addItem(produto);
+  if(useAuth.loggedIn){
+    cart.addItem(produto);
   visibleAddCart.value = true;
   setTimeout(() => {visibleAddCart.value = false;}, 4000);
+  }
+    else{
+      router.replace("/login")
+    }
 }
 function closeNotify(){
   visibleAddCart.value = false
 }
 function comprar(){
-  compra.realizarCompra(props, 'direta', props.preco)
+  if(useAuth.loggedIn){
+    compra.realizarCompra(props, 'direta', props.preco)
   console.log(props.preco)  
   router.push('/pagamento')
+  }
+    else{
+      router.replace("/login")
+    }
 }
 </script>
 <template>

@@ -36,7 +36,7 @@ export const useComentarioStore = defineStore('comentario', () => {
       }
     ])
       function addComentario(textExelencia,quantidadeEstrelas, textComentario) {
-        if(useAuth.loggedIn){
+        if(!useAuth.loggedIn){
         comentarios.value.push({ id:((comentarios.value[comentarios.value.length-1]).id)+1, nomeUser:useAuth.user.name , exelencia:textExelencia, estrelas:quantidadeEstrelas, comentario:textComentario })
       }
     else{

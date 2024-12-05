@@ -1,6 +1,11 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useComentarioStore } from '@/stores/comentarios'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+  const useAuth=useAuthStore()
 
 const ComentarioStore = useComentarioStore()
 
@@ -14,6 +19,13 @@ const estrelasAmarelas = ref(0)
 
 const estrelasCinzas = computed(() => 5 - estrelasAmarelas.value)
 
+function comentar() {
+  if(!useAuth.loggedIn){
+    openAdd.value = true }
+    else{
+      router.replace("/login")
+    }
+}
 
 function adicionarComentario() {
   ComentarioStore.addComentario( textExelencia.value, estrelasAmarelas.value, textComentario.value)
@@ -32,7 +44,7 @@ watch(openAdd, (newValue) => {
 </script>
 
 <template>
-  <div @click="openAdd = true" class="comentario-button">
+  <div @click=" comentar()" class="comentario-button">
     <button>+</button>
     <span>Faça seu comentário</span>
   </div>
@@ -66,10 +78,6 @@ watch(openAdd, (newValue) => {
               </svg>
             </div>
           </div>
-        </div>
-        <div class="centro">
-          <input class="input-comentario" placeholder="titulo" v-model="textExelencia" type="text" id="exelencia"
-            required />
         </div>
 
         <div class="centro">

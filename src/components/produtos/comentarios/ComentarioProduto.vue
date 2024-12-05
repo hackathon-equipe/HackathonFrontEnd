@@ -5,7 +5,9 @@ const ComentarioStore = useComentarioStore()
 <template>
     <div class=comentario v-for="(item,index) in ComentarioStore.comentarios" :key="item.id">
     <div class="divs"><img class="usuario-img" src="@/assets/images/foto-usuario.png" /><span class="nome-usuario informacao-usuario">{{item.nomeUser}}</span></div>
-    <div class="divs"><span class="exelencia">{{item.exelencia}}</span>
+    <div class="divs"><span class="exelencia"
+      v-if="item.nota == 0 ? titulo = 'Pessimo' : item.nota == 1 ? titulo = 'Ruim' : item.nota == 2 || item.nota == 3 ? titulo = 'Regular' : item.nota == 4 ? titulo = 'Bom' : titulo = 'Excelente'">{{ titulo }}</span>
+   
       <div class="estrelas">
         <div v-for="item in item.estrelas" :key="item">
           <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
