@@ -6,7 +6,7 @@ import { useCartStore } from '@/stores/carrinhoStore';
 import { useProdutosStore } from '@/stores/produtosStore';
 
 const props = defineProps({
-    img: String,
+    img: Array,
     nome: String,
     preco: Number,
     id: Number,
@@ -14,9 +14,6 @@ const props = defineProps({
     removeMsg: Function,
 })
 
-const imgSrc = computed(() => {
-    return new URL(`../../../assets/images/${props.img}.png`, import.meta.url).href
-});
 
 const produto = useProdutosStore().getProduct(props.id);
 const carrinho = useCartStore();
@@ -36,7 +33,7 @@ function removeFromCart() {
 <template>
     <div class="itens">
         <div class="item">
-            <img class="item-img" :src="imgSrc" alt="">
+            <img class="item-img" :src="img.file" alt="">
             <div class="item-info">
                 <span class="item-nome">{{ props.nome }}</span>
                 <span class="item-valor">R$ {{ props.preco }}</span>
@@ -58,7 +55,7 @@ function removeFromCart() {
 <style scoped>
 .item {
     width: 700px;
-    border-bottom: 1px solid #A1A1A1;
+    border-bottom: 1px solid #a1a1a150;
     display: flex;
     gap: 30px;
     padding-bottom: 10px;

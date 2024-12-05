@@ -43,7 +43,6 @@ if (props.images.length > 0) {
   justify-content: space-between;
   width: 35vw;
   height: 15vh;
-  margin-left: calc(15vw - 30px);
   margin-top: 1vw;
 }
 .imgs .img-pqn {

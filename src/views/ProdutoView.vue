@@ -5,7 +5,7 @@ import { useProdutosStore } from "@/stores/produtosStore";
 import ProdutoComponent from "@/components/produtos/ProdutoComponent.vue";
 const ProdutosStore = useProdutosStore();
 function parcelas (preco){
-  return `em até 10x de ${preco}`
+  return `em até 10x de ${preco / 10}`
 }
 </script>
 <template>
@@ -17,7 +17,8 @@ function parcelas (preco){
         :nome="text.nome"
         :preco="text.preco"
         :parcelas="parcelas(text.preco)"
-        :estrelas="4"
+        :estrelas="3"
+        :desc="text.descricao"
     />
   </div>
 </template>

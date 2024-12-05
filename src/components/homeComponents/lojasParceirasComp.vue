@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="tittle">
+    <div class="tittle" v-motion-slide-visible-once-left :delay="300" :duration="400">
         <h2>Navegue pelas lojas parceiras</h2>
     </div>
     <div class="markets">
-        <a href="https://www.weg.net/institutional/BR/pt/"><img src="./img/catarinasLogo.png" alt=""></a>
-        <a href="https://www.elgin.com.br/"><img src="./img/elginLogo.png" alt=""></a>
-        <a href="https://catarinnasenergiasolar.com.br/#:~:text=Os%20pain%C3%A9is%20solares,%20instalados%20sobre%20o%20seu%20telhado,%20capturam%20a"><img src="./img/wegLogo.png" alt=""></a>
+        <a href="https://www.weg.net/institutional/BR/pt/" v-motion-slide-visible-once-bottom :delay="300" :duration="400"><img src="./img/catarinasLogo.png" alt=""></a>
+        <a href="https://www.elgin.com.br/" v-motion-slide-visible-once-bottom :delay="350" :duration="400"><img src="./img/elginLogo.png" alt=""></a>
+        <a href="https://catarinnasenergiasolar.com.br/#:~:text=Os%20pain%C3%A9is%20solares,%20instalados%20sobre%20o%20seu%20telhado,%20capturam%20a" v-motion-slide-visible-once-bottom :delay="400" :duration="400"><img src="./img/wegLogo.png" alt=""></a>
     </div>
   </div>
 </template>

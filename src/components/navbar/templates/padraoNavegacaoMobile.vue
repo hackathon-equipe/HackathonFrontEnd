@@ -6,15 +6,13 @@ import logoStandart from '@/assets/logo/logoStandart.vue'
 import { ref } from 'vue';
 
 const abrirSubMenu = ref(false)
-
 //icons
 import { shopingCartIcon, searchIcon, menuIcon, userblackIcon, XCloseIcon } from '../../icons'
-
-import { useRotasStore } from '@/stores/rotas';
 import { useFiltroStore } from '@/stores/filtros'
+import { useCartStore } from '@/stores/carrinhoStore';
 
+const cart = useCartStore()
 const FiltrosStore = useFiltroStore()
-const rotasStore = useRotasStore()
 
 //Barra de Pesuisa
 const barraPesquisa = ref(false)
@@ -29,9 +27,10 @@ const barraPesquisa = ref(false)
                     <menuIcon v-else />
                 </div>
                 <div class="item">
-                    <searchIcon @click="barraPesquisa = !barraPesquisa" /> 
-                    <div  v-if="barraPesquisa" class="input-pesquisar">
-                        <input type="text" v-model="FiltrosStore.pesquisa" @blur="closePesquisar" placeholder="Pesquisar..."/>
+                    <searchIcon @click="barraPesquisa = !barraPesquisa" />
+                    <div v-if="barraPesquisa" class="input-pesquisar">
+                        <input type="text" v-model="FiltrosStore.pesquisa" @blur="closePesquisar"
+                            placeholder="Pesquisar..." />
                         <searchIcon class="icon" />
                     </div>
                 </div>
@@ -43,23 +42,44 @@ const barraPesquisa = ref(false)
             </div>
             <div class="menu-base-itens">
                 <div class="item user-icon">
-                    <userblackIcon />
+                    <router-link to="/perfil">
+                        <userblackIcon />
+                    </router-link>
                 </div>
                 <div class="item">
                     <router-link to="/carrinho">
-                        <shopingCartIcon />
+                        <router-link to="/carrinho" class="cart">
+                            <shopingCartIcon />
+                            <span v-if="cart.itensInCart > 0">{{ cart.itensInCart }}</span>
+                        </router-link>
                     </router-link>
                 </div>
             </div>
-        </div>
-        <div class="sub-menu" v-if="abrirSubMenu">
-            <ListaTitulos v-for="(text, index) in rotasStore.titles" :key="index" :title="text.text" :link="text.link" @click="onClick(text.text)" class="link" />
         </div>
     </nav>
 </template>
 
 <style scoped>
-.input-pesquisar{
+.cart {
+    position: relative;
+}
+
+.cart span {
+    position: absolute;
+    top: -10px;
+    right: -4px;
+    background: #29375b;
+    font-size: 9px;
+    width: 12px;
+    height: 12px;
+    color: white;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border-radius: 3rem;
+}
+
+.input-pesquisar {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -70,22 +90,26 @@ const barraPesquisa = ref(false)
     height: 38px;
     padding: 0px 50px;
 }
-.input-pesquisar input{
+
+.input-pesquisar input {
     width: 100%;
     height: 38px;
     padding: 0px 40px;
     border: 1px solid #A1A1A1;
     border-radius: 3rem
 }
-.input-pesquisar input:focus{
+
+.input-pesquisar input:focus {
     outline: none;
 }
-.input-pesquisar .icon{
+
+.input-pesquisar .icon {
     opacity: 0.4;
     position: absolute;
     right: 60px;
 }
-.sub-menu a{
+
+.sub-menu a {
     display: flex;
     text-align: center;
     justify-content: center;
@@ -95,7 +119,8 @@ const barraPesquisa = ref(false)
     color: black;
     margin: 0px 20px;
 }
-.sub-menu{
+
+.sub-menu {
     padding-top: 20px;
     display: flex;
     width: 100%;
@@ -103,11 +128,12 @@ const barraPesquisa = ref(false)
     position: absolute;
     background-color: white;
 }
+
 .menu-base-logo {
     display: flex;
 }
 
-.item{
+.item {
     cursor: pointer;
 }
 
@@ -124,7 +150,7 @@ const barraPesquisa = ref(false)
     width: 100vw;
 }
 
-.navbar{
+.navbar {
     background-color: white;
     border-bottom: 2px solid #D9D9D9;
     position: fixed;

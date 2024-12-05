@@ -33,6 +33,7 @@ footer section {
 .footer-info {
   flex-direction: row;
   display: flex;
+  gap: 15px;
 }
 
 hr {

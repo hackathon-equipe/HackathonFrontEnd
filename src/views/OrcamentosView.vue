@@ -82,7 +82,6 @@ function realizarCalculo() {
                 <h1>Resultado</h1>
                 <div class="resultado">
                     <div class="resultado-grafico">
-            
                         <OrcamentoGrafico :valores="resultado_orcamento.payback_values"/>
                     </div>
                     <div class="resultado-info">
@@ -254,5 +253,50 @@ form h1{
 .form-input label{
     text-indent: 20px;
     color: #2F3F68;
+}
+@media (max-width:1200px) {
+    .container{
+        padding: 0px 20px;   
+    }
+}
+@media (max-width: 768px) {
+    
+    .background{
+        padding: 0px;
+    }
+    .orcamento{
+        width: 100%;
+    }
+    .container{
+        background-color: transparent;
+        flex-direction: column;
+        padding: 20px 40px;
+    }
+    form h1{
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .button-area{
+        margin: 40px 0px;
+    }
+    .componente-resultado{
+        background-color: rgb(64, 105, 150, 0.00);
+        padding: 40px 0px;
+    }
+    .resultado{
+        flex-direction: column;
+    }
+    .resultado-grafico{
+        width: 100%;
+        min-height: 200px;
+        background-color: rgb(64, 105, 150, 0.00);
+    }
+    .resultado-info{
+        text-align: center;
+    }
+    .third-section{
+        padding: 0px 20px;
+    }
 }
 </style>

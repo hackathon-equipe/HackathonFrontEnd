@@ -4,7 +4,7 @@ import TitleCarousel from "@/components/carousel/TitleCarousel.vue";
 import ImagemProduto from "@/components/produtos/imagens/ImagemProduto.vue";
 import ImagensPqn from "@/components/produtos/imagens/ImagensPqn.vue";
 import InformacoesProduto from "@/components/produtos/informacoes/InformacoesProduto.vue";
-
+import DescricaoProduto from "./descricao/DescricaoProduto.vue";
 import ComentarioProduto from "@/components/produtos/comentarios/ComentarioProduto.vue";
 import AddComentario from "@/components/produtos/comentarios/AddComentario.vue";
 import ButtonMais from "@/components/produtos/comentarios/ButtonMais.vue";
@@ -20,7 +20,7 @@ const props = defineProps({
   preco: String,
   parcelas: String,
   estrelas:Number,
-  VerMais: String,
+  desc: Array,
 });
 
 const imagemAtual = ref(props.img[0]);
@@ -30,23 +30,20 @@ function atualizarImagem(novaImagem) {
   console.log(imagemAtual.value)
 }
 
-// const imgSrc = computed(() => {
-//   return new URL(`../../assets/images/${props.img}.png`, import.meta.url).href;
-// });
 </script>
 <template>
   <div>
     <PadraoPropagandas />
     <PadraoCaminho />
     <main>
-      <div>
+      <div class="imagem-produto">
         <ImagemProduto :imagem="imagemAtual" />
+        <ImagensPqn class="sub-imagens" :images="img"  @selecionarImage="atualizarImagem"/>
       </div> 
      <InformacoesProduto :nome="nome" :preco="preco" :id="id" :image="img" :estrelas="estrelas"/>
     </main>
-    <ImagensPqn class="sub-imagens" :images="img"  @selecionarImage="atualizarImagem"/>
+    <DescricaoProduto :desc="desc" />
 
-    <!-- <DescricaoProduto :VerMais="VerMais" /> -->
     <div class="carousel-produtos">
       <TitleCarousel title="Produtos Similares" />
       <PadraoCarousel />
@@ -77,6 +74,12 @@ main {
   padding: 100px;
   text-align: center;
   font-weight: 600;
+}
+
+.imagem-produto{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 @media (max-width: 768px) {

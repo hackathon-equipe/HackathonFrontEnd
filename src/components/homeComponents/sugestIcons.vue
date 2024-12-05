@@ -1,6 +1,6 @@
 <template>
     <div class="limitador">
-        <div class="container">
+        <div class="container" v-motion-slide-visible-once-bottom :delay="300" :duration="400"> 
             <div class="card">
                 <router-link to="/produtos/placas-solares">
                     <div class="card-image">
@@ -76,6 +76,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+::-webkit-scrollbar {
+    width: 6px !important
 }
 
 ::-webkit-scrollbar {

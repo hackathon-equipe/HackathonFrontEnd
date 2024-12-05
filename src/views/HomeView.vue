@@ -37,16 +37,16 @@ onMounted(() => {
 <template>
   <Transition name="fade">
     <div v-if="produtos.length == 0" class="carregamento"><img src="/src/assets/images/LoadGif/LoadingAnimation.gif"
-        alt="" /></div>
+        alt=""></div>
     <div v-else>
       <HomeBunnerComp />
       <div class="produtos-sugeridos">
         <sugestIcons />
       </div>
-      <TitleCarousel title="Mais bem avaliados" />
-      <PadraoCarousel :tipo="'Bem Avaliado'" />
-      <TitleCarousel title="Inspirados no visto por ultimo" />
-      <PadraoCarousel />
+      <TitleCarousel title="Mais bem avaliados" v-motion-slide-visible-once-left :delay="300" :duration="400" />
+      <PadraoCarousel v-motion-slide-visible-once-right :delay="300" :duration="400" :tipo="'Bem Avaliado'"  />
+      <TitleCarousel title="Inspirados no visto por ultimo" v-motion-slide-visible-once-left :delay="300" :duration="400" />
+      <PadraoCarousel v-motion-slide-visible-once-right :delay="300" :duration="400" />
       <beneficiesCards />
       <contactComp />
       <lojasParceirasComp />
