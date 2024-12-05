@@ -1,11 +1,49 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import "@passageidentity/passage-elements/passage-auth";
+import { useAuthStore } from '@/stores/auth';
+import { ref, onMounted } from 'vue';
 
+const router = useRouter();
+const authStore = useAuthStore();
+
+// Função que será chamada quando o Passage completar o login
+const handleLogin = async () => {
+  // Captura o token gerado pelo Passage
+  const token = localStorage.getItem('psg_auth_token');
+  
+  // Aguardar o token para setar o usuário no store
+  if (token) {
+    await authStore.setToken(token);
+    // Após o login, redireciona para a rota anterior
+    redirectToPreviousPage();
+  }
+};
+
+// Função para redirecionar para a página anterior
+const redirectToPreviousPage = () => {
+  const previousRoute = localStorage.getItem('previousRoute');
+  console.log(previousRoute)
+  // Verifica se há uma rota anterior salva e redireciona ou vai para a home
+  if (previousRoute) {
+    router.push(previousRoute);
+  } else {
+    router.push('/'); // Caso não tenha rota anterior, vai para a home
+  }
+};
+
+onMounted(() => {
+  // Verifica se o usuário não está autenticado e, se não, salva a rota anterior
+  if (!authStore.loggedIn) {
+    const currentRoute = router.currentRoute.value.fullPath;
+    localStorage.setItem('previousRoute', currentRoute); // Salva a rota atual
+  }
+});
 </script>
 
 <template>
   <div class="authContainer">
-    <passage-auth app-id="V0alwA7XSzKK5hRenPSvbiYf"></passage-auth>
+    <passage-auth  @login="handleLogin" app-id="V0alwA7XSzKK5hRenPSvbiYf"></passage-auth>
   </div>
 </template>
 
