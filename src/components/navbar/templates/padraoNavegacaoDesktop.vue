@@ -8,12 +8,16 @@ import { useFiltroStore } from '@/stores/filtros'
 import { useRotasStore } from '@/stores/rotas'
 import { useCartStore } from '@/stores/carrinhoStore'
 import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
 const cart = useCartStore()
 const FiltrosStore = useFiltroStore()
 const RotasStore = useRotasStore()
 const useAuth = useAuthStore()
+const router = useRouter()
 const showMenu = ref(false)
 const openPesquisar = ref(false)
+
 function onHover(e) {
   if (e == 'Produtos') {
     showMenu.value = true
@@ -28,6 +32,11 @@ const togglePesquisar = () => {
 // Função para fechar o input quando ele perder o foco
 const closePesquisar = () => {
   openPesquisar.value = false
+}
+
+// Função para ir para a rota /produtos/all quando pressionar Enter
+const irParaProdutosAll = () => {
+  router.push('/produtos/all')
 }
 </script>
 
@@ -59,6 +68,7 @@ const closePesquisar = () => {
           type="text"
           v-model="FiltrosStore.pesquisa"
           @blur="closePesquisar"
+          @keydown.enter="irParaProdutosAll"
           placeholder="Digite para pesquisar..."
           class="input-pesquisar"
         />
@@ -149,7 +159,6 @@ const closePesquisar = () => {
 
   border-radius: 3rem;
 }
-/* CSS SUBMENU */
 .menu {
   z-index: 9999;
   position: fixed;
@@ -160,19 +169,16 @@ const closePesquisar = () => {
   justify-content: center;
   border-bottom: 1px solid #cfcfcf;
 }
-
 .submenu {
   width: 1400px;
   padding: 20px 250px 30px;
   display: flex;
   justify-content: center;
 }
-
 .filter-menu {
   padding: 15px 30px 0px 0px;
   border-right: 1px solid #5292d0;
 }
-
 .filters {
   padding: 0px 30px 20px 0px;
   gap: 15px;
@@ -180,11 +186,9 @@ const closePesquisar = () => {
   flex-direction: column;
   list-style: none;
 }
-
 .filters li {
   cursor: pointer;
 }
-
 .products {
   padding: 15px 0px 0px 60px;
   display: flex;
@@ -192,21 +196,16 @@ const closePesquisar = () => {
   gap: 15px;
   list-style: none;
 }
-
 .products li {
   width: 20%;
   cursor: pointer;
 }
-
 .products li:hover {
   text-decoration: underline;
 }
-
 .active {
   font-weight: 600;
 }
-
-/* FIM -> CSS SUBMENU */
 .navbar {
   z-index: 9999;
   position: fixed;
@@ -218,44 +217,32 @@ const closePesquisar = () => {
   align-items: center;
   padding: 40px 40px 40px 25px;
 }
-
 .navbar .logo {
   cursor: pointer;
 }
-
 .navbar .link-list {
   list-style: none;
   display: flex;
   gap: 25px;
 }
-
 .navbar .link-list .link:nth-child(2):hover .submenu {
   background-color: red;
 }
-
 .link {
   text-decoration: none;
   color: black;
 }
-
-.link {
-  text-decoration: none;
-  color: black;
-}
-
 .navbar .utilities {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-
 .navbar .utilities span {
   display: flex;
   align-items: center;
   gap: 5px;
   cursor: pointer;
 }
-
 .navbar .utilities .button {
   cursor: pointer;
   appearance: none;
@@ -268,20 +255,17 @@ const closePesquisar = () => {
   cursor: pointer;
   text-decoration: none;
 }
-
 .perfil {
   display: flex;
   gap: 15px;
   text-decoration: none;
 }
-
 .perfil img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   text-decoration: none;
 }
-
 .perfil span {
   color: black;
 }

@@ -99,7 +99,7 @@ watch(path, () => {
 <template>
   <div class="rota-atual">
     <!-- Link para Home, seguido de '>' -->
-    <RouterLink class="link" to="/">{{produtosStore.produtos[useCarouselStore().produtoId]}}</RouterLink>
+    <RouterLink class="link" to="/">Home</RouterLink>
     <span v-if="partesRota.length > 0"> &gt; </span> <!-- Adiciona '>' entre Home e a próxima parte -->
 
     <!-- Gera links dinâmicos para cada parte da rota -->

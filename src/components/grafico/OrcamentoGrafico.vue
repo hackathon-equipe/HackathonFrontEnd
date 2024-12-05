@@ -8,14 +8,17 @@ const props = defineProps({
   valores: Array,
 });
 
+// Função que retorna a cor com base no valor
+const getColor = (value) => (value < 0 ? 'rgb(255 0 0 / 72%)' : '#406996');
+
 const data = {
-  labels: numbers,  // Labels do eixo X
+  labels: numbers,
   datasets: [
     {
-      label: 'Entradas', // Rótulo da série de dados
-      data: props.valores, // Dados para o gráfico
-      borderColor: '#29465B',
-      backgroundColor: '#29465B',
+      label: 'Entradas',
+      data: props.valores,
+      borderColor: props.valores.map(getColor), // Define a cor da borda
+      backgroundColor: props.valores.map(getColor), // Define a cor do fundo
       hoverBorderWidth: 1,
       hoverBorderColor: 'white',
     },
@@ -29,6 +32,7 @@ onMounted(() => {
     type: 'bar',
     data: data,
     options: {
+      indexAxis: 'x', // Eixo X padrão para barras verticais
       elements: {
         bar: {
           borderWidth: 2,
@@ -37,56 +41,56 @@ onMounted(() => {
       responsive: true,
       plugins: {
         legend: {
-          display: false, // Se você quiser exibir a legenda, altere para true
+          display: false,
         },
         title: {
           display: true,
           text: 'Retorno anual considerando o valor investido',
-          padding: 20, // Ajuste do padding (espaço) ao redor do título para movê-lo para cima
-          position: 'top', // Coloca o título no topo
+          padding: 20,
+          position: 'top',
         },
       },
       scales: {
         x: {
           title: {
-            display: true, // Exibe o título do eixo X
-            text: 'Anos',  // Texto do título do eixo X
-            color: '#000',  // Cor do título
+            display: true,
+            text: 'Anos',
+            color: '#000',
             font: {
-              size: 12, // Tamanho da fonte
+              size: 12,
             },
             padding: {
-              top: 15, // Ajusta o espaço acima do título
-              left: 50, // Move o título para a direita
+              top: 15,
+              left: 50,
             },
           },
           grid: {
-            display: false, // Remove a grade do eixo X
+            display: false,
           },
         },
         y: {
           title: {
-            display: true, // Exibe o título do eixo Y
-            text: 'Retorno do Investimento',  // Texto do título do eixo Y
-            color: '#000',  // Cor do título
+            display: true,
+            text: 'Retorno do Investimento',
+            color: '#000',
             font: {
-              size: 12, // Tamanho da fonte
+              size: 12,
             },
             padding: {
-              bottom: 20, // Maior distância do gráfico
+              bottom: 20,
             },
           },
           grid: {
-            display: false, // Remove a grade do eixo Y
+            display: false,
           },
           ticks: {
             font: {
-              size: 12, // Fonte para os números no eixo Y
+              size: 12,
             },
-            beginAtZero: true, // Começa o eixo Y a partir de 0
-            stepSize: 10,  // Tamanho do intervalo das marcas no eixo Y
+            beginAtZero: true,
+            stepSize: 10,
             callback: function (value) {
-              return 'R$ ' + value; // Formata os números no eixo Y
+              return 'R$ ' + value;
             },
           },
         },
