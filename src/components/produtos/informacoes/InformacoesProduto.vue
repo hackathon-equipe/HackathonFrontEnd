@@ -10,7 +10,7 @@ import { useRouter } from 'vue-router';
 
 import { useComentarioStore } from '@/stores/comentarios';
 const router = useRouter();
-const useAuth=useAuthStore()
+const useAuth = useAuthStore()
 
 
 // import axios from 'axios'; // Importando Axios
@@ -76,62 +76,55 @@ const produto = useProdutosStore().getProduct(props.id)
 const compra = usePagamentoStore()
 
 const visibleAddCart = ref(false);
-function addToCart(){
-  if(useAuth.loggedIn){
+function addToCart() {
+//  if (!useAuth.loggedIn) {
     cart.addItem(produto);
-  visibleAddCart.value = true;
-  setTimeout(() => {visibleAddCart.value = false;}, 4000);
-  }
-    else{
-      router.replace("/login")
-    }
+    visibleAddCart.value = true;
+    setTimeout(() => { visibleAddCart.value = false; }, 4000);
+//}
+//  else {
+//    router.replace("/login")
+//  }
 }
 function closeNotify() {
   visibleAddCart.value = false
 }
-function comprar(){
-  if(useAuth.loggedIn){
+function comprar() {
+  if (useAuth.loggedIn) {
     compra.realizarCompra(props, 'direta', props.preco)
-  console.log(props.preco)  
-  router.push('/pagamento')
+    console.log(props.preco)
+    router.push('/pagamento')
   }
-    else{
-      router.replace("/login")
-    }
+  else {
+    router.replace("/login")
+  }
 }
 </script>
 <template>
-    <div class="informacoes">
-      <span class="nome">{{ nome }}</span>
-      <span class="descricao"
-        >Economia Imediata Certificado pelo INMETRO</span
-      >
-      <div class="estrelas">
-        <div v-for="item in Math.round((useComentarioStore().mediaProdutos(id)))" :key="item">
-          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
-              fill="#F4AA09" />
-          </svg>
-        </div>  
-        <div v-for="item in ( 5 - Math.round((useComentarioStore().mediaProdutos(id))))" :key="item">
-          <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
-              fill="#D9D9D9" />
-          </svg>
-        </div>  
-        <span>{{((useComentarioStore().mediaProdutos(id))).toFixed(1)}}</span>
+  <div class="informacoes">
+    <span class="nome">{{ nome }}</span>
+    <span class="descricao">Economia Imediata Certificado pelo INMETRO</span>
+    <div class="estrelas">
+      <div v-for="item in Math.round((useComentarioStore().mediaProdutos(id)))" :key="item">
+        <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+            fill="#F4AA09" />
+        </svg>
       </div>
-      <span class="preco">R$ {{ Number(preco).toFixed(2).replace('.',',') }}</span>
-      <div class="frete"><span> Calcule seu frete</span> <img src="@/assets/images/seta-baixo.png" width="10px" height="10px"/></div>
-      <router-link class="button-comprar" :class="inferior" to="/pagamento" @click="comprar()">Comprar</router-link>
-      <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
+      <div v-for="item in (5 - Math.round((useComentarioStore().mediaProdutos(id))))" :key="item">
+        <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
+            fill="#D9D9D9" />
+        </svg>
+      </div>
+      <span>{{ ((useComentarioStore().mediaProdutos(id))).toFixed(1) }}</span>
     </div>
     <span class="preco">R$ {{ Number(preco).toFixed(2).replace('.', ',') }}</span>
-    <inputAplicarComp :class="inferior" type=1  class="frete" titulo="Calcular Frete" tituloBotao="Inserir CEP" inputPlaceholder="Insira seu CEP" />
-    <button class="button-comprar" @click="comprar()">Comprar</button>
-    <div id="wallet_container"></div>
+    <inputAplicarComp :class="inferior" type=1 class="frete" titulo="Calcular Frete" tituloBotao="Inserir CEP"
+      inputPlaceholder="Insira seu CEP" />
+    <router-link class="button-comprar" :class="inferior" to="/pagamento" @click="comprar()">Comprar</router-link>
     <button class="button-add" @click="addToCart">Adicionar ao carrinho</button>
   </div>
   <addToCartNotify v-if="visibleAddCart" :nome="nome" :preco="Number(preco)" :image="image[0]"

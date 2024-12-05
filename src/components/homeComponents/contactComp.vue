@@ -7,8 +7,8 @@ import { useScreenSize } from '@/composables/useScreenSize';
 <template>
     <div class="container">
         <div class="images">
-            <imgMobile v-if="isMobile" v-motion-slide-visible-once-left :delay="300" :duration="400" />
-            <div v-else>
+            <imgMobile v-if="useScreenSize().isMobile" v-motion-slide-visible-once-left :delay="300" :duration="400" />
+            <div v-else v-motion-slide-visible-once-left :delay="300" :duration="400">
                 <img src="./img/menorFrame.png" alt="">
                 <img src="./img/maiorFrame.png" alt="">
             </div>

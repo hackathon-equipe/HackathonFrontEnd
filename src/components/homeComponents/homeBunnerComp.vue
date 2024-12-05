@@ -13,7 +13,7 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
                 <h1 v-motion-slide-visible-once-left :delay="600" :duration="600">ECONOMIA</h1>
             </div>
             <HomeIconsComp />
-            <div class="home-buttons">
+            <div class="home-buttons" v-motion-slide-visible-once-left :delay="300" :duration="400">
                 <router-link class="button" to="/produtos/placas-solares">Compre sua placa
                     <leftArrowIcon />
                 </router-link>
