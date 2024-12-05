@@ -7,8 +7,10 @@ import imageHomePage from '@/assets/images/bunnerHome/imageHomePage.vue'
 <template>
     <div class="home">
         <div class="info-side">
-            <div class="home-tittle" v-motion-slide-visible-once-left :delay="300" :duration="300">
-                <h1>INVESTIMENTO, SUSTENTABILIDADE, ECONOMIA</h1>
+            <div class="home-tittle">
+                <h1 v-motion-slide-visible-once-left :delay="300" :duration="600">INVESTIMENTO,</h1>
+                <h1 v-motion-slide-visible-once-left :delay="450" :duration="600">SUSTENTABILIDADE,</h1>
+                <h1 v-motion-slide-visible-once-left :delay="600" :duration="600">ECONOMIA</h1>
             </div>
             <HomeIconsComp />
             <div class="home-buttons">

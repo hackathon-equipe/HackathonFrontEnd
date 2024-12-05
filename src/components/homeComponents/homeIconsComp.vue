@@ -3,19 +3,19 @@
 </script>
 <template>
     <div class="home-icons">
-        <div>
+        <div v-motion-slide-visible-once-left :delay="650" :duration="450">
             <span>
                 <dollarIcon />
             </span>
             <span>valoriza seu imovel</span>
         </div>
-        <div class="line-icons">
+        <div class="line-icons" v-motion-slide-visible-once-left :delay="550" :duration="450">
             <span>
                 <recycleIcon />
             </span>
             <span>energia limpa</span>
         </div>
-        <div>
+        <div v-motion-slide-visible-once-left :delay="450" :duration="450">
             <span>
                 <downGraphicIcon />
             </span>

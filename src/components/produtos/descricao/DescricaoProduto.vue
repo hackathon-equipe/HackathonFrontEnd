@@ -29,9 +29,9 @@ const pdfTecnico = ref('');
 
 // Função para separar "PDF Tecnico"
 function separarPdfTecnico() {
-  pdfTecnico.value = novaDesc.value["PDF Tecnico"]; // Copia o valor
+  pdfTecnico.value = novaDesc.value["PDFTecnico"]; // Copia o valor
   console.log(pdfTecnico.value)
-  delete novaDesc.value["PDF Tecnico"]; // Remove a chave do objeto
+  delete novaDesc.value["PDFTecnico"]; // Remove a chave do objeto
 }
 
 separarPdfTecnico();
@@ -57,7 +57,8 @@ separarPdfTecnico();
   }
   .descricao{
     display: flex;
-    padding: 0px 50px;
+    margin-left: calc(15vw - 130px);
+    padding-left: 100px;
     font-size: 16px;
   }
   .descricao ul{
