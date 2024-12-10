@@ -20,8 +20,7 @@ export const useProdutosStore = defineStore('produtos', () => {
       descricao: {
         Nome: 'Painel Solar 550W Monocristalino Half-Cell',
         Peso: '29kg',
-        'PDF Tecnico':
-          'https://content.elgin.com.br/assets/arquivos/350550ZS0000-Placa-solar-550W.pdf',
+        PDFTecnico: 'https://content.elgin.com.br/assets/arquivos/350550ZS0000-Placa-solar-550W.pdf',
         TipoDeVidro: '3.2mm temperado',
         TipoDeCelula: 'Monocristalino (Half-cell)',
         PotenciaMaxima: '550W',

@@ -8,14 +8,22 @@ import { ref } from 'vue';
 const abrirSubMenu = ref(false)
 //icons
 import { shopingCartIcon, searchIcon, menuIcon, userblackIcon, XCloseIcon } from '../../icons'
+
 import { useFiltroStore } from '@/stores/filtros'
 import { useCartStore } from '@/stores/carrinhoStore';
+import { useRotasStore } from '@/stores/rotas';
+
 
 const cart = useCartStore()
 const FiltrosStore = useFiltroStore()
+const RotasStore = useRotasStore()
 
 //Barra de Pesuisa
 const barraPesquisa = ref(false)
+
+function closeMenu(){
+    abrirSubMenu.value = false
+}
 </script>
 
 <template>
@@ -55,6 +63,13 @@ const barraPesquisa = ref(false)
                     </router-link>
                 </div>
             </div>
+        </div>
+        <div class="sub-menu" v-if="abrirSubMenu">
+            <ul>
+                <li v-for="(text, index) in RotasStore.titles" :key="index" @click="closeMenu()">
+                    <ListaTitulos :title="text.text" :link="text.link" class="item"/>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
@@ -109,7 +124,8 @@ const barraPesquisa = ref(false)
     right: 60px;
 }
 
-.sub-menu a {
+.sub-menu a{
+    text-decoration: none;
     display: flex;
     text-align: center;
     justify-content: center;
