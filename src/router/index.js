@@ -98,11 +98,6 @@ const router = createRouter({
           component: () => import('../views/administradores/ClientesView.vue')
         },
         {
-          path: '/admin/sobre',
-          name: 'sobreAdmin',
-          component: () => import('../views/administradores/SobreView.vue')
-        },
-        {
           path: '/admin/perfil',
           name: 'perfilAdmin',
           component: () => import('../views/administradores/perfilView.vue')
