@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import buttonPerfil from '../button/buttonPerfil.vue';
 const props = defineProps(['DadosUser'])
 const usuario = ref({
     name: "",
@@ -44,9 +45,7 @@ const usuario = ref({
             <input type="password" id="confirmarsenha" v-model="usuario.senhaConfirmacao" />
           </div>
         </div>
-        <div class="button">
-          <button @click="$emit('enviarDados', usuario)">Salvar alterações</button>
-        </div>
+       <buttonPerfil @click="$emit('enviarDados', usuario)" titulo="Salvar Alterações"/>
     </div>
 </template>
 
