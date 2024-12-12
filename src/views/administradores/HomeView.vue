@@ -86,7 +86,7 @@ onMounted(() => {
         </div>
         <div class="home-buttons">
           <button class="button" @click="scrollToSection">Desempenho
-            <LeftArrowIcon class="seta" />
+            <leftArrowIcon class="seta" />
           </button>
         </div>
       </div>
