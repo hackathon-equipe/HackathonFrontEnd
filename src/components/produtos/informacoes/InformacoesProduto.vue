@@ -105,21 +105,21 @@ function comprar() {
     <span class="nome">{{ nome }}</span>
     <span class="descricao">Economia Imediata Certificado pelo INMETRO</span>
     <div class="estrelas">
-      <div v-for="item in Math.round((useComentarioStore().mediaProdutos(id)))" :key="item">
+      <div v-for="item in Math.round((4))" :key="item">
         <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
             fill="#F4AA09" />
         </svg>
       </div>
-      <div v-for="item in (5 - Math.round((useComentarioStore().mediaProdutos(id))))" :key="item">
+      <div v-for="item in (5 - Math.round((4)))" :key="item">
         <svg width="20" height="20" viewBox="0 0 286 272" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M143 0L176.677 103.647H285.658L197.491 167.705L231.168 271.353L143 207.295L54.8322 271.353L88.5093 167.705L0.341522 103.647H109.323L143 0Z"
             fill="#D9D9D9" />
         </svg>
       </div>
-      <span>{{ ((useComentarioStore().mediaProdutos(id))).toFixed(1) }}</span>
+      <span>{{ ((4)).toFixed(1) }}</span>
     </div>
     <span class="preco">R$ {{ Number(preco).toFixed(2).replace('.', ',') }}</span>
     <inputAplicarComp :class="inferior" type=1 class="frete" titulo="Calcular Frete" tituloBotao="Inserir CEP"

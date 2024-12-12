@@ -126,9 +126,9 @@ onMounted(() => {
           <span class="span-pqn">{{ dataHoraPagamento }}</span> <!-- Exibe a data e hora -->
           <hr class="hr"/>
           <span class="span-pqn">valor do pagamento</span>
-          <span class="valor">R$ 766,00</span>
-          <span class="span-pqn">prazo de entrega</span>
-          <span class="prazo">4 a 5 dias úteis</span>
+          <span class="valor">R${{ paymentData.transaction_details.total_paid_amount }},00</span>
+          <span class="span-pqn">método de pagamento</span>
+          <span class="prazo">{{ paymentData.payment_method_id }}</span>
           <router-link to="/" class="button" >voltar ao site</router-link></div>
        
     </div>
@@ -144,8 +144,7 @@ onMounted(() => {
     border-radius: 3rem;
     text-decoration: none;
     padding: 8px 25px;
-    display: flex
-;
+    display: flex;
     align-items: center;
     gap: 10px;
     transition: 0.5s;

@@ -5,7 +5,7 @@ import { usePagamentoStore } from '@/stores/pagamentoStore';
 import axios from 'axios'; // Importando Axios
 // Acessando o pagamentoStore
 const pagamentoStore = usePagamentoStore();
-const frete = ref(76)
+const frete = ref(0)
 
 // Calculando o subtotal (soma do preço dos itens * quantidade)
 const subtotal = computed(() => {

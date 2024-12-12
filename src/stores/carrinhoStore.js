@@ -42,7 +42,7 @@ export const useCartStore = defineStore('cart', () => {
 
   // Retorna se o frete ira ser gratuito
   const freeShip = computed(() => {
-    return valorNoCarrinho.value > 950
+    return valorNoCarrinho.value > 900
   })
 
   // Cupons de desconto
