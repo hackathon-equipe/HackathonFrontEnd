@@ -42,7 +42,7 @@ separarPdfTecnico();
     <h1 class="titulo-descricao">Descrição do Produto</h1>
     <div class="descricao">
       <ul>
-        <li v-if="pdfTecnico != undefined"><a :href="pdfTecnico">PDF Tecnico</a></li>
+        <li v-if="pdfTecnico != undefined"><a target="_blank" :href="pdfTecnico">PDF Tecnico</a></li>
         <li v-for="(value, key) of novaDesc" :key="key">{{ key }}: <strong>{{ value }}</strong></li>
         <li>DOWNLOAD CENTER</li>
       </ul>

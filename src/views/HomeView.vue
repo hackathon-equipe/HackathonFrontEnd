@@ -1,5 +1,5 @@
 <script setup>
-import { HomeBunnerComp, sugestIcons, contactComp, beneficiesCards, lojasParceirasComp } from '@/components/homeComponents'
+import { HomeBunnerComp, sugestIcons, contactComp, beneficiesCards, lojasParceirasComp, CatarinasComp } from '@/components/homeComponents'
 import PadraoCarousel from '@/components/carousel/PadraoCarousel.vue'
 import TitleCarousel from '@/components/carousel/TitleCarousel.vue'
 import { useAuth } from '@/composables/auth'
@@ -48,7 +48,7 @@ onMounted(() => {
       <PadraoCarousel v-motion-slide-visible-once-right :delay="300" :duration="400" /> <!-- // -->
       <beneficiesCards /> <!-- Cartoes dos beneficios do sistema -->
       <contactComp /> <!-- Area de contato com Oorum -->
-      <!-- Sobre a Catarinas -->
+      <CatarinasComp /> <!-- Sobre a Catarinas -->
       <lojasParceirasComp /> <!-- Lojas parceiras -->
     </div>
   </Transition>

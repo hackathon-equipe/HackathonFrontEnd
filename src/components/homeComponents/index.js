@@ -4,6 +4,7 @@ import contactComp from "./contactComp.vue"
 import lojasParceirasComp from "./lojasParceirasComp.vue";
 import HomeIconsComp from "./homeIconsComp.vue";
 import HomeBunnerComp from "./homeBunnerComp.vue";
+import CatarinasComp from "./catarinasComp.vue";
 
 
 export{
@@ -12,5 +13,7 @@ export{
     contactComp,
     lojasParceirasComp,
     HomeIconsComp,
-    HomeBunnerComp
+    HomeBunnerComp,
+    CatarinasComp
+
 }
