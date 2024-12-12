@@ -288,4 +288,15 @@ function pagamento_realizado() {
     font-weight: 600;
 }
 
+@media (max-width:768px) {
+    .pagamento{
+        width: 100%;
+        background-color: transparent;
+    }
+    .detalhes-compra{
+        width: 100%;
+        margin: 0px;
+    }
+}
+
 </style>
