@@ -36,7 +36,7 @@ function removeFromCart() {
             <img class="item-img" :src="img.file" alt="">
             <div class="item-info">
                 <span class="item-nome">{{ props.nome }}</span>
-                <span class="item-valor">R$ {{ props.preco }}</span>
+                <span class="item-valor">R$ {{ props.preco.replace('.',',') }}</span>
                 <div class="item-quantidade">
                     <trashIcon v-if="props.quantidade < 2" @click="removeFromCart(); removeMsg();" class="icon" />
                     <minusIcon v-else class="icon" @click="removeFromCart" /> {{ props.quantidade }}
