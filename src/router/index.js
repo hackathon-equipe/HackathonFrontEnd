@@ -78,7 +78,7 @@ const router = createRouter({
         {
           path: '/admin/produto/:id',
           name: 'produtoAdmin',
-          component: () => import('../views/administradores/ProdutoView.vue'),
+          component: () => import('../views/administradores/PedidosView.vue'),
           params: true
         },
         {
@@ -101,6 +101,11 @@ const router = createRouter({
           path: '/admin/perfil',
           name: 'perfilAdmin',
           component: () => import('../views/administradores/perfilView.vue')
+        },
+        {
+          path: '/admin/pedidos',
+          name: 'pedidosAdmin',
+          component: () => import('../views/administradores/PedidosView.vue')
         }
   ]}
   ],
