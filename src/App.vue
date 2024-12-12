@@ -10,7 +10,7 @@ const ProdutosStore = useProdutosStore()
 onMounted(async () => {
   await ComentarioStore.carregarAvaliacoes();
   await ProdutosStore.carregarProdutos();
-  console.log(ComentarioStore.comentarios)
+  console.log(ProdutosStore.produtos)
 });
 
 

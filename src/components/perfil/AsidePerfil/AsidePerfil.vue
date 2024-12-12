@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import { userIcon, markerPinIcon,packageIcon,walletIcon } from '@/components/icons';
 const props = defineProps(['usuario', 'opcao']);
 const emit = defineEmits(['salvarFoto', 'selecionarComponente', 'sair']);
 import { useAuthStore } from '@/stores/auth';
 const useAuth = useAuthStore();
-const local = props.opcao;
+// const local = ref(props.opcao);
 const previewFoto = ref(null);
 const file = ref(null)
 function handleFileChange(event) {
@@ -36,17 +37,17 @@ function handleFileChange(event) {
     <input type="file" class="file-upload" id="file-upload" @change="handleFileChange" />
     <div class="links">
       <ul>
-        <li :class="local === 1 ? 'active' : ''" @click="emit('selecionarComponente', 1)">
+        <li :class="props.opcao == 1 ? 'active' : ''" @click="emit('selecionarComponente', 1)">
           <userIcon /> Meus dados
         </li>
-        <li :class="local === 2 ? 'active' : ''" @click="emit('selecionarComponente', 2)">
+        <li :class="props.opcao == 2 ? 'active' : ''" @click="emit('selecionarComponente', 2)">
           <markerPinIcon /> Meus endereços
         </li>
-        <li :class="local === 3 ? 'active' : ''" @click="emit('selecionarComponente', 3)">
+        <li :class="props.opcao == 3 ? 'active' : ''" @click="emit('selecionarComponente', 3)">
           <packageIcon /> Meus pedidos
         </li>
-        <li :class="local === 4 ? 'active' : ''" @click="emit('selecionarComponente', 4)">
-          <walletIcon /> Meus cupons
+        <li :class="props.opcao== 4 ? 'active' : ''" @click="emit('selecionarComponente', 4)">
+          <walletIcon /> Meus Orçamentos
         </li>
       </ul>
     </div>
@@ -121,6 +122,7 @@ function handleFileChange(event) {
   gap: 20px;
   border-bottom: 1px solid #ececec;
   padding: 0px 0px 15px 0px;
+  cursor: pointer;
 }
 
 input[type='file'] {
