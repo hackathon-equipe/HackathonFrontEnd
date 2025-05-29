@@ -18,8 +18,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <RouterView />
+  <div class="app">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
+.app{
+  max-width: 100vw;
+  overflow: hidden;
+}
 </style>
